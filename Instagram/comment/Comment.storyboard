@@ -133,12 +133,17 @@
                                                                     <constraint firstAttribute="height" constant="56" id="ZtL-de-av9"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a comment" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ahB-rw-Pzp">
-                                                                <rect key="frame" x="64" y="21" width="318" height="30"/>
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a comment" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ahB-rw-Pzp">
+                                                                <rect key="frame" x="64" y="21" width="275" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
+                                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6je-1T-K5I">
+                                                                <rect key="frame" x="347" y="19.666666666666629" width="35" height="33"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <state key="normal" title="Post"/>
+                                                            </button>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
@@ -180,10 +185,13 @@
                         <viewLayoutGuide key="safeArea" id="g6R-dC-x9Y"/>
                     </view>
                     <navigationItem key="navigationItem" id="O4n-pi-Cxa"/>
+                    <connections>
+                        <outlet property="commentBarProfileImage" destination="H2V-j3-bhS" id="z0p-h7-KVK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U4j-gF-bkV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2723" y="-620"/>
+            <point key="canvasLocation" x="2721.739130434783" y="-620.38043478260875"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5jb-zb-cNm">
