@@ -228,7 +228,7 @@ extension HomeTableViewController {
 // MARK: - Navigation
 extension HomeTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as! CommentTableViewController
+        let destination = segue.destination as! CommentViewController
         let comments = sender as! [Comment]
 
         destination.comments = comments

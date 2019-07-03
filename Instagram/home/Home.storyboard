@@ -12,7 +12,7 @@
         <!--Instagram-->
         <scene sceneID="yGw-zS-17K">
             <objects>
-                <tableViewController id="zZQ-f3-KAU" customClass="HomeTableViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="zZQ-f3-KAU" customClass="HomeTableViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qZd-v1-h2U">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -388,10 +388,10 @@
             </objects>
             <point key="canvasLocation" x="282.60869565217394" y="-619.56521739130437"/>
         </scene>
-        <!--CommentTableViewController-->
+        <!--CommentViewController-->
         <scene sceneID="wTI-Zn-6c1">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="CommentTableViewController" storyboardName="Comment" referencedIdentifier="CommentTableViewController" id="PM7-3t-TdC" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="CommentTableViewController" storyboardName="Comment" referencedIdentifier="CommentViewController" id="PM7-3t-TdC" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="iF3-ZK-Kle"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QRD-Rn-taa" userLabel="First Responder" sceneMemberID="firstResponder"/>

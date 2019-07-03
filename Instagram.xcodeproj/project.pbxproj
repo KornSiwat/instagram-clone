@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		930D210F22CB0EF70040EF0D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930D210E22CB0EF70040EF0D /* Post.swift */; };
 		930D211122CBE9290040EF0D /* Comment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 930D211022CBE9290040EF0D /* Comment.storyboard */; };
-		930D211422CBEA150040EF0D /* CommentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930D211322CBEA150040EF0D /* CommentTableViewController.swift */; };
 		930D211622CBEA5D0040EF0D /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930D211522CBEA5D0040EF0D /* CommentTableViewCell.swift */; };
 		930D211822CC64320040EF0D /* StoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930D211722CC64320040EF0D /* StoryCollectionViewCell.swift */; };
 		930D211E22CC6C850040EF0D /* StoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930D211D22CC6C850040EF0D /* StoryTableViewCell.swift */; };
@@ -24,6 +23,7 @@
 		9385517522CC7F8B00628A21 /* StoryUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385517422CC7F8B00628A21 /* StoryUICollectionView.swift */; };
 		9385517722CC7FE400628A21 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9385517622CC7FE400628A21 /* Profile.storyboard */; };
 		9385517922CC970800628A21 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385517822CC970800628A21 /* Comment.swift */; };
+		9385517B22CCD31000628A21 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385517A22CCD31000628A21 /* CommentViewController.swift */; };
 		93B98D3F22C9034F008620EF /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B98D3E22C9034F008620EF /* Story.swift */; };
 		93B98D4322C90758008620EF /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B98D4222C90758008620EF /* HomeTableViewController.swift */; };
 		93B98D4722C9290A008620EF /* ProfileDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B98D4622C9290A008620EF /* ProfileDetailTableViewCell.swift */; };
@@ -34,7 +34,6 @@
 /* Begin PBXFileReference section */
 		930D210E22CB0EF70040EF0D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		930D211022CBE9290040EF0D /* Comment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Comment.storyboard; sourceTree = "<group>"; };
-		930D211322CBEA150040EF0D /* CommentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewController.swift; sourceTree = "<group>"; };
 		930D211522CBEA5D0040EF0D /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		930D211722CC64320040EF0D /* StoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		930D211D22CC6C850040EF0D /* StoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -51,6 +50,7 @@
 		9385517422CC7F8B00628A21 /* StoryUICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUICollectionView.swift; sourceTree = "<group>"; };
 		9385517622CC7FE400628A21 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		9385517822CC970800628A21 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		9385517A22CCD31000628A21 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		93B98D3E22C9034F008620EF /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		93B98D4222C90758008620EF /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		93B98D4622C9290A008620EF /* ProfileDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				930D211022CBE9290040EF0D /* Comment.storyboard */,
-				930D211322CBEA150040EF0D /* CommentTableViewController.swift */,
+				9385517A22CCD31000628A21 /* CommentViewController.swift */,
 				930D211522CBEA5D0040EF0D /* CommentTableViewCell.swift */,
 				9385517822CC970800628A21 /* Comment.swift */,
 			);
@@ -260,8 +260,8 @@
 				930D211822CC64320040EF0D /* StoryCollectionViewCell.swift in Sources */,
 				9385517922CC970800628A21 /* Comment.swift in Sources */,
 				93B98D4B22C92C77008620EF /* UIImageView.swift in Sources */,
+				9385517B22CCD31000628A21 /* CommentViewController.swift in Sources */,
 				93B98D3F22C9034F008620EF /* Story.swift in Sources */,
-				930D211422CBEA150040EF0D /* CommentTableViewController.swift in Sources */,
 				9385517522CC7F8B00628A21 /* StoryUICollectionView.swift in Sources */,
 				93479D4F22C6378000A838F9 /* AppDelegate.swift in Sources */,
 				930D211622CBEA5D0040EF0D /* CommentTableViewCell.swift in Sources */,
