@@ -12,19 +12,53 @@ class CommentViewController: UIViewController {
     @IBOutlet weak var commentBarProfileImage: UIImageView!
     @IBOutlet weak var commentBarView: UIView!
     @IBOutlet weak var commentBarBottomLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var commentTextField: UITextField!
+    @IBOutlet weak var postButton: UIButton!
+    @IBAction func textFieldEditingChange(_ sender: Any) {
+        updatePostButtonState()
+    }
     
     var selfInfo: UserInfo?
     var comments: [Comment]?
+    var updateCommentsData: (([Comment]) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        commentBarProfileImage.image = UIImage(named: "defaultProfileImage")
+        commentBarProfileImage.image = selfInfo!.profileImage
         commentBarProfileImage.roundedImage()
         addKeyboardObserver()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         removeKeyboardObserver()
+        updateCommentsData!(comments!)
+    }
+}
+
+// MARK: - Table Action
+extension CommentViewController {
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        view.endEditing(true)
+    }
+}
+
+// MARK: - CommentBar Action
+extension CommentViewController {
+    @IBAction func postButtonPress(_ sender: Any) {
+        let newIndexPath = IndexPath(row: comments!.count, section: 0)
+        
+        comments?.append(Comment(profileName: selfInfo!.name,
+                                 profileImage: selfInfo!.profileImage,
+                                 message: commentTextField.text!))
+        tableView.insertRows(at: [newIndexPath], with: .automatic)
+        
+        commentTextField.text! = ""
+        view.endEditing(true)
+    }
+
+    func updatePostButtonState() {
+        postButton.isEnabled = !(commentTextField.text!.isEmpty)
     }
 }
 
@@ -53,7 +87,7 @@ extension CommentViewController {
     @objc func keyboardWillHide(sender: NSNotification) {
         let keyboardInfo = (sender.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue)
         let keyboardHeight = keyboardInfo.cgRectValue.height
-        
+
         commentBarBottomLayoutConstraint.constant = keyboardHeight
         view.layoutIfNeeded()
     }
@@ -61,7 +95,7 @@ extension CommentViewController {
     @objc func keyboardWillShow(sender: NSNotification) {
         let keyboardInfo = (sender.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue)
         let keyboardHeight = keyboardInfo.cgRectValue.height
-        
+
         commentBarBottomLayoutConstraint.constant = keyboardHeight
         view.layoutIfNeeded()
     }

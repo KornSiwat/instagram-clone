@@ -10,7 +10,7 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
     var selfInfo: UserInfo = UserInfo(name: "kkornsw",
-                                      profileImage: UIImage(named: "defaultProfileImage")!)
+                                      profileImage: UIImage(named: "salahProfile")!)
     var stories: [Story] = []
     var posts: [Post] = []
 
@@ -219,7 +219,7 @@ extension HomeTableViewController {
             }
 
             cell.onCommentPress = {
-                self.performSegue(withIdentifier: "CommentSegue", sender: post.comments)
+                self.performSegue(withIdentifier: "CommentSegue", sender: post)
             }
 
             return cell
@@ -231,9 +231,13 @@ extension HomeTableViewController {
 extension HomeTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as! CommentViewController
-        let comments = sender as! [Comment]
+        let post = sender as! Post
+        let comments = post.comments
 
         destination.selfInfo = selfInfo
         destination.comments = comments
+        destination.updateCommentsData = { comments in
+            post.comments = comments
+        }
     }
 }

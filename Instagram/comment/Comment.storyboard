@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GF6-k8-c6G">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GF6-k8-c6G">
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -138,11 +138,17 @@
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <action selector="textFieldEditingChange:" destination="dqx-eq-QrM" eventType="editingChanged" id="pQ2-U7-lHT"/>
+                                                                </connections>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6je-1T-K5I">
                                                                 <rect key="frame" x="347" y="19.666666666666629" width="35" height="33"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <state key="normal" title="Post"/>
+                                                                <connections>
+                                                                    <action selector="postButtonPress:" destination="dqx-eq-QrM" eventType="touchUpInside" id="RSX-vX-aqS"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -173,6 +179,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="GF6-k8-c6G" firstAttribute="trailing" secondItem="g6R-dC-x9Y" secondAttribute="trailing" id="6TX-U5-mU5"/>
                             <constraint firstItem="g6R-dC-x9Y" firstAttribute="trailing" secondItem="Ugd-6G-z4N" secondAttribute="trailing" id="BhY-LA-XQP"/>
@@ -183,15 +190,26 @@
                             <constraint firstItem="Ugd-6G-z4N" firstAttribute="leading" secondItem="g6R-dC-x9Y" secondAttribute="leading" id="zhV-71-y94"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="g6R-dC-x9Y"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="ocK-Ya-YFF" appends="YES" id="NMs-Wm-l2t"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="O4n-pi-Cxa"/>
                     <connections>
                         <outlet property="commentBarBottomLayoutConstraint" destination="NIG-Zs-WSY" id="dZo-80-dUI"/>
                         <outlet property="commentBarProfileImage" destination="H2V-j3-bhS" id="z0p-h7-KVK"/>
                         <outlet property="commentBarView" destination="Ugd-6G-z4N" id="OU3-qJ-vON"/>
+                        <outlet property="commentTextField" destination="ahB-rw-Pzp" id="yuZ-wJ-ggq"/>
+                        <outlet property="postButton" destination="6je-1T-K5I" id="ofO-Bn-fCq"/>
+                        <outlet property="tableView" destination="GF6-k8-c6G" id="Aed-NT-AXT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U4j-gF-bkV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ocK-Ya-YFF">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="dqx-eq-QrM" id="jw1-mq-hBx"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2721.739130434783" y="-620.38043478260875"/>
         </scene>

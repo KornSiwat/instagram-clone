@@ -364,7 +364,6 @@
                         <connections>
                             <outlet property="dataSource" destination="zZQ-f3-KAU" id="8hn-Pe-yhY"/>
                             <outlet property="delegate" destination="zZQ-f3-KAU" id="uqc-oe-M9p"/>
-                            <outletCollection property="gestureRecognizers" destination="Obc-wS-Wgp" appends="YES" id="7SI-64-OKR"/>
                         </connections>
                     </tableView>
                     <toolbarItems/>
@@ -380,11 +379,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uol-sQ-WKt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Obc-wS-Wgp">
-                    <connections>
-                        <action selector="dismissKeyboard:" destination="zZQ-f3-KAU" id="TBr-OQ-ogP"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="282.60869565217394" y="-619.56521739130437"/>
         </scene>
