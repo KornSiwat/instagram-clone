@@ -10,11 +10,15 @@ import UIKit
 
 class CommentViewController: UIViewController {
     @IBOutlet weak var commentBarProfileImage: UIImageView!
-
+    @IBOutlet weak var commentBarView: UIView!
+    @IBOutlet weak var commentBarBottomLayoutConstraint: NSLayoutConstraint!
+    
+    var selfInfo: UserInfo?
     var comments: [Comment]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        commentBarProfileImage.image = UIImage(named: "defaultProfileImage")
         commentBarProfileImage.roundedImage()
         addKeyboardObserver()
     }
@@ -28,11 +32,11 @@ class CommentViewController: UIViewController {
 extension CommentViewController {
     func addKeyboardObserver() {
         NotificationCenter.default.addObserver(self,
-                                               selector: Selector(("keyboardWillShow:")),
+                                               selector: #selector(keyboardWillShow(sender:)),
                                                name: UIResponder.keyboardWillShowNotification,
                                                object: self.view.window)
         NotificationCenter.default.addObserver(self,
-                                               selector: Selector(("keyboardWillHide:")),
+                                               selector: #selector(keyboardWillHide(sender:)),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: self.view.window)
     }
@@ -44,6 +48,22 @@ extension CommentViewController {
         NotificationCenter.default.removeObserver(self,
                                                   name: UIResponder.keyboardWillHideNotification,
                                                   object: self.view.window)
+    }
+
+    @objc func keyboardWillHide(sender: NSNotification) {
+        let keyboardInfo = (sender.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue)
+        let keyboardHeight = keyboardInfo.cgRectValue.height
+        
+        commentBarBottomLayoutConstraint.constant = keyboardHeight
+        view.layoutIfNeeded()
+    }
+
+    @objc func keyboardWillShow(sender: NSNotification) {
+        let keyboardInfo = (sender.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue)
+        let keyboardHeight = keyboardInfo.cgRectValue.height
+        
+        commentBarBottomLayoutConstraint.constant = keyboardHeight
+        view.layoutIfNeeded()
     }
 }
 

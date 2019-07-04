@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GF6-k8-c6G">
-                                <rect key="frame" x="0.0" y="64" width="414" height="600"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="60" id="oOg-1g-8aZ" customClass="CommentTableViewCell" customModule="Instagram" customModuleProvider="target">
@@ -176,8 +176,8 @@
                         <constraints>
                             <constraint firstItem="GF6-k8-c6G" firstAttribute="trailing" secondItem="g6R-dC-x9Y" secondAttribute="trailing" id="6TX-U5-mU5"/>
                             <constraint firstItem="g6R-dC-x9Y" firstAttribute="trailing" secondItem="Ugd-6G-z4N" secondAttribute="trailing" id="BhY-LA-XQP"/>
-                            <constraint firstItem="Ugd-6G-z4N" firstAttribute="bottom" secondItem="g6R-dC-x9Y" secondAttribute="bottom" id="NIG-Zs-WSY"/>
-                            <constraint firstItem="Ugd-6G-z4N" firstAttribute="top" secondItem="GF6-k8-c6G" secondAttribute="bottom" id="WYU-BT-R2G"/>
+                            <constraint firstItem="g6R-dC-x9Y" firstAttribute="bottom" secondItem="Ugd-6G-z4N" secondAttribute="bottom" id="NIG-Zs-WSY"/>
+                            <constraint firstItem="g6R-dC-x9Y" firstAttribute="bottom" secondItem="GF6-k8-c6G" secondAttribute="bottom" id="WYU-BT-R2G"/>
                             <constraint firstItem="GF6-k8-c6G" firstAttribute="leading" secondItem="g6R-dC-x9Y" secondAttribute="leading" id="l5U-Ip-fTR"/>
                             <constraint firstItem="GF6-k8-c6G" firstAttribute="top" secondItem="g6R-dC-x9Y" secondAttribute="top" id="z8X-4p-CHy"/>
                             <constraint firstItem="Ugd-6G-z4N" firstAttribute="leading" secondItem="g6R-dC-x9Y" secondAttribute="leading" id="zhV-71-y94"/>
@@ -186,7 +186,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="O4n-pi-Cxa"/>
                     <connections>
+                        <outlet property="commentBarBottomLayoutConstraint" destination="NIG-Zs-WSY" id="dZo-80-dUI"/>
                         <outlet property="commentBarProfileImage" destination="H2V-j3-bhS" id="z0p-h7-KVK"/>
+                        <outlet property="commentBarView" destination="Ugd-6G-z4N" id="OU3-qJ-vON"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U4j-gF-bkV" userLabel="First Responder" sceneMemberID="firstResponder"/>

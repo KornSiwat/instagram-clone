@@ -9,6 +9,8 @@
 import UIKit
 
 class HomeTableViewController: UITableViewController {
+    var selfInfo: UserInfo = UserInfo(name: "kkornsw",
+                                      profileImage: UIImage(named: "defaultProfileImage")!)
     var stories: [Story] = []
     var posts: [Post] = []
 
@@ -231,6 +233,7 @@ extension HomeTableViewController {
         let destination = segue.destination as! CommentViewController
         let comments = sender as! [Comment]
 
+        destination.selfInfo = selfInfo
         destination.comments = comments
     }
 }
