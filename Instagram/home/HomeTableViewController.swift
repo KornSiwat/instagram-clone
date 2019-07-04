@@ -9,8 +9,8 @@
 import UIKit
 
 class HomeTableViewController: UITableViewController {
-    var selfInfo: UserInfo = UserInfo(name: "kkornsw",
-                                      profileImage: UIImage(named: "salahProfile")!)
+    var selfInfo: UserInfo = UserInfo(profileImage: UIImage(named: "salahProfile")!,
+                                      name: "kkornsw")
     var stories: [Story] = []
     var posts: [Post] = []
 
@@ -19,7 +19,7 @@ class HomeTableViewController: UITableViewController {
 
         setupStories()
         setupPosts()
-        
+
 //        tabBarController!.tabBar.isHidden = false
     }
 //
@@ -40,13 +40,6 @@ extension HomeTableViewController {
 
     func setupPosts() {
         posts = loadPost() ?? loadSamplePost()
-    }
-}
-
-// MARK: - Table Action
-extension HomeTableViewController {
-    @IBAction func dismissKeyboard(_ sender: Any) {
-        view.endEditing(true)
     }
 }
 

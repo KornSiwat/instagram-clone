@@ -9,34 +9,34 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--kkornsw-->
         <scene sceneID="3J1-c3-fU0">
             <objects>
-                <tableViewController id="KpI-Mn-SRc" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="A7Y-FZ-pfS">
+                <tableViewController id="KpI-Mn-SRc" customClass="ProfileTableViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="A7Y-FZ-pfS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="175" id="di5-f3-Xu5" customClass="ProfileDetailTableViewCell" customModule="Instagram" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="175"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileDetailCell" rowHeight="174" id="di5-f3-Xu5" customClass="ProfileDetailTableViewCell" customModule="Instagram" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="174"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="di5-f3-Xu5" id="Gs6-T3-uV8">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="174.66666666666666"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="174"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Y6z-8v-SAY">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="174.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="8" width="414" height="166"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xhp-ih-0xZ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="16" height="174.66666666666666"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="16" height="166"/>
                                                     <color key="backgroundColor" red="1" green="0.30802970060000001" blue="0.28638316409999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="16" id="hFs-pX-1jF"/>
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yfH-G9-tEm">
-                                                    <rect key="frame" x="16" y="0.0" width="382" height="116.66666666666667"/>
+                                                    <rect key="frame" x="16" y="0.0" width="382" height="156"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oS9-0V-bBJ">
                                                             <rect key="frame" x="0.0" y="0.0" width="382" height="80"/>
@@ -119,19 +119,19 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTS-If-5o9">
-                                                            <rect key="frame" x="0.0" y="88" width="382" height="28.666666666666671"/>
+                                                            <rect key="frame" x="0.0" y="88" width="382" height="30"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="i72-a1-dIq">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="28.666666666666668"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="profileName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MoM-im-2bf">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="382" height="14.333333333333334"/>
-                                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="382" height="15.666666666666666"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocM-oV-B2s">
-                                                                            <rect key="frame" x="0.0" y="14.333333333333329" width="382" height="14.333333333333336"/>
+                                                                            <rect key="frame" x="0.0" y="15.666666666666671" width="382" height="14.333333333333336"/>
                                                                             <attributedString key="attributedText">
                                                                                 <fragment content="biography">
                                                                                     <attributes>
@@ -145,10 +145,21 @@
                                                                 </stackView>
                                                             </subviews>
                                                         </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WfD-QC-eNn">
+                                                            <rect key="frame" x="0.0" y="126" width="382" height="30"/>
+                                                            <subviews>
+                                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Edit Profile" borderStyle="roundedRect" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="uf0-SN-3Mv">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
+                                                                    <nil key="textColor"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                </textField>
+                                                            </subviews>
+                                                        </stackView>
                                                     </subviews>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jui-zf-TOa">
-                                                    <rect key="frame" x="398" y="0.0" width="16" height="174.66666666666666"/>
+                                                    <rect key="frame" x="398" y="0.0" width="16" height="166"/>
                                                     <color key="backgroundColor" red="1" green="0.30802970060000001" blue="0.28638316409999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="16" id="PpL-we-DiR"/>
@@ -159,16 +170,124 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Y6z-8v-SAY" firstAttribute="leading" secondItem="Gs6-T3-uV8" secondAttribute="leading" id="2kC-H4-M6c"/>
-                                        <constraint firstItem="Y6z-8v-SAY" firstAttribute="top" secondItem="Gs6-T3-uV8" secondAttribute="top" id="Ope-qz-NRa"/>
+                                        <constraint firstItem="Y6z-8v-SAY" firstAttribute="top" secondItem="Gs6-T3-uV8" secondAttribute="top" constant="8" id="Ope-qz-NRa"/>
                                         <constraint firstAttribute="trailing" secondItem="Y6z-8v-SAY" secondAttribute="trailing" id="PDN-g8-0na"/>
                                         <constraint firstAttribute="bottom" secondItem="Y6z-8v-SAY" secondAttribute="bottom" id="SGN-kc-CaL"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="biography" destination="ocM-oV-B2s" id="1WQ-VH-kkx"/>
                                     <outlet property="followerCount" destination="xUG-v4-cFm" id="U4p-0e-KFx"/>
                                     <outlet property="followingCount" destination="eCV-pQ-m1I" id="lEh-KQ-QH7"/>
                                     <outlet property="postCount" destination="k4g-6a-Ve3" id="QvX-EV-tck"/>
                                     <outlet property="profileImage" destination="roZ-p3-ACT" id="Qh4-gc-TA0"/>
+                                    <outlet property="profileName" destination="MoM-im-2bf" id="dil-TR-SJ7"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HighlightCell" rowHeight="113" id="PP9-L1-USD" customClass="HighlightTableViewCell" customModule="Instagram" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="202" width="414" height="113"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PP9-L1-USD" id="RVA-WE-I5t">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="113"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ivO-9o-xaN" customClass="StoryUICollectionView" customModule="Instagram" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="104" id="dUS-i3-eZ6"/>
+                                            </constraints>
+                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="J3l-tg-1BT">
+                                                <size key="itemSize" width="80" height="80"/>
+                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            </collectionViewFlowLayout>
+                                            <cells>
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="StoryCollectionCell" id="6d1-ea-yIZ" customClass="StoryCollectionViewCell" customModule="Instagram" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="12" width="80" height="80"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDy-gQ-4oC">
+                                                                <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                                <subviews>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZSt-HB-4V4">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                                        <subviews>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="jZc-O3-7zv">
+                                                                                <rect key="frame" x="0.0" y="3" width="80" height="74.333333333333329"/>
+                                                                                <subviews>
+                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="xqj-K9-OdW">
+                                                                                        <rect key="frame" x="12" y="0.0" width="56" height="56"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="height" constant="56" id="lHe-ME-tRd"/>
+                                                                                            <constraint firstAttribute="width" constant="56" id="yKS-5g-GCw"/>
+                                                                                        </constraints>
+                                                                                    </imageView>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kim-AK-tPQ">
+                                                                                        <rect key="frame" x="24.666666666666671" y="60.000000000000007" width="31" height="14.333333333333336"/>
+                                                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                                        <nil key="textColor"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
+                                                                                </subviews>
+                                                                            </stackView>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="ZSt-HB-4V4" firstAttribute="top" secondItem="oDy-gQ-4oC" secondAttribute="top" id="CxS-89-EU2"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="ZSt-HB-4V4" secondAttribute="trailing" id="Hxa-9G-eM3"/>
+                                                                    <constraint firstItem="ZSt-HB-4V4" firstAttribute="leading" secondItem="oDy-gQ-4oC" secondAttribute="leading" id="NVv-WU-hWe"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="ZSt-HB-4V4" secondAttribute="bottom" id="leN-JR-XbE"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                    </view>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="oDy-gQ-4oC" secondAttribute="bottom" id="FLl-89-Be7"/>
+                                                        <constraint firstItem="oDy-gQ-4oC" firstAttribute="leading" secondItem="6d1-ea-yIZ" secondAttribute="leading" id="KkL-cg-wG7"/>
+                                                        <constraint firstAttribute="trailing" secondItem="oDy-gQ-4oC" secondAttribute="trailing" id="SGf-LV-qa5"/>
+                                                        <constraint firstItem="oDy-gQ-4oC" firstAttribute="width" secondItem="6d1-ea-yIZ" secondAttribute="width" id="Xcr-QZ-GeL"/>
+                                                        <constraint firstItem="oDy-gQ-4oC" firstAttribute="top" secondItem="6d1-ea-yIZ" secondAttribute="top" id="rLx-0h-lHn"/>
+                                                        <constraint firstItem="oDy-gQ-4oC" firstAttribute="height" secondItem="6d1-ea-yIZ" secondAttribute="height" id="xYw-Lg-QCz"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="profileImage" destination="xqj-K9-OdW" id="4Bs-cI-B7J"/>
+                                                        <outlet property="profileName" destination="kim-AK-tPQ" id="527-D7-zk6"/>
+                                                    </connections>
+                                                </collectionViewCell>
+                                            </cells>
+                                            <connections>
+                                                <outlet property="dataSource" destination="PP9-L1-USD" id="XrO-5Q-EHV"/>
+                                                <outlet property="delegate" destination="PP9-L1-USD" id="CbA-dl-26N"/>
+                                            </connections>
+                                        </collectionView>
+                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xlX-Is-8KW">
+                                            <rect key="frame" x="0.0" y="120" width="414" height="0.6666666666666714"/>
+                                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="0.5" id="JIR-BN-0R7"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="ivO-9o-xaN" secondAttribute="bottom" id="CCf-19-3hH"/>
+                                        <constraint firstItem="ivO-9o-xaN" firstAttribute="leading" secondItem="RVA-WE-I5t" secondAttribute="leading" id="Hvp-52-vya"/>
+                                        <constraint firstItem="xlX-Is-8KW" firstAttribute="leading" secondItem="RVA-WE-I5t" secondAttribute="leading" id="J96-cx-G3z"/>
+                                        <constraint firstAttribute="trailing" secondItem="ivO-9o-xaN" secondAttribute="trailing" id="OBm-Y5-EKO"/>
+                                        <constraint firstAttribute="trailing" secondItem="xlX-Is-8KW" secondAttribute="trailing" id="Y5E-un-Ing"/>
+                                        <constraint firstItem="ivO-9o-xaN" firstAttribute="top" secondItem="RVA-WE-I5t" secondAttribute="top" id="b4p-iz-qkf"/>
+                                        <constraint firstAttribute="bottom" secondItem="xlX-Is-8KW" secondAttribute="bottom" id="wHI-qG-K12"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outlet property="collectionView" destination="ivO-9o-xaN" id="6X4-LK-XR7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -180,7 +299,7 @@
                     <tabBarItem key="tabBarItem" title="" selectedImage="salah" systemItem="contacts" id="OxC-7z-H9E">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-12"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="6AC-pv-9SG"/>
+                    <navigationItem key="navigationItem" title="kkornsw" id="6AC-pv-9SG"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gLq-bp-CnO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -205,6 +324,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="defaultProfileImage" width="320" height="320"/>
         <image name="salah" width="800" height="450"/>
     </resources>
 </document>
