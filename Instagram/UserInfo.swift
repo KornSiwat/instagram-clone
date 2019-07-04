@@ -11,6 +11,9 @@ import UIKit
 class UserInfo {
     var name: String
     var profileImage: UIImage
+    var postCount: Int?
+    var followerCount: Int?
+    var followingCount: Int?
     
     init(name: String, profileImage: UIImage) {
         self.name = name

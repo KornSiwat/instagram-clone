@@ -12,7 +12,7 @@
         <!--Instagram-->
         <scene sceneID="yGw-zS-17K">
             <objects>
-                <tableViewController hidesBottomBarWhenPushed="YES" id="zZQ-f3-KAU" customClass="HomeTableViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="zZQ-f3-KAU" customClass="HomeTableViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qZd-v1-h2U">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

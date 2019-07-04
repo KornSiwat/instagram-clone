@@ -19,7 +19,14 @@ class HomeTableViewController: UITableViewController {
 
         setupStories()
         setupPosts()
+        
+//        tabBarController!.tabBar.isHidden = false
     }
+//
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        tabBarController!.tabBar.isHidden = false
+//    }
 }
 
 // MARK: - Setup
@@ -239,5 +246,7 @@ extension HomeTableViewController {
         destination.updateCommentsData = { comments in
             post.comments = comments
         }
+
+//        tabBarController!.tabBar.isHidden = true
     }
 }

@@ -31,6 +31,7 @@ class CommentViewController: UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         removeKeyboardObserver()
         updateCommentsData!(comments!)
     }
@@ -39,7 +40,13 @@ class CommentViewController: UIViewController {
 // MARK: - Table Action
 extension CommentViewController {
     @IBAction func dismissKeyboard(_ sender: Any) {
+        dismissKeyboard()
+    }
+    
+    func dismissKeyboard() {
         view.endEditing(true)
+        commentBarBottomLayoutConstraint.constant = 0
+        view.layoutIfNeeded()
     }
 }
 
@@ -54,7 +61,7 @@ extension CommentViewController {
         tableView.insertRows(at: [newIndexPath], with: .automatic)
         
         commentTextField.text! = ""
-        view.endEditing(true)
+        dismissKeyboard()
     }
 
     func updatePostButtonState() {
