@@ -14,7 +14,15 @@ class ProfilePostTableViewCell: UITableViewCell {
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
     @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
     
-    var posts: [Post]?
+    var heightOfCell: CGFloat = 0
+    
+    var posts: [Post]? {
+        didSet {
+            posts = posts! + posts!
+            setupCollectionView()
+            collectionView.reloadData()
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,9 +32,9 @@ class ProfilePostTableViewCell: UITableViewCell {
 // MARK: Setup
 extension ProfilePostTableViewCell {
     func setupCollectionView() {
-        let imageWidth = UIScreen.main.bounds.width / 3
         collectionViewWidth.constant = UIScreen.main.bounds.width
-        collectionViewHeight.constant = imageWidth * CGFloat((posts!.count / 3))
+        collectionViewHeight.constant = heightOfCell //imageWidth * CGFloat((posts!.count / 3))
+        layoutIfNeeded()
     }
 }
 
@@ -36,7 +44,6 @@ extension ProfilePostTableViewCell: UICollectionViewDelegate { }
 // MARK: UICollectionViewDataSource
 extension ProfilePostTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        setupCollectionView()
         return posts!.count
     }
 

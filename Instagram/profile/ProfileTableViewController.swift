@@ -23,15 +23,27 @@ class ProfileTableViewController: UITableViewController {
         Highlight(image: UIImage(named: "liverpoolProfile")!,
                   name: "liverpool")
     ]
-    
+
     var posts: [Post] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         posts = loadSamplePost()
     }
+}
 
-
+// MARK: - UIScrollViewDelegate
+extension ProfileTableViewController {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(scrollView.contentOffset)
+        let postCell = tableView.visibleCells.last as! ProfilePostTableViewCell
+        if scrollView.contentOffset.y >= 203 {
+            postCell.collectionView.isScrollEnabled = true
+            
+        } else {
+            postCell.collectionView.isScrollEnabled = false
+        }
+    }
 }
 
 // MARK: - Table view data source
@@ -63,9 +75,10 @@ extension ProfileTableViewController {
         default:
             let cellIdentifier = "ProfilePostTableCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ProfilePostTableViewCell
-            
+
+            cell.heightOfCell = tableView.frame.height
             cell.posts = posts
-            
+
             return cell
         }
     }
@@ -148,9 +161,126 @@ extension ProfileTableViewController {
                 likeCount: 11,
                 caption: "We're tha champion",
                 comments: []
-            )
+            ), (
+                profileImage: "liverpoolProfile",
+                name: "liverpool_fc",
+                location: "Anfield",
+                postImage: "liverpool",
+                isLiked: false,
+                likeCount: 423,
+                caption: "Great Players",
+                comments: []
+            ), (
+                profileImage: "liverpoolProfile",
+                name: "liverpool_fc",
+                location: "Anfield",
+                postImage: "liverpool",
+                isLiked: false,
+                likeCount: 423,
+                caption: "Great Players",
+                comments: []
+            ), (
+                profileImage: "liverpoolProfile",
+                name: "liverpool_fc",
+                location: "Anfield",
+                postImage: "liverpool",
+                isLiked: false,
+                likeCount: 423,
+                caption: "Great Players",
+                comments: []
+            ), (
+                profileImage: "liverpoolProfile",
+                name: "liverpool_fc",
+                location: "Anfield",
+                postImage: "liverpool",
+                isLiked: false,
+                likeCount: 423,
+                caption: "Great Players",
+                comments: []
+            ), (
+                profileImage: "liverpoolProfile",
+                name: "liverpool_fc",
+                location: "Anfield",
+                postImage: "liverpool",
+                isLiked: false,
+                likeCount: 423,
+                caption: "Great Players",
+                comments: []
+            ), (
+                profileImage: "liverpoolProfile",
+                name: "liverpool_fc",
+                location: "Anfield",
+                postImage: "liverpool",
+                isLiked: false,
+                likeCount: 423,
+                caption: "Great Players",
+                comments: []
+            ), (
+                profileImage: "liverpoolProfile",
+                name: "liverpool_fc",
+                location: "Anfield",
+                postImage: "liverpool",
+                isLiked: false,
+                likeCount: 423,
+                caption: "Great Players",
+                comments: []
+            ), (
+                profileImage: "liverpoolProfile",
+                name: "liverpool_fc",
+                location: "Anfield",
+                postImage: "liverpool",
+                isLiked: false,
+                likeCount: 423,
+                caption: "Great Players",
+                comments: []
+            ), (
+                profileImage: "liverpoolProfile",
+                name: "liverpool_fc",
+                location: "Anfield",
+                postImage: "liverpool",
+                isLiked: false,
+                likeCount: 423,
+                caption: "Great Players",
+                comments: []
+            ), (
+                profileImage: "liverpoolProfile",
+                name: "liverpool_fc",
+                location: "Anfield",
+                postImage: "liverpool",
+                isLiked: false,
+                likeCount: 423,
+                caption: "Great Players",
+                comments: []
+            ), (
+                profileImage: "liverpoolProfile",
+                name: "liverpool_fc",
+                location: "Anfield",
+                postImage: "liverpool",
+                isLiked: false,
+                likeCount: 423,
+                caption: "Great Players",
+                comments: []
+            ), (
+                profileImage: "liverpoolProfile",
+                name: "liverpool_fc",
+                location: "Anfield",
+                postImage: "liverpool",
+                isLiked: false,
+                likeCount: 423,
+                caption: "Great Players",
+                comments: []
+            ), (
+                profileImage: "liverpoolProfile",
+                name: "liverpool_fc",
+                location: "Anfield",
+                postImage: "liverpool",
+                isLiked: false,
+                likeCount: 423,
+                caption: "Great Players",
+                comments: []
+            ),
         ]
-        
+
         return samplePostDetails.map { Post(profileImage: UIImage(named: $0.profileImage)!,
                                             name: $0.name,
                                             location: $0.location,
