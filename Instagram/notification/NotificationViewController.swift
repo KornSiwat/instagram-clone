@@ -22,6 +22,9 @@ extension NotificationViewController {
         let pagingViewController = PagingViewController<PagingIndexItem>()
         pagingViewController.dataSource = self
         pagingViewController.select(index: 0)
+        pagingViewController.options.indicatorColor = UIColor.black
+        pagingViewController.options.textColor = UIColor.black
+        pagingViewController.options.selectedTextColor = UIColor.black
 
         addChild(pagingViewController)
         pagingViewController.didMove(toParent: self)
@@ -70,16 +73,24 @@ extension NotificationViewController: PagingViewControllerDataSource {
     func pagingViewController<T>(_ pagingViewController: PagingViewController<T>, viewControllerForIndex index: Int) -> UIViewController {
         switch index {
         case 0:
-            return UITableViewController()
+            let storyboard = UIStoryboard.init(name: "Notification", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "FollowingTableViewController")
+
+            return viewController
         default:
             let storyboard = UIStoryboard.init(name: "Notification", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier: "NotificationTableViewController")
-            
+
             return viewController
         }
     }
 
     func pagingViewController<T>(_ pagingViewController: PagingViewController<T>, pagingItemForIndex index: Int) -> T {
-        return PagingIndexItem(index: index, title: "View \(index)") as! T
+        switch index {
+        case 0:
+            return PagingIndexItem(index: index, title: "Following") as! T
+        default:
+            return PagingIndexItem(index: index, title: "You") as! T
+        }
     }
 }

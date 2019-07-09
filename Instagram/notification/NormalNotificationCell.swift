@@ -8,16 +8,18 @@
 
 import UIKit
 
-class NotificationTableViewCell: UITableViewCell {
-    @IBOutlet weak var detailLabel: UILabel!
+class NormalNotificationCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var messageLabel: UILabel!
 
     var name: String?
-    var detail: String? {
+    var message: String? {
         didSet {
-            setupCommentLabel()
+            setupMessageLabel()
         }
     }
+
+    var time: String? = "20m"
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,18 +28,18 @@ class NotificationTableViewCell: UITableViewCell {
 }
 
 // MARK: - Setup
-extension NotificationTableViewCell {
+extension NormalNotificationCell {
     func setupProfileImage() {
         profileImage.roundedImage()
     }
 
-    func setupCommentLabel() {
-        let detailText = "\(name!) \(detail!)"
+    func setupMessageLabel() {
+        let detailText = "\(name!) \(message!) \(time!)"
         let attributedDetailLabelText = NSMutableAttributedString(string: detailText)
 
         attributedDetailLabelText.addAttribute(NSAttributedString.Key.font,
                                                value: UIFont.boldSystemFont(ofSize: 12),
                                                range: NSRange(location: 0, length: name!.count))
-        detailLabel.attributedText = attributedDetailLabelText
+        messageLabel.attributedText = attributedDetailLabelText
     }
 }

@@ -9,34 +9,43 @@
 import UIKit
 
 class FollowingTableViewController: UITableViewController {
-    let notifications: [Notification] = [
-        Notification(image: UIImage(named: "salahProfile")!,
-                     name: "mohamed_salaj",
-                     message: "like kkornsw post"),
-        Notification(image: UIImage(named: "salahProfile")!,
-                     name: "mohamed_salaj",
-                     message: "like kkornsw post"),
-        Notification(image: UIImage(named: "salahProfile")!,
-                     name: "mohamed_salaj",
-                     message: "like kkornsw post"),
-        Notification(image: UIImage(named: "salahProfile")!,
-                     name: "mohamed_salaj",
-                     message: "like kkornsw post"),
-        Notification(image: UIImage(named: "salahProfile")!,
-                     name: "mohamed_salaj",
-                     message: "like kkornsw post"),
-        Notification(image: UIImage(named: "salahProfile")!,
-                     name: "mohamed_salaj",
-                     message: "like kkornsw post"),
-        Notification(image: UIImage(named: "salahProfile")!,
-                     name: "mohamed_salaj",
-                     message: "like kkornsw post"),
-        Notification(image: UIImage(named: "salahProfile")!,
-                     name: "mohamed_salaj",
-                     message: "like kkornsw post"),
-        Notification(image: UIImage(named: "salahProfile")!,
-                     name: "mohamed_salaj",
-                     message: "like kkornsw post"),
+    let notifications: [LikeNotification] = [
+        LikeNotification(profileImage: UIImage(named: "maneProfile")!,
+                         name: "mane",
+                         message: "like your Post",
+                         likedImage: UIImage(named: "mane")!),
+        LikeNotification(profileImage: UIImage(named: "firminoProfile")!,
+                         name: "bobby",
+                         message: "like your post",
+                         likedImage: UIImage(named: "firmino")!),
+        LikeNotification(profileImage: UIImage(named: "firminoProfile")!,
+                         name: "bobby",
+                         message: "like your post",
+                         likedImage: UIImage(named: "firmino")!),
+        LikeNotification(profileImage: UIImage(named: "maneProfile")!,
+                         name: "mane",
+                         message: "like your Post",
+                         likedImage: UIImage(named: "mane")!),
+        LikeNotification(profileImage: UIImage(named: "firminoProfile")!,
+                         name: "bobby",
+                         message: "like your post",
+                         likedImage: UIImage(named: "firmino")!),
+        LikeNotification(profileImage: UIImage(named: "firminoProfile")!,
+                         name: "bobby",
+                         message: "like your post",
+                         likedImage: UIImage(named: "firmino")!),
+        LikeNotification(profileImage: UIImage(named: "maneProfile")!,
+                         name: "mane",
+                         message: "like your Post",
+                         likedImage: UIImage(named: "mane")!),
+        LikeNotification(profileImage: UIImage(named: "firminoProfile")!,
+                         name: "bobby",
+                         message: "like your post",
+                         likedImage: UIImage(named: "firmino")!),
+        LikeNotification(profileImage: UIImage(named: "firminoProfile")!,
+                         name: "bobby",
+                         message: "like your post",
+                         likedImage: UIImage(named: "firmino")!),
     ]
     
 
@@ -52,14 +61,15 @@ extension FollowingTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "NotificationCell"
+        let cellIdentifier = "LikeNotificationCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        as! NotificationTableViewCell
+            as! LikeNotificationCell
         let notification = notifications[indexPath.row]
         
-        cell.profileImage.image = notification.image
+        cell.profileImage.image = notification.profileImage
         cell.name = notification.name
-        cell.detail = notification.message
+        cell.message = notification.message
+        cell.likedImage.image = notification.likedImage
         
         return cell
     }

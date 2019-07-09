@@ -8,14 +8,16 @@
 
 import UIKit
 
-class Notification {
-    let image: UIImage
+class NormalNotification {
+    let profileImage: UIImage
     let name: String
     let message: String
+    let time: String
 
-    init(image: UIImage, name: String, message: String) {
-        self.image = image
+    init(profileImage: UIImage, name: String, message: String) {
+        self.profileImage = profileImage
         self.name = name
         self.message = message
+        self.time = "2d"
     }
 }
