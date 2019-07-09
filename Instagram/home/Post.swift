@@ -16,7 +16,7 @@ class Post {
     var likeCount: Int
     var caption: String
     var comments: [Comment]
-    
+
     let postImage: UIImage
 
     init(profileImage: UIImage,

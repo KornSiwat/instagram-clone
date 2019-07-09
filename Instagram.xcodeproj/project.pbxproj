@@ -22,6 +22,7 @@
 		931104B722D4656D005D5B44 /* FollowNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931104B622D4656D005D5B44 /* FollowNotification.swift */; };
 		931104B922D4895C005D5B44 /* NotificationSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931104B822D4895C005D5B44 /* NotificationSectionHeaderView.swift */; };
 		931104BB22D48979005D5B44 /* NotificationSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931104BA22D48979005D5B44 /* NotificationSectionHeaderView.xib */; };
+		931104BE22D4AD46005D5B44 /* post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 931104BD22D4AD46005D5B44 /* post.storyboard */; };
 		93326C9322CA151B00B216F4 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93326C9222CA151B00B216F4 /* PostTableViewCell.swift */; };
 		93479D4F22C6378000A838F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93479D4E22C6378000A838F9 /* AppDelegate.swift */; };
 		93479D5422C6378000A838F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93479D5222C6378000A838F9 /* Main.storyboard */; };
@@ -66,6 +67,7 @@
 		931104B622D4656D005D5B44 /* FollowNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowNotification.swift; sourceTree = "<group>"; };
 		931104B822D4895C005D5B44 /* NotificationSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSectionHeaderView.swift; sourceTree = "<group>"; };
 		931104BA22D48979005D5B44 /* NotificationSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationSectionHeaderView.xib; sourceTree = "<group>"; };
+		931104BD22D4AD46005D5B44 /* post.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = post.storyboard; sourceTree = "<group>"; };
 		93326C9222CA151B00B216F4 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		93479D4B22C6378000A838F9 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93479D4E22C6378000A838F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -183,6 +185,14 @@
 			name = notifications;
 			sourceTree = "<group>";
 		};
+		931104BC22D4AD1E005D5B44 /* post */ = {
+			isa = PBXGroup;
+			children = (
+				931104BD22D4AD46005D5B44 /* post.storyboard */,
+			);
+			path = post;
+			sourceTree = "<group>";
+		};
 		93326C9122CA14BC00B216F4 /* postCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +222,7 @@
 		93479D4D22C6378000A838F9 /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				931104BC22D4AD1E005D5B44 /* post */,
 				930D211222CBE9C80040EF0D /* comment */,
 				93479D6A22C8B7B200A838F9 /* home */,
 				93479D6B22C8B84E00A838F9 /* search */,
@@ -364,6 +375,7 @@
 			files = (
 				93479D5622C6378100A838F9 /* Assets.xcassets in Resources */,
 				93479D5422C6378000A838F9 /* Main.storyboard in Resources */,
+				931104BE22D4AD46005D5B44 /* post.storyboard in Resources */,
 				9385517722CC7FE400628A21 /* Profile.storyboard in Resources */,
 				93479D6122C640F500A838F9 /* Home.storyboard in Resources */,
 				93479D6922C8B6C400A838F9 /* Upload.storyboard in Resources */,
