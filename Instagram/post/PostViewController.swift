@@ -14,7 +14,10 @@ class PostViewController: UIViewController {
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var commentBarProfileImage: UIImageView!
     @IBOutlet weak var postButton: UIButton!
-
+    @IBAction func textFieldEditingChanged(_ sender: Any) {
+        updatePostButtonState()
+    }
+    
     var selfInfo: UserInfo?
     var post: Post?
 
@@ -23,11 +26,13 @@ class PostViewController: UIViewController {
         commentBarProfileImage.image = selfInfo!.profileImage
         setupProfileImage()
         addKeyboardObserver()
+        navigationController!.setNavigationBarHidden(false, animated: false)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeKeyboardObserver()
+        navigationController!.setNavigationBarHidden(true, animated: false)
     }
 }
 
@@ -44,7 +49,7 @@ extension PostViewController: UITableViewDelegate { }
 // MARK: - TableViewDataSource
 extension PostViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return post!.comments.isEmpty ? 1 : 2
+        return 2
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -97,6 +102,38 @@ extension PostViewController: UITableViewDataSource {
 
             return cell
         }
+    }
+}
+
+// MARK: - Table Action
+extension PostViewController {
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        dismissKeyboard()
+    }
+
+    func dismissKeyboard() {
+        view.endEditing(true)
+        commentBarBottomConstraint.constant = 0
+        view.layoutIfNeeded()
+    }
+}
+
+// MARK: - CommentBar Action
+extension PostViewController {
+    @IBAction func postButtonPress(_ sender: Any) {
+        let newIndexPath = IndexPath(row: post!.comments.count, section: 1)
+
+        post!.comments.append(Comment(profileName: selfInfo!.name,
+                                      profileImage: selfInfo!.profileImage,
+                                      message: commentTextField.text!))
+        tableView.insertRows(at: [newIndexPath], with: .automatic)
+
+        commentTextField.text! = ""
+        dismissKeyboard()
+    }
+
+    func updatePostButtonState() {
+        postButton.isEnabled = !(commentTextField.text!.isEmpty)
     }
 }
 

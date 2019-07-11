@@ -348,12 +348,22 @@
                                                 </stackView>
                                             </subviews>
                                         </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8sl-Hf-QzV">
+                                            <rect key="frame" x="342" y="11.666666666666664" width="48" height="48"/>
+                                            <connections>
+                                                <action selector="postImagePress:" destination="dgw-H1-xyu" eventType="touchUpInside" id="8Fi-BT-vpO"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="1gf-9u-Q0F" firstAttribute="top" secondItem="4pR-Jh-o69" secondAttribute="top" constant="8" id="AaS-0h-D36"/>
                                         <constraint firstAttribute="bottom" secondItem="1gf-9u-Q0F" secondAttribute="bottom" constant="8" id="BwK-z8-3Qe"/>
                                         <constraint firstItem="1gf-9u-Q0F" firstAttribute="leading" secondItem="4pR-Jh-o69" secondAttribute="leading" id="I7B-av-Nff"/>
                                         <constraint firstAttribute="trailing" secondItem="1gf-9u-Q0F" secondAttribute="trailing" id="L3x-6E-LdL"/>
+                                        <constraint firstItem="8sl-Hf-QzV" firstAttribute="top" secondItem="pfe-2M-FgJ" secondAttribute="top" id="Oby-m2-QV4"/>
+                                        <constraint firstItem="8sl-Hf-QzV" firstAttribute="trailing" secondItem="pfe-2M-FgJ" secondAttribute="trailing" id="bB0-PO-xIt"/>
+                                        <constraint firstItem="8sl-Hf-QzV" firstAttribute="bottom" secondItem="pfe-2M-FgJ" secondAttribute="bottom" id="n9x-8U-bXZ"/>
+                                        <constraint firstItem="8sl-Hf-QzV" firstAttribute="leading" secondItem="pfe-2M-FgJ" secondAttribute="leading" id="ntg-cU-dGl"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

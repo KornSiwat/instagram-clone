@@ -13,7 +13,7 @@
         <!--Post View Controller-->
         <scene sceneID="dpk-W4-QWD">
             <objects>
-                <viewController storyboardIdentifier="PostViewController" id="AOR-Hj-Rbl" customClass="PostViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostViewController" hidesBottomBarWhenPushed="YES" id="AOR-Hj-Rbl" customClass="PostViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mcy-77-mSW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -323,6 +323,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="AOR-Hj-Rbl" id="cyp-tk-tgB"/>
                                     <outlet property="delegate" destination="AOR-Hj-Rbl" id="1yf-XY-IE1"/>
+                                    <outletCollection property="gestureRecognizers" destination="Up8-Bt-z2r" appends="YES" id="Huo-Fm-WH6"/>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9oe-Kb-Fo1">
@@ -356,11 +357,17 @@
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <action selector="textFieldEditingChanged:" destination="AOR-Hj-Rbl" eventType="editingChanged" id="hCu-TV-Ck5"/>
+                                                                </connections>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7mW-LR-rFG">
                                                                 <rect key="frame" x="347" y="19.666666666666629" width="35" height="33"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <state key="normal" title="Post"/>
+                                                                <connections>
+                                                                    <action selector="postButtonPress:" destination="AOR-Hj-Rbl" eventType="touchUpInside" id="F9P-OF-NYM"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -384,7 +391,6 @@
                                 <constraints>
                                     <constraint firstItem="n9y-Gf-Pgt" firstAttribute="leading" secondItem="9oe-Kb-Fo1" secondAttribute="leading" id="5bR-Zf-hUT"/>
                                     <constraint firstAttribute="bottom" secondItem="n9y-Gf-Pgt" secondAttribute="bottom" id="HJl-6h-eYg"/>
-                                    <constraint firstItem="n9y-Gf-Pgt" firstAttribute="top" secondItem="9oe-Kb-Fo1" secondAttribute="top" id="eJo-Uf-G84"/>
                                     <constraint firstAttribute="trailing" secondItem="n9y-Gf-Pgt" secondAttribute="trailing" id="hEA-FW-XKN"/>
                                     <constraint firstAttribute="height" constant="72" id="viu-os-DM7"/>
                                 </constraints>
@@ -393,12 +399,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="9oe-Kb-Fo1" firstAttribute="top" secondItem="fjw-KN-1l9" secondAttribute="bottom" id="5OW-cU-8PW"/>
                             <constraint firstItem="fjw-KN-1l9" firstAttribute="trailing" secondItem="Jqn-Pd-UDV" secondAttribute="trailing" id="5ZX-ms-KOz"/>
                             <constraint firstItem="fjw-KN-1l9" firstAttribute="leading" secondItem="Jqn-Pd-UDV" secondAttribute="leading" id="G1a-gZ-23s"/>
                             <constraint firstItem="9oe-Kb-Fo1" firstAttribute="leading" secondItem="Jqn-Pd-UDV" secondAttribute="leading" id="bCE-U0-1PR"/>
                             <constraint firstItem="Jqn-Pd-UDV" firstAttribute="bottom" secondItem="9oe-Kb-Fo1" secondAttribute="bottom" id="dLo-ha-dlR"/>
-                            <constraint firstItem="9oe-Kb-Fo1" firstAttribute="top" secondItem="fjw-KN-1l9" secondAttribute="bottom" id="iXg-OP-0lY"/>
-                            <constraint firstItem="9oe-Kb-Fo1" firstAttribute="top" secondItem="fjw-KN-1l9" secondAttribute="bottom" id="j5d-LH-MaR"/>
                             <constraint firstItem="9oe-Kb-Fo1" firstAttribute="trailing" secondItem="Jqn-Pd-UDV" secondAttribute="trailing" id="jgJ-TE-bAc"/>
                             <constraint firstItem="fjw-KN-1l9" firstAttribute="top" secondItem="mcy-77-mSW" secondAttribute="top" id="k2H-tu-7D7"/>
                         </constraints>
@@ -414,6 +419,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AgM-RI-h6Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Up8-Bt-z2r">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="AOR-Hj-Rbl" id="UOO-8M-peq"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2184.057971014493" y="166.30434782608697"/>
         </scene>

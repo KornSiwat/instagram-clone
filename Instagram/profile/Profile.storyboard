@@ -322,14 +322,21 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="firmino" translatesAutoresizingMaskIntoConstraints="NO" id="4Ej-ww-8So">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="100.00000000000006" height="100"/>
                                                                     </imageView>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XMt-4C-vhD">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                                    </button>
                                                                 </subviews>
                                                             </view>
                                                             <constraints>
+                                                                <constraint firstItem="XMt-4C-vhD" firstAttribute="top" secondItem="4Ej-ww-8So" secondAttribute="top" id="ApQ-Sv-zh9"/>
+                                                                <constraint firstItem="XMt-4C-vhD" firstAttribute="bottom" secondItem="4Ej-ww-8So" secondAttribute="bottom" id="Ksu-oR-QwR"/>
                                                                 <constraint firstItem="4Ej-ww-8So" firstAttribute="leading" secondItem="CqE-Pv-BUX" secondAttribute="leading" id="McH-B0-8Fj"/>
                                                                 <constraint firstItem="4Ej-ww-8So" firstAttribute="top" secondItem="CqE-Pv-BUX" secondAttribute="top" id="PiC-AV-JZx"/>
                                                                 <constraint firstAttribute="trailing" secondItem="4Ej-ww-8So" secondAttribute="trailing" id="WJ3-yu-c8u"/>
+                                                                <constraint firstItem="XMt-4C-vhD" firstAttribute="trailing" secondItem="4Ej-ww-8So" secondAttribute="trailing" id="dOr-HI-NKe"/>
+                                                                <constraint firstItem="XMt-4C-vhD" firstAttribute="leading" secondItem="4Ej-ww-8So" secondAttribute="leading" id="g3W-WX-PGJ"/>
                                                                 <constraint firstAttribute="bottom" secondItem="4Ej-ww-8So" secondAttribute="bottom" id="h8N-2v-IRa"/>
                                                             </constraints>
                                                             <connections>
