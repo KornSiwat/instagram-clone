@@ -39,7 +39,7 @@ extension ProfileTableViewController {
         let postCell = tableView.visibleCells.last as! ProfilePostTableViewCell
         if scrollView.contentOffset.y >= 203 {
             postCell.collectionView.isScrollEnabled = true
-            
+
         } else {
             postCell.collectionView.isScrollEnabled = false
         }
@@ -78,6 +78,7 @@ extension ProfileTableViewController {
 
             cell.heightOfCell = tableView.frame.height
             cell.posts = posts
+            cell.onPostImagePress = onPostImagePress
 
             return cell
         }
@@ -290,5 +291,20 @@ extension ProfileTableViewController {
                                             caption: $0.caption,
                                             comments: $0.comments)
         }
+    }
+}
+
+// MARK: - Navigation
+extension ProfileTableViewController {
+    func onPostImagePress(post: Post) -> (() -> Void) {
+        return { self.performSegue(withIdentifier: "PostSegue", sender: post) }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! PostViewController
+        let post = sender as! Post
+        
+        destination.selfInfo = selfInfo
+        destination.post = post
     }
 }

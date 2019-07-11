@@ -15,6 +15,7 @@ class ProfilePostTableViewCell: UITableViewCell {
     @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
     
     var heightOfCell: CGFloat = 0
+    var onPostImagePress: ((Post) -> (() -> Void))?
     
     var posts: [Post]? {
         didSet {
@@ -33,7 +34,7 @@ class ProfilePostTableViewCell: UITableViewCell {
 extension ProfilePostTableViewCell {
     func setupCollectionView() {
         collectionViewWidth.constant = UIScreen.main.bounds.width
-        collectionViewHeight.constant = heightOfCell //imageWidth * CGFloat((posts!.count / 3))
+        collectionViewHeight.constant = heightOfCell
         layoutIfNeeded()
     }
 }
@@ -54,6 +55,7 @@ extension ProfilePostTableViewCell: UICollectionViewDataSource {
         let post = posts![indexPath.row]
 
         cell.image.image = post.postImage
+        cell.onPostImagePress = onPostImagePress!(post)
 
         return cell
     }

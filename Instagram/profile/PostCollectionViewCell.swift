@@ -10,4 +10,13 @@ import UIKit
 
 class PostCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var image: UIImageView!
+
+    var onPostImagePress: (() -> Void)?
+}
+
+// MARK: - Action
+extension PostCollectionViewCell {
+    @IBAction func postImagePress(_ sender: Any) {
+        onPostImagePress!()
+    }
 }

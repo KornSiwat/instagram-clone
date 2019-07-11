@@ -322,10 +322,13 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="firmino" translatesAutoresizingMaskIntoConstraints="NO" id="4Ej-ww-8So">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="100.00000000000006" height="100"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                                     </imageView>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XMt-4C-vhD">
                                                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                                        <connections>
+                                                                            <action selector="postImagePress:" destination="CqE-Pv-BUX" eventType="touchUpInside" id="3cF-g4-B6B"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </view>
@@ -380,6 +383,9 @@
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="kkornsw" id="6AC-pv-9SG"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="R4x-rD-28f" kind="show" identifier="PostSegue" id="5Ts-Vq-UHz"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gLq-bp-CnO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -400,6 +406,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OKG-JX-gn4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-732" y="-25"/>
+        </scene>
+        <!--PostViewController-->
+        <scene sceneID="fzg-Lb-guq">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="PostViewController" storyboardName="Post" referencedIdentifier="PostViewController" id="R4x-rD-28f" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nfs-g6-7Vn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="841" y="-25"/>
         </scene>
     </scenes>
     <resources>
