@@ -80,7 +80,7 @@ extension HomeTableViewController {
                 location: "Bangkok Thailand",
                 postImage: "defaultPostImage",
                 isLiked: true,
-                likeCount: 0,
+                likeCount: 1,
                 caption: "Born To Code",
                 comments: [
                     Comment(profileName: "mane",
@@ -239,7 +239,5 @@ extension HomeTableViewController {
         destination.updateCommentsData = { comments in
             post.comments = comments
         }
-
-//        tabBarController!.tabBar.isHidden = true
     }
 }

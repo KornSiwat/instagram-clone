@@ -9,45 +9,42 @@
 import UIKit
 
 class FollowingTableViewController: UITableViewController {
+    var selfInfo: UserInfo?
+    var onPostImagePress: ((Post) -> (() -> Void))?
+
     let notifications: [LikeNotification] = [
         LikeNotification(profileImage: UIImage(named: "maneProfile")!,
                          name: "mane",
                          message: "like your Post",
-                         likedImage: UIImage(named: "mane")!),
-        LikeNotification(profileImage: UIImage(named: "firminoProfile")!,
-                         name: "bobby",
-                         message: "like your post",
-                         likedImage: UIImage(named: "firmino")!),
-        LikeNotification(profileImage: UIImage(named: "firminoProfile")!,
-                         name: "bobby",
-                         message: "like your post",
-                         likedImage: UIImage(named: "firmino")!),
+                         likedPost: Post(profileImage: UIImage(named: "salahProfile")!,
+                                         name: "kkornsw",
+                                         postImage: UIImage(named: "mane")!)),
         LikeNotification(profileImage: UIImage(named: "maneProfile")!,
                          name: "mane",
                          message: "like your Post",
-                         likedImage: UIImage(named: "mane")!),
-        LikeNotification(profileImage: UIImage(named: "firminoProfile")!,
-                         name: "bobby",
-                         message: "like your post",
-                         likedImage: UIImage(named: "firmino")!),
-        LikeNotification(profileImage: UIImage(named: "firminoProfile")!,
-                         name: "bobby",
-                         message: "like your post",
-                         likedImage: UIImage(named: "firmino")!),
+                         likedPost: Post(profileImage: UIImage(named: "salahProfile")!,
+                                         name: "kkornsw",
+                                         postImage: UIImage(named: "mane")!)),
         LikeNotification(profileImage: UIImage(named: "maneProfile")!,
                          name: "mane",
                          message: "like your Post",
-                         likedImage: UIImage(named: "mane")!),
-        LikeNotification(profileImage: UIImage(named: "firminoProfile")!,
-                         name: "bobby",
-                         message: "like your post",
-                         likedImage: UIImage(named: "firmino")!),
-        LikeNotification(profileImage: UIImage(named: "firminoProfile")!,
-                         name: "bobby",
-                         message: "like your post",
-                         likedImage: UIImage(named: "firmino")!),
+                         likedPost: Post(profileImage: UIImage(named: "salahProfile")!,
+                                         name: "kkornsw",
+                                         postImage: UIImage(named: "mane")!)),
+        LikeNotification(profileImage: UIImage(named: "maneProfile")!,
+                         name: "mane",
+                         message: "like your Post",
+                         likedPost: Post(profileImage: UIImage(named: "salahProfile")!,
+                                         name: "kkornsw",
+                                         postImage: UIImage(named: "mane")!)),
+        LikeNotification(profileImage: UIImage(named: "maneProfile")!,
+                         name: "mane",
+                         message: "like your Post",
+                         likedPost: Post(profileImage: UIImage(named: "salahProfile")!,
+                                         name: "kkornsw",
+                                         postImage: UIImage(named: "mane")!)),
     ]
-    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,18 +56,21 @@ extension FollowingTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notifications.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "LikeNotificationCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-            as! LikeNotificationCell
+        as! LikeNotificationCell
         let notification = notifications[indexPath.row]
-        
-        cell.profileImage.image = notification.profileImage
-        cell.name = notification.name
-        cell.message = notification.message
-        cell.likedImage.image = notification.likedImage
-        
+
+        cell.config(profileImage: notification.profileImage,
+                    name: notification.name,
+                    message: notification.message,
+                    post: notification.likedPost,
+                    time: notification.time)
+
+        cell.onPostImagePress = onPostImagePress!(notification.likedPost)
+
         return cell
     }
 }

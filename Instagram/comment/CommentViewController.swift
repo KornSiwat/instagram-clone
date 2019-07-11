@@ -108,10 +108,10 @@ extension CommentViewController {
     }
 }
 
-// MARK: - UIViewControllerDelegate
+// MARK: - TableViewDelegate
 extension CommentViewController: UITableViewDelegate { }
 
-// MARK: - UIViewControllerDataSource
+// MARK: - TableViewDataSource
 extension CommentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return comments!.count

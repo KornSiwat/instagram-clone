@@ -9,6 +9,9 @@
 import UIKit
 
 class NotificationTableViewController: UITableViewController {
+    var selfInfo: UserInfo?
+    var onPostImagePress: ((Post) -> (() -> Void))?
+
     let notifications: [Any] = [
         NormalNotification(profileImage: UIImage(named: "salahProfile")!,
                            name: "siwat",
@@ -17,18 +20,12 @@ class NotificationTableViewController: UITableViewController {
                            name: "mane",
                            message: "started Following You",
                            isFollowing: true),
-        LikeNotification(profileImage: UIImage(named: "maneProfile")!,
+        LikeNotification(profileImage: UIImage(named: "salahProfile")!,
                          name: "mane",
                          message: "like your Post",
-                         likedImage: UIImage(named: "mane")!),
-        LikeNotification(profileImage: UIImage(named: "firminoProfile")!,
-                         name: "bobby",
-                         message: "like your post",
-                         likedImage: UIImage(named: "firmino")!),
-        LikeNotification(profileImage: UIImage(named: "firminoProfile")!,
-                         name: "bobby",
-                         message: "like your post",
-                         likedImage: UIImage(named: "firmino")!),
+                         likedPost: Post(profileImage: UIImage(named: "salahProfile")!,
+                                         name: "kkornsw",
+                                         postImage: UIImage(named: "mane")!)),
         FollowNotification(profileImage: UIImage(named: "maneProfile")!,
                            name: "mane",
                            message: "started Following You",
@@ -77,10 +74,13 @@ extension NotificationTableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
             as! LikeNotificationCell
 
-            cell.profileImage.image = notification.profileImage
-            cell.name = notification.name
-            cell.message = notification.message
-            cell.likedImage.image = notification.likedImage
+            cell.config(profileImage: notification.profileImage,
+                        name: notification.name,
+                        message: notification.message,
+                        post: notification.likedPost,
+                        time: notification.time)
+
+            cell.onPostImagePress = onPostImagePress!(notification.likedPost)
 
             return cell
         case let notification as FollowNotification:
@@ -98,11 +98,11 @@ extension NotificationTableViewController {
             return tableView.dequeueReusableCell(withIdentifier: "default", for: indexPath)
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "NotificationSectionHeaderView")
         as! NotificationSectionHeaderView
-        
+
         switch section {
         case 0:
             headerView.header.text = "Today"
@@ -113,11 +113,13 @@ extension NotificationTableViewController {
         default:
             headerView.header.text = "Earlier"
         }
-        
+
         return headerView
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.1
     }
 }
+
+

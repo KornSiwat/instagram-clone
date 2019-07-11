@@ -12,8 +12,8 @@ class FollowNotificationCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var followButton: UIButton!
-    
-    
+
+
     var name: String?
     var message: String? {
         didSet {
@@ -24,20 +24,29 @@ class FollowNotificationCell: UITableViewCell {
     var time: String? = "20m"
     var isFollowing: Bool? {
         didSet {
-            setupFollowButton()
+            setupFollowButtonText()
         }
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupProfileImage()
+        setupView()
     }
 }
 
 // MARK: - Setup
 extension FollowNotificationCell {
+    func setupView() {
+        setupProfileImage()
+        setupFollowButtonShape()
+    }
+
     func setupProfileImage() {
         profileImage.roundedImage()
+    }
+
+    func setupFollowButtonShape() {
+        followButton.curvedButton()
     }
 
     func setupMessageLabel() {
@@ -49,15 +58,22 @@ extension FollowNotificationCell {
                                                range: NSRange(location: 0, length: name!.count))
         messageLabel.attributedText = attributedDetailLabelText
     }
-    
-    func setupFollowButton() {
+
+    func setupFollowButtonText() {
         if isFollowing! {
             followButton.setTitle("following", for: .normal)
-            
+            followButton.backgroundColor = UIColor.white
+            followButton.setTitleColor(UIColor.black, for: .normal)
+
             return
         }
-        
+
         followButton.setTitle("follow", for: .normal)
+        followButton.backgroundColor = UIColor(red: 0.0,
+                                               green: 0.65,
+                                               blue: 1, alpha: 1)
+        followButton.setTitleColor(UIColor.white, for: .normal)
+
     }
 }
 

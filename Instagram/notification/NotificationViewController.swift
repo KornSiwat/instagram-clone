@@ -10,6 +10,9 @@ import UIKit
 import Parchment
 
 class NotificationViewController: UIViewController {
+    let selfInfo: UserInfo = UserInfo(profileImage: UIImage(named: "salahProfile")!,
+                                      name: "kkornsw")
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -74,12 +77,18 @@ extension NotificationViewController: PagingViewControllerDataSource {
         switch index {
         case 0:
             let storyboard = UIStoryboard.init(name: "Notification", bundle: nil)
-            let viewController = storyboard.instantiateViewController(withIdentifier: "FollowingTableViewController")
+            let viewController = storyboard.instantiateViewController(withIdentifier: "FollowingTableViewController") as! FollowingTableViewController
+
+            viewController.selfInfo = selfInfo
+            viewController.onPostImagePress = onPostImagePress
 
             return viewController
         default:
             let storyboard = UIStoryboard.init(name: "Notification", bundle: nil)
-            let viewController = storyboard.instantiateViewController(withIdentifier: "NotificationTableViewController")
+            let viewController = storyboard.instantiateViewController(withIdentifier: "NotificationTableViewController") as! NotificationTableViewController
+
+            viewController.selfInfo = selfInfo
+            viewController.onPostImagePress = onPostImagePress
 
             return viewController
         }
@@ -92,5 +101,23 @@ extension NotificationViewController: PagingViewControllerDataSource {
         default:
             return PagingIndexItem(index: index, title: "You") as! T
         }
+    }
+}
+
+// MARK: - Navigation
+extension NotificationViewController {
+    func onPostImagePress(post: Post) -> (() -> Void) {
+        return { self.performSegue(withIdentifier: "PostSegue", sender: post) }
+    }
+}
+
+// MARK: - Navigation
+extension NotificationViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! PostViewController
+        let post = sender as! Post
+        
+        destination.selfInfo = selfInfo
+        destination.post = post
     }
 }

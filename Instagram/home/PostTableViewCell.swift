@@ -73,7 +73,7 @@ extension PostTableViewCell {
     @IBAction func likeButtonPress(_ sender: UIButton) {
         onLike!()
     }
-
+    
     @IBAction func commentButtonPress(_ sender: Any) {
         onCommentPress!()
     }

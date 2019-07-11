@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0D4-c2-6dy">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Post View Controller-->
         <scene sceneID="dpk-W4-QWD">
             <objects>
-                <viewController id="AOR-Hj-Rbl" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostViewController" id="AOR-Hj-Rbl" customClass="PostViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mcy-77-mSW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,8 +32,15 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="QeV-Pd-Lj2">
                                                     <rect key="frame" x="0.0" y="8" width="414" height="388"/>
                                                     <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rF7-Zc-TVq">
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" id="2MI-Db-jF9"/>
+                                                                <constraint firstAttribute="height" id="y58-iE-K3R"/>
+                                                            </constraints>
+                                                        </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bvU-F8-khH">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                                            <rect key="frame" x="0.0" y="8" width="414" height="50"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T1q-Oy-y9Y">
                                                                     <rect key="frame" x="0.0" y="0.0" width="16" height="50"/>
@@ -90,10 +97,10 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X3o-TB-TUD" userLabel="postImage">
-                                                            <rect key="frame" x="0.0" y="58" width="414" height="16"/>
+                                                            <rect key="frame" x="0.0" y="66" width="414" height="8"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPostImage" translatesAutoresizingMaskIntoConstraints="NO" id="zcf-fb-Zp6">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="8"/>
                                                                 </imageView>
                                                             </subviews>
                                                         </stackView>
@@ -119,6 +126,9 @@
                                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bCg-ZN-ZHN">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="23.666666666666668" height="23.666666666666668"/>
                                                                                             <state key="normal" image="like"/>
+                                                                                            <connections>
+                                                                                                <action selector="likeButtonPress:" destination="s1u-3J-UKQ" eventType="touchUpInside" id="HMw-Ix-eNp"/>
+                                                                                            </connections>
                                                                                         </button>
                                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jDZ-Ni-pNe">
                                                                                             <rect key="frame" x="39.666666666666664" y="0.0" width="22" height="23.666666666666668"/>
@@ -218,6 +228,17 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
+                                        <connections>
+                                            <outlet property="captionLabel" destination="tHO-vO-Zha" id="nYo-yu-PhZ"/>
+                                            <outlet property="commentImage" destination="rF7-Zc-TVq" id="75k-2M-GFN"/>
+                                            <outlet property="headerImage" destination="eZf-IY-Khg" id="fYK-P5-jux"/>
+                                            <outlet property="likeBar" destination="Ybi-H4-mJE" id="own-MG-pij"/>
+                                            <outlet property="likeButton" destination="bCg-ZN-ZHN" id="Sfw-Qe-ql1"/>
+                                            <outlet property="likeCount" destination="a69-wm-oq9" id="5a4-pe-ypo"/>
+                                            <outlet property="location" destination="CQY-db-BfB" id="7U8-ct-7u7"/>
+                                            <outlet property="postImage" destination="zcf-fb-Zp6" id="kQb-Ao-8DM"/>
+                                            <outlet property="profileName" destination="wnM-z5-HMB" id="11u-V8-tor"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="60" id="ktW-OW-bQ4" customClass="CommentTableViewCell" customModule="Instagram" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="424" width="414" height="60"/>
@@ -299,6 +320,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="AOR-Hj-Rbl" id="cyp-tk-tgB"/>
+                                    <outlet property="delegate" destination="AOR-Hj-Rbl" id="1yf-XY-IE1"/>
+                                </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9oe-Kb-Fo1">
                                 <rect key="frame" x="0.0" y="664" width="414" height="72"/>
@@ -380,6 +405,13 @@
                         <viewLayoutGuide key="safeArea" id="Jqn-Pd-UDV"/>
                     </view>
                     <navigationItem key="navigationItem" id="Eu9-LF-sSi"/>
+                    <connections>
+                        <outlet property="commentBarBottomConstraint" destination="HJl-6h-eYg" id="1l6-rl-KUR"/>
+                        <outlet property="commentBarProfileImage" destination="0UL-7R-8HS" id="lz3-GA-kIH"/>
+                        <outlet property="commentTextField" destination="m4A-wf-Dog" id="fkc-r1-ocJ"/>
+                        <outlet property="postButton" destination="7mW-LR-rFG" id="cuk-hy-zCD"/>
+                        <outlet property="tableView" destination="fjw-KN-1l9" id="IaY-ht-nHH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AgM-RI-h6Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
