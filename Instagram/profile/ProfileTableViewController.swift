@@ -76,9 +76,9 @@ extension ProfileTableViewController {
             let cellIdentifier = "ProfilePostTableCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ProfilePostTableViewCell
 
+            cell.onPostImagePress = onPostImagePress
             cell.heightOfCell = tableView.frame.height
             cell.posts = posts
-            cell.onPostImagePress = onPostImagePress
 
             return cell
         }

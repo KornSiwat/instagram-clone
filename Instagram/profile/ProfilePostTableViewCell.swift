@@ -54,8 +54,7 @@ extension ProfilePostTableViewCell: UICollectionViewDataSource {
         as! PostCollectionViewCell
         let post = posts![indexPath.row]
 
-        cell.image.image = post.postImage
-        cell.onPostImagePress = onPostImagePress!(post)
+        cell.configure(post: post, onPostImagePress: onPostImagePress!(post))
 
         return cell
     }

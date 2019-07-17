@@ -60,11 +60,29 @@ extension PostTableViewCell {
         let profileName = self.profileName.text
         let captionBarText = "\(profileName!) \(caption)"
         let attributedCaptionBarText = NSMutableAttributedString(string: captionBarText)
-        
+
         attributedCaptionBarText.addAttribute(NSAttributedString.Key.font,
                                               value: UIFont.boldSystemFont(ofSize: 12),
                                               range: NSRange(location: 0, length: profileName!.count))
         captionLabel.attributedText = attributedCaptionBarText
+    }
+
+    func configure(post: Post,
+                   onLike: @escaping () -> Void,
+                   onCommentPress: @escaping () -> Void) {
+        self.headerImage.image = post.profileImage
+        self.profileName.text = post.name
+        self.location.text = post.location
+        self.postImage.image = post.postImage
+        self.isLiked = post.isLiked
+        self.likeCount.text = "\(post.likeCount)"
+        self.caption = post.caption
+
+        self.location.isHidden = self.location.text!.isEmpty
+        self.likeBar.isHidden = post.likeCount == 0
+
+        self.onLike = onLike
+        self.onCommentPress = onCommentPress
     }
 }
 
@@ -73,7 +91,7 @@ extension PostTableViewCell {
     @IBAction func likeButtonPress(_ sender: UIButton) {
         onLike!()
     }
-    
+
     @IBAction func commentButtonPress(_ sender: Any) {
         onCommentPress!()
     }

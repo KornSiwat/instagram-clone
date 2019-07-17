@@ -29,8 +29,7 @@ extension StoryTableViewCell: UICollectionViewDataSource {
         as! StoryCollectionViewCell
         let story = stories![indexPath.row]
 
-        cell.profileImage.image = story.image
-        cell.profileName.text = story.name
+        cell.configure(story: story)
 
         return cell
     }

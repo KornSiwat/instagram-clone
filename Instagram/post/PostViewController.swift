@@ -17,7 +17,7 @@ class PostViewController: UIViewController {
     @IBAction func textFieldEditingChanged(_ sender: Any) {
         updatePostButtonState()
     }
-    
+
     var selfInfo: UserInfo?
     var post: Post?
 
@@ -67,38 +67,23 @@ extension PostViewController: UITableViewDataSource {
             let cellIdentifier = "PostCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! PostTableViewCell
 
-            cell.headerImage.image = post!.profileImage
-            cell.profileName.text = post!.name
-            cell.location.text = post!.location
-            cell.postImage.image = post!.postImage
-            cell.isLiked = post!.isLiked
-            cell.likeCount.text = "\(post!.likeCount)"
-            cell.caption = post!.caption
-            cell.location.isHidden = cell.location.text!.isEmpty
-            cell.likeBar.isHidden = post!.likeCount == 0
+            cell.configure(post: post!,
+                           onLike: {
+                               self.post!.isLiked = !self.post!.isLiked
+                            self.post!.likeCount += self.post!.isLiked ? 1 : -1
 
-            cell.onLike = {
-                self.post!.isLiked = !self.post!.isLiked
-                if self.post!.isLiked {
-                    self.post!.likeCount += 1
-                } else {
-                    self.post!.likeCount -= 1
-                }
-
-                tableView.reloadRows(at: [indexPath], with: .none)
-            }
-
-            cell.onCommentPress = { }
+                               tableView.reloadRows(at: [indexPath], with: .none)
+                           },
+                           onCommentPress: { })
 
             return cell
         default:
             let cellIdentifier = "CommentCell"
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! CommentTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+            as! CommentTableViewCell
             let comment = post!.comments[indexPath.row]
 
-            cell.profileImage.image = comment.profileImage
-            cell.profileName = comment.profileName
-            cell.message = comment.message
+            cell.configure(comment: comment)
 
             return cell
         }

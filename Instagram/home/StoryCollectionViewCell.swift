@@ -16,3 +16,11 @@ class StoryCollectionViewCell: UICollectionViewCell {
         profileImage.roundedImage()
     }
 }
+
+// MARK: - Setup
+extension StoryCollectionViewCell {
+    func configure(story: Story) {
+        self.profileImage.image = story.image
+        self.profileName.text = story.name
+    }
+}

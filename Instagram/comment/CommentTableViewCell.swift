@@ -37,4 +37,10 @@ extension CommentTableViewCell {
                                               range: NSRange(location: 0, length: profileName.count))
         commentLabel.attributedText = attributedCaptionBarText
     }
+    
+    func configure(comment: Comment) {
+        self.profileImage.image = comment.profileImage
+        self.profileName = comment.profileName
+        self.message = comment.message
+    }
 }

@@ -18,7 +18,7 @@ class CommentViewController: UIViewController {
     @IBAction func textFieldEditingChange(_ sender: Any) {
         updatePostButtonState()
     }
-    
+
     var selfInfo: UserInfo?
     var comments: [Comment]?
     var updateCommentsData: (([Comment]) -> Void)?
@@ -42,7 +42,7 @@ extension CommentViewController {
     @IBAction func dismissKeyboard(_ sender: Any) {
         dismissKeyboard()
     }
-    
+
     func dismissKeyboard() {
         view.endEditing(true)
         commentBarBottomLayoutConstraint.constant = 0
@@ -54,12 +54,12 @@ extension CommentViewController {
 extension CommentViewController {
     @IBAction func postButtonPress(_ sender: Any) {
         let newIndexPath = IndexPath(row: comments!.count, section: 0)
-        
+
         comments?.append(Comment(profileName: selfInfo!.name,
                                  profileImage: selfInfo!.profileImage,
                                  message: commentTextField.text!))
         tableView.insertRows(at: [newIndexPath], with: .automatic)
-        
+
         commentTextField.text! = ""
         dismissKeyboard()
     }
@@ -128,5 +128,16 @@ extension CommentViewController: UITableViewDataSource {
         cell.message = comment.message
 
         return cell
+    }
+}
+
+// MARK: - Configure
+extension CommentViewController {
+    func configure(selfInfo: UserInfo,
+                   comments: [Comment],
+                   updateCommentsData: @escaping ([Comment]) -> Void) {
+        self.selfInfo = selfInfo
+        self.comments = comments
+        self.updateCommentsData = updateCommentsData
     }
 }

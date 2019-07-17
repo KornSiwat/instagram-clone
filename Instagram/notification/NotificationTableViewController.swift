@@ -45,6 +45,14 @@ class NotificationTableViewController: UITableViewController {
     }
 }
 
+// MARK: - Setup
+extension NotificationTableViewController {
+    func configure(selfInfo: UserInfo, onPostImagePress: @escaping (Post) -> (() -> Void)) {
+        self.selfInfo = selfInfo
+        self.onPostImagePress = onPostImagePress
+    }
+}
+
 // MARK: - TableViewDataSource
 extension NotificationTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -64,9 +72,7 @@ extension NotificationTableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
             as! NormalNotificationCell
 
-            cell.profileImage.image = notification.profileImage
-            cell.name = notification.name
-            cell.message = notification.message
+            cell.configure(notification: notification)
 
             return cell
         case let notification as LikeNotification:
@@ -74,11 +80,7 @@ extension NotificationTableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
             as! LikeNotificationCell
 
-            cell.config(profileImage: notification.profileImage,
-                        name: notification.name,
-                        message: notification.message,
-                        post: notification.likedPost,
-                        time: notification.time)
+            cell.configure(notification: notification)
 
             cell.onPostImagePress = onPostImagePress!(notification.likedPost)
 
@@ -88,10 +90,7 @@ extension NotificationTableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
             as! FollowNotificationCell
 
-            cell.profileImage.image = notification.profileImage
-            cell.name = notification.name
-            cell.message = notification.message
-            cell.isFollowing = notification.isFollowing
+            cell.configure(notification: notification)
 
             return cell
         default:

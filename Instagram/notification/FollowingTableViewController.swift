@@ -51,6 +51,14 @@ class FollowingTableViewController: UITableViewController {
     }
 }
 
+// MARK: - Setup
+extension FollowingTableViewController {
+    func configure(selfInfo: UserInfo, onPostImagePress: @escaping (Post) -> (() -> Void)) {
+        self.selfInfo = selfInfo
+        self.onPostImagePress = onPostImagePress
+    }
+}
+
 // MARK: - TableViewDataSource
 extension FollowingTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,11 +71,7 @@ extension FollowingTableViewController {
         as! LikeNotificationCell
         let notification = notifications[indexPath.row]
 
-        cell.config(profileImage: notification.profileImage,
-                    name: notification.name,
-                    message: notification.message,
-                    post: notification.likedPost,
-                    time: notification.time)
+        cell.configure(notification: notification)
 
         cell.onPostImagePress = onPostImagePress!(notification.likedPost)
 

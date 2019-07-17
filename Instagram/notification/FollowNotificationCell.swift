@@ -75,6 +75,13 @@ extension FollowNotificationCell {
         followButton.setTitleColor(UIColor.white, for: .normal)
 
     }
+    
+    func configure(notification: FollowNotification) {
+        self.profileImage.image = notification.profileImage
+        self.name = notification.name
+        self.message = notification.message
+        self.isFollowing = notification.isFollowing
+    }
 }
 
 // MARK: - Action

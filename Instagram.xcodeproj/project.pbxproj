@@ -38,6 +38,8 @@
 		936EF62E22CF6938009591E8 /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936EF62D22CF6938009591E8 /* NotificationTableViewController.swift */; };
 		936EF63022CF6A32009591E8 /* NormalNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936EF62F22CF6A32009591E8 /* NormalNotificationCell.swift */; };
 		936EF63222CF6B7A009591E8 /* NormalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936EF63122CF6B7A009591E8 /* NormalNotification.swift */; };
+		9371188B22DEF8B3002AD064 /* HomeFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9371188A22DEF8B3002AD064 /* HomeFacade.swift */; };
+		9371188D22DEF96E002AD064 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9371188C22DEF96E002AD064 /* Feed.swift */; };
 		9385517522CC7F8B00628A21 /* StoryUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385517422CC7F8B00628A21 /* StoryUICollectionView.swift */; };
 		9385517722CC7FE400628A21 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9385517622CC7FE400628A21 /* Profile.storyboard */; };
 		9385517922CC970800628A21 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385517822CC970800628A21 /* Comment.swift */; };
@@ -87,6 +89,8 @@
 		936EF62D22CF6938009591E8 /* NotificationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
 		936EF62F22CF6A32009591E8 /* NormalNotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalNotificationCell.swift; sourceTree = "<group>"; };
 		936EF63122CF6B7A009591E8 /* NormalNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalNotification.swift; sourceTree = "<group>"; };
+		9371188A22DEF8B3002AD064 /* HomeFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFacade.swift; sourceTree = "<group>"; };
+		9371188C22DEF96E002AD064 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		9385517422CC7F8B00628A21 /* StoryUICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUICollectionView.swift; sourceTree = "<group>"; };
 		9385517622CC7FE400628A21 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		9385517822CC970800628A21 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -255,6 +259,8 @@
 				930D210E22CB0EF70040EF0D /* Post.swift */,
 				93B98D3D22C902CE008620EF /* storyCell */,
 				93326C9122CA14BC00B216F4 /* postCell */,
+				9371188A22DEF8B3002AD064 /* HomeFacade.swift */,
+				9371188C22DEF96E002AD064 /* Feed.swift */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -441,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9371188B22DEF8B3002AD064 /* HomeFacade.swift in Sources */,
 				931104B922D4895C005D5B44 /* NotificationSectionHeaderView.swift in Sources */,
 				930A664822CE7EB6000FA433 /* PostCollectionViewCell.swift in Sources */,
 				931104B422D4641B005D5B44 /* LikeNotification.swift in Sources */,
@@ -465,6 +472,7 @@
 				936EF63222CF6B7A009591E8 /* NormalNotification.swift in Sources */,
 				930A664622CE7984000FA433 /* PostCollectionView.swift in Sources */,
 				936EF62C22CF692E009591E8 /* FollowingTableViewController.swift in Sources */,
+				9371188D22DEF96E002AD064 /* Feed.swift in Sources */,
 				930D211E22CC6C850040EF0D /* StoryTableViewCell.swift in Sources */,
 				931104B022D450DB005D5B44 /* LikeNotificationCell.swift in Sources */,
 				93B98D4722C9290A008620EF /* ProfileDetailTableViewCell.swift in Sources */,

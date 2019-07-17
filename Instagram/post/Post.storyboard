@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fjw-KN-1l9">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="664"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="648"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="396" id="s1u-3J-UKQ" customClass="PostTableViewCell" customModule="Instagram" customModuleProvider="target">
@@ -326,11 +326,11 @@
                                     <outletCollection property="gestureRecognizers" destination="Up8-Bt-z2r" appends="YES" id="Huo-Fm-WH6"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9oe-Kb-Fo1">
-                                <rect key="frame" x="0.0" y="664" width="414" height="72"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OhS-Xk-eH3">
+                                <rect key="frame" x="0.0" y="648" width="414" height="88"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n9y-Gf-Pgt">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
+                                        <rect key="frame" x="0.0" y="8" width="414" height="72"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QOV-fH-50h">
                                                 <rect key="frame" x="0.0" y="0.0" width="16" height="72"/>
@@ -389,29 +389,28 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="n9y-Gf-Pgt" firstAttribute="leading" secondItem="9oe-Kb-Fo1" secondAttribute="leading" id="5bR-Zf-hUT"/>
-                                    <constraint firstAttribute="bottom" secondItem="n9y-Gf-Pgt" secondAttribute="bottom" id="HJl-6h-eYg"/>
-                                    <constraint firstAttribute="trailing" secondItem="n9y-Gf-Pgt" secondAttribute="trailing" id="hEA-FW-XKN"/>
-                                    <constraint firstAttribute="height" constant="72" id="viu-os-DM7"/>
+                                    <constraint firstAttribute="bottom" secondItem="n9y-Gf-Pgt" secondAttribute="bottom" constant="8" id="4m1-dU-Lql"/>
+                                    <constraint firstAttribute="trailing" secondItem="n9y-Gf-Pgt" secondAttribute="trailing" id="DHc-6n-qde"/>
+                                    <constraint firstItem="n9y-Gf-Pgt" firstAttribute="top" secondItem="OhS-Xk-eH3" secondAttribute="top" constant="8" id="dbI-Z4-pEb"/>
+                                    <constraint firstItem="n9y-Gf-Pgt" firstAttribute="leading" secondItem="OhS-Xk-eH3" secondAttribute="leading" id="wxK-IH-d9x"/>
                                 </constraints>
-                                <viewLayoutGuide key="safeArea" id="xbg-C0-Ehs"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="9oe-Kb-Fo1" firstAttribute="top" secondItem="fjw-KN-1l9" secondAttribute="bottom" id="5OW-cU-8PW"/>
                             <constraint firstItem="fjw-KN-1l9" firstAttribute="trailing" secondItem="Jqn-Pd-UDV" secondAttribute="trailing" id="5ZX-ms-KOz"/>
+                            <constraint firstItem="OhS-Xk-eH3" firstAttribute="leading" secondItem="Jqn-Pd-UDV" secondAttribute="leading" id="9XS-UX-xDE"/>
                             <constraint firstItem="fjw-KN-1l9" firstAttribute="leading" secondItem="Jqn-Pd-UDV" secondAttribute="leading" id="G1a-gZ-23s"/>
-                            <constraint firstItem="9oe-Kb-Fo1" firstAttribute="leading" secondItem="Jqn-Pd-UDV" secondAttribute="leading" id="bCE-U0-1PR"/>
-                            <constraint firstItem="Jqn-Pd-UDV" firstAttribute="bottom" secondItem="9oe-Kb-Fo1" secondAttribute="bottom" id="dLo-ha-dlR"/>
-                            <constraint firstItem="9oe-Kb-Fo1" firstAttribute="trailing" secondItem="Jqn-Pd-UDV" secondAttribute="trailing" id="jgJ-TE-bAc"/>
+                            <constraint firstItem="OhS-Xk-eH3" firstAttribute="trailing" secondItem="Jqn-Pd-UDV" secondAttribute="trailing" id="Omx-1x-eHy"/>
+                            <constraint firstItem="OhS-Xk-eH3" firstAttribute="top" secondItem="fjw-KN-1l9" secondAttribute="bottom" id="dig-vL-4rf"/>
+                            <constraint firstItem="Jqn-Pd-UDV" firstAttribute="bottom" secondItem="OhS-Xk-eH3" secondAttribute="bottom" id="ee5-Kd-HgM"/>
                             <constraint firstItem="fjw-KN-1l9" firstAttribute="top" secondItem="mcy-77-mSW" secondAttribute="top" id="k2H-tu-7D7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Jqn-Pd-UDV"/>
                     </view>
                     <navigationItem key="navigationItem" id="Eu9-LF-sSi"/>
                     <connections>
-                        <outlet property="commentBarBottomConstraint" destination="HJl-6h-eYg" id="1l6-rl-KUR"/>
+                        <outlet property="commentBarBottomConstraint" destination="ee5-Kd-HgM" id="yrp-ai-0rA"/>
                         <outlet property="commentBarProfileImage" destination="0UL-7R-8HS" id="lz3-GA-kIH"/>
                         <outlet property="commentTextField" destination="m4A-wf-Dog" id="fkc-r1-ocJ"/>
                         <outlet property="postButton" destination="7mW-LR-rFG" id="cuk-hy-zCD"/>

@@ -79,16 +79,14 @@ extension NotificationViewController: PagingViewControllerDataSource {
             let storyboard = UIStoryboard.init(name: "Notification", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier: "FollowingTableViewController") as! FollowingTableViewController
 
-            viewController.selfInfo = selfInfo
-            viewController.onPostImagePress = onPostImagePress
+            viewController.configure(selfInfo: selfInfo, onPostImagePress: onPostImagePress)
 
             return viewController
         default:
             let storyboard = UIStoryboard.init(name: "Notification", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier: "NotificationTableViewController") as! NotificationTableViewController
 
-            viewController.selfInfo = selfInfo
-            viewController.onPostImagePress = onPostImagePress
+            viewController.configure(selfInfo: selfInfo, onPostImagePress: onPostImagePress)
 
             return viewController
         }
@@ -106,18 +104,15 @@ extension NotificationViewController: PagingViewControllerDataSource {
 
 // MARK: - Navigation
 extension NotificationViewController {
-    func onPostImagePress(post: Post) -> (() -> Void) {
-        return { self.performSegue(withIdentifier: "PostSegue", sender: post) }
-    }
-}
-
-// MARK: - Navigation
-extension NotificationViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as! PostViewController
         let post = sender as! Post
         
         destination.selfInfo = selfInfo
         destination.post = post
+    }
+    
+    func onPostImagePress(post: Post) -> (() -> Void) {
+        return { self.performSegue(withIdentifier: "PostSegue", sender: post) }
     }
 }

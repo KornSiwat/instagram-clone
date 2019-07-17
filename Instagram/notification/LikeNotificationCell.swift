@@ -46,12 +46,12 @@ extension LikeNotificationCell {
         self.likedImage.image = self.post!.postImage
     }
 
-    func config(profileImage: UIImage, name: String, message: String, post: Post, time: String = "20m") {
-        self.profileImage.image = profileImage
-        self.name = name
-        self.message = message
-        self.time = time
-        self.post = post
+    func configure(notification: LikeNotification) {
+        self.profileImage.image = notification.profileImage
+        self.name = notification.name
+        self.message = notification.message
+        self.time = notification.time
+        self.post = notification.likedPost
 
         setupLikedPostImage()
         setupMessageLabel()
