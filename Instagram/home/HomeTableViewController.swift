@@ -28,7 +28,7 @@ extension HomeTableViewController {
     func setupData() {
         loadFeed()
     }
-    
+
     func loadFeed() {
         feed = facade.loadFeed()
     }

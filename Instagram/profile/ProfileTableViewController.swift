@@ -9,26 +9,19 @@
 import UIKit
 
 class ProfileTableViewController: UITableViewController {
-    let selfInfo = UserInfo(profileImage: UIImage(named: "salahProfile")!,
-                            name: "kkornsw",
-                            biography: "Liverpool Big Fan",
-                            postCount: 59,
-                            followerCount: 512,
-                            followingCount: 203)
-    let selfHighlights = [
-        Highlight(image: UIImage(named: "maneProfile")!,
-                  name: "mane"),
-        Highlight(image: UIImage(named: "firminoProfile")!,
-                  name: "firmino"),
-        Highlight(image: UIImage(named: "liverpoolProfile")!,
-                  name: "liverpool")
-    ]
-
-    var posts: [Post] = []
+    let profileFacade: ProfileFacade = ProfileFacade()
+    var profile: Profile?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        posts = loadSamplePost()
+        loadProfile()
+    }
+}
+
+// MARK: - Setup
+extension ProfileTableViewController {
+    func loadProfile() {
+        profile = profileFacade.loadProfile()
     }
 }
 
@@ -48,6 +41,23 @@ extension ProfileTableViewController {
 
 // MARK: - Table view data source
 extension ProfileTableViewController {
+    enum Section: Int {
+        case profileDetail
+        case highlight
+        case post
+
+        var cellIdentifier: String {
+            switch self {
+            case .profileDetail:
+                return "ProfileDetailCell"
+            case .highlight:
+                return "HighlightCell"
+            case .post:
+                return "ProfilePostTableCell"
+            }
+        }
+    }
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
@@ -57,254 +67,40 @@ extension ProfileTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            let cellIdentifier = "ProfileDetailCell"
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ProfileDetailTableViewCell
+        let section = Section(rawValue: indexPath.section)!
+        let cell = tableView.dequeueReusableCell(withIdentifier: section.cellIdentifier,
+                                                 for: indexPath)
+        configure(cell)
 
-            cell.userInfo = selfInfo
-
-            return cell
-        case 1:
-            let cellIdentifier = "HighlightCell"
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! HighlightTableViewCell
-
-            cell.highlights = selfHighlights
-
-            return cell
-        default:
-            let cellIdentifier = "ProfilePostTableCell"
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ProfilePostTableViewCell
-
-            cell.onPostImagePress = onPostImagePress
-            cell.heightOfCell = tableView.frame.height
-            cell.posts = posts
-
-            return cell
-        }
+        return cell
     }
-}
 
-// MARK: - Load Post Data
-extension ProfileTableViewController {
-    func loadSamplePost() -> [Post] {
-        let samplePostDetails = [
-            (
-                profileImage: "defaultProfileImage",
-                name: "kkornsw",
-                location: "Bangkok Thailand",
-                postImage: "defaultPostImage",
-                isLiked: true,
-                likeCount: 0,
-                caption: "Born To Code",
-                comments: [
-                    Comment(profileName: "mane",
-                            profileImage: UIImage(named: "maneProfile"),
-                            message: "Nice View"),
-                    Comment(profileName: "salah",
-                            profileImage: UIImage(named: "salahProfile"),
-                            message: "eiei"),
-                    Comment(profileName: "salah",
-                            profileImage: UIImage(named: "salahProfile"),
-                            message: "yay")
-                ]
-            ),
-            (
-                profileImage: "salahProfile",
-                name: "mohamed_salah",
-                location: "Egypt",
-                postImage: "salah",
-                isLiked: false,
-                likeCount: 999,
-                caption: "Egyptian King",
-                comments: []
-            ),
-            (
-                profileImage: "maneProfile",
-                name: "mane",
-                location: "",
-                postImage: "mane",
-                isLiked: false,
-                likeCount: 872,
-                caption: "Best Winger",
-                comments: [
-                    Comment(profileName: "salah",
-                            profileImage: UIImage(named: "salahProfile"),
-                            message: "you did very well this season")
-                ]
-            ),
-            (
-                profileImage: "firminoProfile",
-                name: "roberto_firmino",
-                location: "Anfield",
-                postImage: "firmino",
-                isLiked: false,
-                likeCount: 798,
-                caption: "Best Number 9",
-                comments: []
-            ),
-            (
-                profileImage: "liverpoolProfile",
-                name: "liverpool_fc",
-                location: "Anfield",
-                postImage: "liverpool",
-                isLiked: false,
-                likeCount: 423,
-                caption: "Great Players",
-                comments: []
-            ),
-            (
-                profileImage: "allezProfile",
-                name: "allezallez",
-                location: "unknown",
-                postImage: "allez",
-                isLiked: false,
-                likeCount: 11,
-                caption: "We're tha champion",
-                comments: []
-            ), (
-                profileImage: "liverpoolProfile",
-                name: "liverpool_fc",
-                location: "Anfield",
-                postImage: "liverpool",
-                isLiked: false,
-                likeCount: 423,
-                caption: "Great Players",
-                comments: []
-            ), (
-                profileImage: "liverpoolProfile",
-                name: "liverpool_fc",
-                location: "Anfield",
-                postImage: "liverpool",
-                isLiked: false,
-                likeCount: 423,
-                caption: "Great Players",
-                comments: []
-            ), (
-                profileImage: "liverpoolProfile",
-                name: "liverpool_fc",
-                location: "Anfield",
-                postImage: "liverpool",
-                isLiked: false,
-                likeCount: 423,
-                caption: "Great Players",
-                comments: []
-            ), (
-                profileImage: "liverpoolProfile",
-                name: "liverpool_fc",
-                location: "Anfield",
-                postImage: "liverpool",
-                isLiked: false,
-                likeCount: 423,
-                caption: "Great Players",
-                comments: []
-            ), (
-                profileImage: "liverpoolProfile",
-                name: "liverpool_fc",
-                location: "Anfield",
-                postImage: "liverpool",
-                isLiked: false,
-                likeCount: 423,
-                caption: "Great Players",
-                comments: []
-            ), (
-                profileImage: "liverpoolProfile",
-                name: "liverpool_fc",
-                location: "Anfield",
-                postImage: "liverpool",
-                isLiked: false,
-                likeCount: 423,
-                caption: "Great Players",
-                comments: []
-            ), (
-                profileImage: "liverpoolProfile",
-                name: "liverpool_fc",
-                location: "Anfield",
-                postImage: "liverpool",
-                isLiked: false,
-                likeCount: 423,
-                caption: "Great Players",
-                comments: []
-            ), (
-                profileImage: "liverpoolProfile",
-                name: "liverpool_fc",
-                location: "Anfield",
-                postImage: "liverpool",
-                isLiked: false,
-                likeCount: 423,
-                caption: "Great Players",
-                comments: []
-            ), (
-                profileImage: "liverpoolProfile",
-                name: "liverpool_fc",
-                location: "Anfield",
-                postImage: "liverpool",
-                isLiked: false,
-                likeCount: 423,
-                caption: "Great Players",
-                comments: []
-            ), (
-                profileImage: "liverpoolProfile",
-                name: "liverpool_fc",
-                location: "Anfield",
-                postImage: "liverpool",
-                isLiked: false,
-                likeCount: 423,
-                caption: "Great Players",
-                comments: []
-            ), (
-                profileImage: "liverpoolProfile",
-                name: "liverpool_fc",
-                location: "Anfield",
-                postImage: "liverpool",
-                isLiked: false,
-                likeCount: 423,
-                caption: "Great Players",
-                comments: []
-            ), (
-                profileImage: "liverpoolProfile",
-                name: "liverpool_fc",
-                location: "Anfield",
-                postImage: "liverpool",
-                isLiked: false,
-                likeCount: 423,
-                caption: "Great Players",
-                comments: []
-            ), (
-                profileImage: "liverpoolProfile",
-                name: "liverpool_fc",
-                location: "Anfield",
-                postImage: "liverpool",
-                isLiked: false,
-                likeCount: 423,
-                caption: "Great Players",
-                comments: []
-            ),
-        ]
-
-        return samplePostDetails.map { Post(profileImage: UIImage(named: $0.profileImage)!,
-                                            name: $0.name,
-                                            location: $0.location,
-                                            postImage: UIImage(named: $0.postImage)!,
-                                            isLiked: $0.isLiked,
-                                            likeCount: $0.likeCount,
-                                            caption: $0.caption,
-                                            comments: $0.comments)
+    func configure(_ cell: UITableViewCell) {
+        switch cell {
+        case let cell as ProfileDetailTableViewCell:
+            cell.configure(selfInfo: profile!.selfInfo)
+        case let cell as HighlightTableViewCell:
+            cell.configure(highlights: profile!.highlights)
+        case let cell as ProfilePostTableViewCell:
+            cell.configure(cellHeight: tableView.frame.height,
+                           posts: profile!.posts,
+                           onPostImagePress: onPostImagePress)
+        default:
+            break
         }
     }
 }
 
 // MARK: - Navigation
 extension ProfileTableViewController {
-    func onPostImagePress(post: Post) -> (() -> Void) {
-        return { self.performSegue(withIdentifier: "PostSegue", sender: post) }
+    func onPostImagePress(post: Post) {
+        self.performSegue(withIdentifier: "PostSegue", sender: post)
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as! PostViewController
         let post = sender as! Post
-        
-        destination.selfInfo = selfInfo
-        destination.post = post
+
+        destination.configure(selfInfo: profile!.selfInfo, post: post)
     }
 }

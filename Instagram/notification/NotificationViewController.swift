@@ -10,21 +10,28 @@ import UIKit
 import Parchment
 
 class NotificationViewController: UIViewController {
-    let selfInfo: UserInfo = UserInfo(profileImage: UIImage(named: "salahProfile")!,
-                                      name: "kkornsw")
+    let pagingViewController = PagingViewController<PagingIndexItem>()
+    let notificationFacade: NotificationFacade = NotificationFacade()
+
+    var selfInfo: UserInfo?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupView()
+        setupData()
     }
 }
 
 // MARK: - Setup
 extension NotificationViewController {
     func setupView() {
-        let pagingViewController = PagingViewController<PagingIndexItem>()
+        setupPagingView()
+    }
+
+    func setupPagingView() {
         pagingViewController.dataSource = self
-        pagingViewController.select(index: 0)
+        self.pagingViewController.select(index: 1, animated: false)
         pagingViewController.options.indicatorColor = UIColor.black
         pagingViewController.options.textColor = UIColor.black
         pagingViewController.options.selectedTextColor = UIColor.black
@@ -65,54 +72,78 @@ extension NotificationViewController {
                              bottomConstraint])
         view.layoutIfNeeded()
     }
+
+    func setupData() {
+        loadSelfInfo()
+    }
+
+    func loadSelfInfo() {
+        selfInfo = notificationFacade.loadSelfInfo()
+    }
 }
 
 // MARK: - PagingViewControllerDataSource
 extension NotificationViewController: PagingViewControllerDataSource {
+    enum Page {
+        static let followingActivities = 0
+        static let notification = 1
+    }
+
     func numberOfViewControllers<T>(in pagingViewController: PagingViewController<T>) -> Int {
         return 2
     }
 
     func pagingViewController<T>(_ pagingViewController: PagingViewController<T>, viewControllerForIndex index: Int) -> UIViewController {
         switch index {
-        case 0:
+        case Page.followingActivities:
             let storyboard = UIStoryboard.init(name: "Notification", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier: "FollowingTableViewController") as! FollowingTableViewController
 
-            viewController.configure(selfInfo: selfInfo, onPostImagePress: onPostImagePress)
+            viewController.configure(onPostImagePress: onPostImagePress)
 
             return viewController
-        default:
+        case Page.notification:
             let storyboard = UIStoryboard.init(name: "Notification", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier: "NotificationTableViewController") as! NotificationTableViewController
 
-            viewController.configure(selfInfo: selfInfo, onPostImagePress: onPostImagePress)
+            viewController.configure(onPostImagePress: onPostImagePress)
 
             return viewController
+        default:
+            return UIViewController()
         }
     }
 
     func pagingViewController<T>(_ pagingViewController: PagingViewController<T>, pagingItemForIndex index: Int) -> T {
         switch index {
-        case 0:
+        case Page.followingActivities:
             return PagingIndexItem(index: index, title: "Following") as! T
-        default:
+        case Page.notification:
             return PagingIndexItem(index: index, title: "You") as! T
+        default:
+            return PagingIndexItem(index: index, title: "default") as! T
         }
     }
 }
 
 // MARK: - Navigation
 extension NotificationViewController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as! PostViewController
-        let post = sender as! Post
-        
-        destination.selfInfo = selfInfo
-        destination.post = post
+    enum Segue {
+        static let post = "PostSegue"
     }
-    
-    func onPostImagePress(post: Post) -> (() -> Void) {
-        return { self.performSegue(withIdentifier: "PostSegue", sender: post) }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch (segue.identifier, segue.destination, sender) {
+        case let (Segue.post, destination as PostViewController, post as Post):
+            destination.configure(selfInfo: selfInfo!,
+                                  post: post)
+        default:
+            break
+        }
+    }
+
+    func onPostImagePress(post: Post) {
+        performSegue(withIdentifier: "PostSegue",
+                     sender: post)
     }
 }

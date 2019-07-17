@@ -9,47 +9,33 @@
 import UIKit
 
 class NotificationTableViewController: UITableViewController {
-    var selfInfo: UserInfo?
-    var onPostImagePress: ((Post) -> (() -> Void))?
-
-    let notifications: [Any] = [
-        NormalNotification(profileImage: UIImage(named: "salahProfile")!,
-                           name: "siwat",
-                           message: "turned on countdown remainders for \"go to Japan\""),
-        FollowNotification(profileImage: UIImage(named: "maneProfile")!,
-                           name: "mane",
-                           message: "started Following You",
-                           isFollowing: true),
-        LikeNotification(profileImage: UIImage(named: "salahProfile")!,
-                         name: "mane",
-                         message: "like your Post",
-                         likedPost: Post(profileImage: UIImage(named: "salahProfile")!,
-                                         name: "kkornsw",
-                                         postImage: UIImage(named: "mane")!)),
-        FollowNotification(profileImage: UIImage(named: "maneProfile")!,
-                           name: "mane",
-                           message: "started Following You",
-                           isFollowing: false),
-        FollowNotification(profileImage: UIImage(named: "maneProfile")!,
-                           name: "mane",
-                           message: "started Following You",
-                           isFollowing: true)
-    ]
+    let notificationFacade = NotificationFacade()
+    var notification: Notification?
+    var onPostImagePress: ((Post) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.sectionHeaderHeight = UITableView.automaticDimension
-        tableView.estimatedSectionHeaderHeight = 100
-        tableView.register(UINib.init(nibName: "NotificationSectionHeaderView", bundle: nil),
-                           forHeaderFooterViewReuseIdentifier: "NotificationSectionHeaderView")
+        
+        setupData()
+        setupView()
     }
 }
 
 // MARK: - Setup
 extension NotificationTableViewController {
-    func configure(selfInfo: UserInfo, onPostImagePress: @escaping (Post) -> (() -> Void)) {
-        self.selfInfo = selfInfo
-        self.onPostImagePress = onPostImagePress
+    func setupView() {
+        setupTableView()
+    }
+    
+    func setupTableView() {
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
+        tableView.estimatedSectionHeaderHeight = 100
+        tableView.register(UINib.init(nibName: "NotificationSectionHeaderView", bundle: nil),
+                           forHeaderFooterViewReuseIdentifier: "NotificationSectionHeaderView")
+    }
+    
+    func setupData() {
+        notification = notificationFacade.loadNotification()
     }
 }
 
@@ -60,41 +46,48 @@ extension NotificationTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notifications.count
+        return notification!.notifications.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let notification = notifications[indexPath.row]
+        let notification = self.notification!.notifications[indexPath.row]
+        let cellIdentifier: String = {
+            switch notification {
+            case is NormalNotification:
+                return "NormalNotificationCell"
+            case is LikeNotification:
+                return "LikeNotificationCell"
+            case is FollowNotification:
+                return "FollowNotificationCell"
+            default:
+                return ""
+            }
+        }()
 
-        switch notification {
-        case let notification as NormalNotification:
-            let cellIdentifier = "NormalNotificationCell"
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-            as! NormalNotificationCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
 
-            cell.configure(notification: notification)
+        configure(cell, at: indexPath)
 
-            return cell
-        case let notification as LikeNotification:
-            let cellIdentifier = "LikeNotificationCell"
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-            as! LikeNotificationCell
+        return cell
+    }
 
-            cell.configure(notification: notification)
+    enum Header: Int {
+        case today
+        case thisWeek
+        case thisMonth
+        case earlier
 
-            cell.onPostImagePress = onPostImagePress!(notification.likedPost)
-
-            return cell
-        case let notification as FollowNotification:
-            let cellIdentifier = "FollowNotificationCell"
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-            as! FollowNotificationCell
-
-            cell.configure(notification: notification)
-
-            return cell
-        default:
-            return tableView.dequeueReusableCell(withIdentifier: "default", for: indexPath)
+        var text: String {
+            switch self {
+            case .today:
+                return "Today"
+            case .thisWeek:
+                return "This Week"
+            case .thisMonth:
+                return "This Month"
+            case .earlier:
+                return "Earlier"
+            }
         }
     }
 
@@ -102,16 +95,7 @@ extension NotificationTableViewController {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "NotificationSectionHeaderView")
         as! NotificationSectionHeaderView
 
-        switch section {
-        case 0:
-            headerView.header.text = "Today"
-        case 1:
-            headerView.header.text = "This Week"
-        case 2:
-            headerView.header.text = "This Month"
-        default:
-            headerView.header.text = "Earlier"
-        }
+        headerView.header.text = Header(rawValue: section)!.text
 
         return headerView
     }
@@ -119,6 +103,31 @@ extension NotificationTableViewController {
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.1
     }
+
+    func configure(_ cell: UITableViewCell, at indexPath: IndexPath) {
+        switch cell {
+        case let cell as NormalNotificationCell:
+            let notification = self.notification!.notifications[indexPath.row] as! NormalNotification
+
+            cell.configure(notification: notification)
+        case let cell as LikeNotificationCell:
+            let notification = self.notification!.notifications[indexPath.row] as! LikeNotification
+
+            cell.configure(notification: notification,
+                           onPostImagePress: { self.onPostImagePress!(notification.likedPost) })
+        case let cell as FollowNotificationCell:
+            let notification = self.notification!.notifications[indexPath.row] as! FollowNotification
+
+            cell.configure(notification: notification)
+        default:
+            break
+        }
+    }
 }
 
-
+// MARK: - Configure
+extension NotificationTableViewController {
+    func configure(onPostImagePress: @escaping (Post) -> Void) {
+        self.onPostImagePress = onPostImagePress
+    }
+}

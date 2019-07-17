@@ -15,7 +15,7 @@ class ProfilePostTableViewCell: UITableViewCell {
     @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
     
     var heightOfCell: CGFloat = 0
-    var onPostImagePress: ((Post) -> (() -> Void))?
+    var onPostImagePress: ((Post) -> Void)? //((Post) -> (() -> Void))?
     
     var posts: [Post]? {
         didSet {
@@ -54,7 +54,8 @@ extension ProfilePostTableViewCell: UICollectionViewDataSource {
         as! PostCollectionViewCell
         let post = posts![indexPath.row]
 
-        cell.configure(post: post, onPostImagePress: onPostImagePress!(post))
+        cell.configure(post: post,
+                       onPostImagePress: { self.onPostImagePress!(post) })
 
         return cell
     }
@@ -66,5 +67,16 @@ extension ProfilePostTableViewCell: UICollectionViewDelegateFlowLayout {
         let imageWidth = (UIScreen.main.bounds.width / 3)
 
         return CGSize(width: imageWidth, height: imageWidth)
+    }
+}
+
+// MARK: Configure
+extension ProfilePostTableViewCell {
+    func configure(cellHeight: CGFloat,
+                   posts: [Post],
+                   onPostImagePress: @escaping (Post) -> Void) {
+        self.onPostImagePress = onPostImagePress
+        self.heightOfCell = cellHeight
+        self.posts = posts
     }
 }

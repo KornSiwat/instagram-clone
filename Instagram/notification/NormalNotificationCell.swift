@@ -42,7 +42,10 @@ extension NormalNotificationCell {
                                                range: NSRange(location: 0, length: name!.count))
         messageLabel.attributedText = attributedDetailLabelText
     }
-    
+}
+
+// MARk: - Configure
+extension NormalNotificationCell {
     func configure(notification: NormalNotification) {
         self.profileImage.image = notification.profileImage
         self.name = notification.name

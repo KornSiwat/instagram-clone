@@ -70,7 +70,7 @@ extension PostViewController: UITableViewDataSource {
             cell.configure(post: post!,
                            onLike: {
                                self.post!.isLiked = !self.post!.isLiked
-                            self.post!.likeCount += self.post!.isLiked ? 1 : -1
+                               self.post!.likeCount += self.post!.isLiked ? 1 : -1
 
                                tableView.reloadRows(at: [indexPath], with: .none)
                            },
@@ -158,5 +158,13 @@ extension PostViewController {
 
         commentBarBottomConstraint.constant = keyboardHeight
         view.layoutIfNeeded()
+    }
+}
+
+// MARK: - Configure
+extension PostViewController {
+    func configure(selfInfo: UserInfo, post: Post) {
+        self.selfInfo = selfInfo
+        self.post = post
     }
 }

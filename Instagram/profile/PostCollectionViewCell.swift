@@ -14,17 +14,17 @@ class PostCollectionViewCell: UICollectionViewCell {
     var onPostImagePress: (() -> Void)?
 }
 
-// MARK: - Setup
-extension PostCollectionViewCell {
-    func configure(post: Post, onPostImagePress: @escaping (() -> Void)) {
-        self.image.image = post.postImage
-        self.onPostImagePress = onPostImagePress
-    }
-}
-
 // MARK: - Action
 extension PostCollectionViewCell {
     @IBAction func postImagePress(_ sender: Any) {
         onPostImagePress!()
+    }
+}
+
+// MARK: - Configure
+extension PostCollectionViewCell {
+    func configure(post: Post, onPostImagePress: @escaping (() -> Void)) {
+        self.image.image = post.postImage
+        self.onPostImagePress = onPostImagePress
     }
 }

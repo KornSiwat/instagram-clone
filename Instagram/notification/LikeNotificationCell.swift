@@ -12,7 +12,7 @@ class LikeNotificationCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var likedImage: UIImageView!
-    
+
     var name: String?
     var message: String?
     var post: Post?
@@ -45,22 +45,26 @@ extension LikeNotificationCell {
     func setupLikedPostImage() {
         self.likedImage.image = self.post!.postImage
     }
+}
 
-    func configure(notification: LikeNotification) {
+// MARK: - action
+extension LikeNotificationCell {
+    @IBAction func postImagePress(_ sender: Any) {
+        onPostImagePress!()
+    }
+}
+
+// MARK: - configure
+extension LikeNotificationCell {
+    func configure(notification: LikeNotification, onPostImagePress: @escaping () -> Void) {
         self.profileImage.image = notification.profileImage
         self.name = notification.name
         self.message = notification.message
         self.time = notification.time
         self.post = notification.likedPost
-
+        self.onPostImagePress = onPostImagePress
+        
         setupLikedPostImage()
         setupMessageLabel()
-    }
-}
-
-// MARK: - action
-extension LikeNotificationCell{
-    @IBAction func postImagePress(_ sender: Any) {
-        onPostImagePress!()
     }
 }

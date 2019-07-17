@@ -15,7 +15,6 @@ class HighlightTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 }
 
@@ -37,5 +36,12 @@ extension HighlightTableViewCell: UICollectionViewDataSource {
         cell.profileName.text = highlight.name
         
         return cell
+    }
+}
+
+// MARK: - Configure
+extension HighlightTableViewCell {
+    func configure(highlights: [Highlight]) {
+        self.highlights = highlights
     }
 }

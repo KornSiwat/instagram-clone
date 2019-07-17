@@ -30,6 +30,11 @@ class ProfileDetailTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         profileImage.roundedImage()
     }
-    
-    
+}
+
+// MARK: - Configure
+extension ProfileDetailTableViewCell {
+    func configure(selfInfo: UserInfo) {
+        self.userInfo = selfInfo
+    }
 }
