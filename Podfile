@@ -7,5 +7,6 @@ target 'Instagram' do
 
   # Pods for Instagram
   pod 'Parchment'
+  pod 'Alamofire', '~> 4.8.2'
 
 end
