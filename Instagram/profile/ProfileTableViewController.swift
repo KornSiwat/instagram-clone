@@ -14,12 +14,16 @@ class ProfileTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadProfile()
+        setupData()
     }
 }
 
 // MARK: - Setup
 extension ProfileTableViewController {
+    func setupData() {
+        loadProfile()
+    }
+
     func loadProfile() {
         profile = profileFacade.loadProfile()
     }
@@ -28,14 +32,9 @@ extension ProfileTableViewController {
 // MARK: - UIScrollViewDelegate
 extension ProfileTableViewController {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset)
         let postCell = tableView.visibleCells.last as! ProfilePostTableViewCell
-        if scrollView.contentOffset.y >= 203 {
-            postCell.collectionView.isScrollEnabled = true
 
-        } else {
-            postCell.collectionView.isScrollEnabled = false
-        }
+        postCell.collectionView.isScrollEnabled = scrollView.contentOffset.y >= 203
     }
 }
 
@@ -93,14 +92,23 @@ extension ProfileTableViewController {
 
 // MARK: - Navigation
 extension ProfileTableViewController {
+    enum Segue {
+        static let post = "PostSegue"
+    }
+
     func onPostImagePress(post: Post) {
-        self.performSegue(withIdentifier: "PostSegue", sender: post)
+        performSegue(withIdentifier: "PostSegue", sender: post)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as! PostViewController
-        let post = sender as! Post
+        switch segue.identifier {
+        case Segue.post:
+            let destination = segue.destination as! PostViewController
+            let post = sender as! Post
 
-        destination.configure(selfInfo: profile!.selfInfo, post: post)
+            destination.configure(selfInfo: profile!.selfInfo, post: post)
+        default:
+            break
+        }
     }
 }

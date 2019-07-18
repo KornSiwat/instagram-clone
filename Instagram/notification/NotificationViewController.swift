@@ -9,6 +9,8 @@
 import UIKit
 import Parchment
 
+typealias OnPostImagePress = (Post) -> Void
+
 class NotificationViewController: UIViewController {
     let pagingViewController = PagingViewController<PagingIndexItem>()
     let notificationFacade: NotificationFacade = NotificationFacade()
@@ -31,7 +33,7 @@ extension NotificationViewController {
 
     func setupPagingView() {
         pagingViewController.dataSource = self
-        self.pagingViewController.select(index: 1, animated: false)
+        pagingViewController.select(index: Page.notification, animated: false)
         pagingViewController.options.indicatorColor = UIColor.black
         pagingViewController.options.textColor = UIColor.black
         pagingViewController.options.selectedTextColor = UIColor.black

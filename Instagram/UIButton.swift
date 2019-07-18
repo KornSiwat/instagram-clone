@@ -10,8 +10,8 @@ import UIKit
 
 extension UIButton {
     func curvedButton() {
-        self.layer.cornerRadius = self.frame.size.width / 16
-        self.layer.borderWidth = 0.5
-        self.layer.borderColor = UIColor.lightGray.cgColor
+        layer.cornerRadius = frame.size.width / 16
+        layer.borderWidth = 0.5
+        layer.borderColor = UIColor.lightGray.cgColor
     }
 }

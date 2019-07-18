@@ -11,7 +11,7 @@ import UIKit
 class FollowingTableViewController: UITableViewController {
     let notificationFacade = NotificationFacade()
     var notification: Notification?
-    var onPostImagePress: ((Post) -> Void)?
+    var onPostImagePress: OnPostImagePress?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +47,7 @@ extension FollowingTableViewController {
 
 // MARK: - Configure
 extension FollowingTableViewController {
-    func configure( onPostImagePress: @escaping (Post) -> Void) {
+    func configure( onPostImagePress: @escaping OnPostImagePress) {
         self.onPostImagePress = onPostImagePress
     }
 }

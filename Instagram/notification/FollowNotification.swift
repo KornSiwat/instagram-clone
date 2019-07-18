@@ -13,8 +13,9 @@ class FollowNotification {
     let name: String
     let message: String
     let time: String
-    let isFollowing: Bool
-    
+
+    var isFollowing: Bool
+
     init(profileImage: UIImage, name: String, message: String, isFollowing: Bool) {
         self.profileImage = profileImage
         self.name = name

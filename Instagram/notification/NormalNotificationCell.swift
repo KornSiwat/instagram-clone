@@ -12,14 +12,11 @@ class NormalNotificationCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var messageLabel: UILabel!
 
-    var name: String?
-    var message: String? {
+    var notification: NormalNotification? {
         didSet {
-            setupMessageLabel()
+            updateView()
         }
     }
-
-    var time: String? = "20m"
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,14 +29,26 @@ extension NormalNotificationCell {
     func setupProfileImage() {
         profileImage.roundedImage()
     }
+}
 
-    func setupMessageLabel() {
-        let detailText = "\(name!) \(message!) \(time!)"
+// MARK: - Update
+extension NormalNotificationCell {
+    func updateView() {
+        updateProfileImageView()
+        updateMessageLabel()
+    }
+    
+    func updateProfileImageView() {
+        profileImage.image = notification!.profileImage
+    }
+    
+    func updateMessageLabel() {
+        let detailText = "\(notification!.name) \(notification!.message) \(notification!.time)"
         let attributedDetailLabelText = NSMutableAttributedString(string: detailText)
 
         attributedDetailLabelText.addAttribute(NSAttributedString.Key.font,
                                                value: UIFont.boldSystemFont(ofSize: 12),
-                                               range: NSRange(location: 0, length: name!.count))
+                                               range: NSRange(location: 0, length: notification!.name.count))
         messageLabel.attributedText = attributedDetailLabelText
     }
 }
@@ -47,8 +56,6 @@ extension NormalNotificationCell {
 // MARk: - Configure
 extension NormalNotificationCell {
     func configure(notification: NormalNotification) {
-        self.profileImage.image = notification.profileImage
-        self.name = notification.name
-        self.message = notification.message
+        self.notification = notification
     }
 }

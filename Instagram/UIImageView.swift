@@ -10,9 +10,9 @@ import UIKit
 
 extension UIImageView {
     func roundedImage() {
-        self.layer.cornerRadius = self.frame.size.width / 2
-        self.clipsToBounds = true
-        self.layer.borderWidth = 0.5
-        self.layer.borderColor = UIColor.lightGray.cgColor
+        layer.cornerRadius = frame.size.width / 2
+        clipsToBounds = true
+        layer.borderWidth = 0.5
+        layer.borderColor = UIColor.lightGray.cgColor
     }
 }

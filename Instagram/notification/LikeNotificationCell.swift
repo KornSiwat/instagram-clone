@@ -13,41 +13,58 @@ class LikeNotificationCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var likedImage: UIImageView!
 
-    var name: String?
-    var message: String?
-    var post: Post?
-    var time: String?
-
+    var notification: LikeNotification? {
+        didSet {
+            updateView()
+        }
+    }
     var onPostImagePress: (() -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        profileImage.roundedImage()
+        setupView()
     }
 }
 
 // MARK: - Setup
 extension LikeNotificationCell {
+    func setupView() {
+        setupProfileImage()
+    }
+
     func setupProfileImage() {
         profileImage.roundedImage()
     }
+}
 
-    func setupMessageLabel() {
-        let detailText = "\(name!) \(message!) \(time!)"
+// MARK: - Update
+extension LikeNotificationCell {
+    func updateView() {
+        updateLikedPostImage()
+        updateMessageLabel()
+        updateProfileImage()
+    }
+
+    func updateMessageLabel() {
+        let detailText = "\(notification!.name) \(notification!.message) \(notification!.time)"
         let attributedDetailLabelText = NSMutableAttributedString(string: detailText)
 
         attributedDetailLabelText.addAttribute(NSAttributedString.Key.font,
                                                value: UIFont.boldSystemFont(ofSize: 12),
-                                               range: NSRange(location: 0, length: name!.count))
+                                               range: NSRange(location: 0, length: notification!.name.count))
         messageLabel.attributedText = attributedDetailLabelText
     }
 
-    func setupLikedPostImage() {
-        self.likedImage.image = self.post!.postImage
+    func updateLikedPostImage() {
+        self.likedImage.image = notification!.likedPost.postImage
+    }
+
+    func updateProfileImage() {
+        self.profileImage.image = notification!.profileImage
     }
 }
 
-// MARK: - action
+// MARK: - Action
 extension LikeNotificationCell {
     @IBAction func postImagePress(_ sender: Any) {
         onPostImagePress!()
@@ -57,14 +74,7 @@ extension LikeNotificationCell {
 // MARK: - configure
 extension LikeNotificationCell {
     func configure(notification: LikeNotification, onPostImagePress: @escaping () -> Void) {
-        self.profileImage.image = notification.profileImage
-        self.name = notification.name
-        self.message = notification.message
-        self.time = notification.time
-        self.post = notification.likedPost
+        self.notification = notification
         self.onPostImagePress = onPostImagePress
-        
-        setupLikedPostImage()
-        setupMessageLabel()
     }
 }

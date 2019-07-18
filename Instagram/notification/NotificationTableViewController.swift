@@ -11,11 +11,11 @@ import UIKit
 class NotificationTableViewController: UITableViewController {
     let notificationFacade = NotificationFacade()
     var notification: Notification?
-    var onPostImagePress: ((Post) -> Void)?
+    var onPostImagePress: OnPostImagePress?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupData()
         setupView()
     }
@@ -26,14 +26,14 @@ extension NotificationTableViewController {
     func setupView() {
         setupTableView()
     }
-    
+
     func setupTableView() {
         tableView.sectionHeaderHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = 100
         tableView.register(UINib.init(nibName: "NotificationSectionHeaderView", bundle: nil),
                            forHeaderFooterViewReuseIdentifier: "NotificationSectionHeaderView")
     }
-    
+
     func setupData() {
         notification = notificationFacade.loadNotification()
     }
@@ -105,19 +105,16 @@ extension NotificationTableViewController {
     }
 
     func configure(_ cell: UITableViewCell, at indexPath: IndexPath) {
-        switch cell {
-        case let cell as NormalNotificationCell:
-            let notification = self.notification!.notifications[indexPath.row] as! NormalNotification
-
+        switch (cell, notification?.notifications[indexPath.row]) {
+        case let (cell as NormalNotificationCell,
+                  notification as NormalNotification):
             cell.configure(notification: notification)
-        case let cell as LikeNotificationCell:
-            let notification = self.notification!.notifications[indexPath.row] as! LikeNotification
-
+        case let (cell as LikeNotificationCell,
+                  notification as LikeNotification):
             cell.configure(notification: notification,
                            onPostImagePress: { self.onPostImagePress!(notification.likedPost) })
-        case let cell as FollowNotificationCell:
-            let notification = self.notification!.notifications[indexPath.row] as! FollowNotification
-
+        case let (cell as FollowNotificationCell,
+                  notification as FollowNotification):
             cell.configure(notification: notification)
         default:
             break
@@ -127,7 +124,7 @@ extension NotificationTableViewController {
 
 // MARK: - Configure
 extension NotificationTableViewController {
-    func configure(onPostImagePress: @escaping (Post) -> Void) {
+    func configure(onPostImagePress: @escaping OnPostImagePress) {
         self.onPostImagePress = onPostImagePress
     }
 }

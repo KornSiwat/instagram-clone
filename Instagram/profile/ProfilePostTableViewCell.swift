@@ -13,26 +13,25 @@ class ProfilePostTableViewCell: UITableViewCell {
     @IBOutlet weak var collectionViewWidth: NSLayoutConstraint!
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
     @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
-    
+
     var heightOfCell: CGFloat = 0
-    var onPostImagePress: ((Post) -> Void)? //((Post) -> (() -> Void))?
-    
+    var onPostImagePress: OnPostImagePress?
+
     var posts: [Post]? {
         didSet {
-            posts = posts! + posts!
-            setupCollectionView()
-            collectionView.reloadData()
+            updateView()
         }
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
     }
 }
 
-// MARK: Setup
+// MARK: Update
 extension ProfilePostTableViewCell {
-    func setupCollectionView() {
+    func updateView() {
+        updateCollectionView()
+        collectionView.reloadData()
+    }
+
+    func updateCollectionView() {
         collectionViewWidth.constant = UIScreen.main.bounds.width
         collectionViewHeight.constant = heightOfCell
         layoutIfNeeded()
@@ -50,8 +49,8 @@ extension ProfilePostTableViewCell: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellIdentifier = "PostCollectionCell"
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
-        as! PostCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier,
+                                                      for: indexPath) as! PostCollectionViewCell
         let post = posts![indexPath.row]
 
         cell.configure(post: post,
@@ -66,7 +65,8 @@ extension ProfilePostTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let imageWidth = (UIScreen.main.bounds.width / 3)
 
-        return CGSize(width: imageWidth, height: imageWidth)
+        return CGSize(width: imageWidth,
+                      height: imageWidth)
     }
 }
 
@@ -74,7 +74,7 @@ extension ProfilePostTableViewCell: UICollectionViewDelegateFlowLayout {
 extension ProfilePostTableViewCell {
     func configure(cellHeight: CGFloat,
                    posts: [Post],
-                   onPostImagePress: @escaping (Post) -> Void) {
+                   onPostImagePress: @escaping OnPostImagePress) {
         self.onPostImagePress = onPostImagePress
         self.heightOfCell = cellHeight
         self.posts = posts

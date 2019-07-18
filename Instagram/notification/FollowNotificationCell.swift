@@ -13,18 +13,9 @@ class FollowNotificationCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var followButton: UIButton!
 
-
-    var name: String?
-    var message: String? {
+    var notification: FollowNotification? {
         didSet {
-            setupMessageLabel()
-        }
-    }
-
-    var time: String? = "20m"
-    var isFollowing: Bool? {
-        didSet {
-            setupFollowButtonText()
+            updateView()
         }
     }
 
@@ -48,48 +39,52 @@ extension FollowNotificationCell {
     func setupFollowButtonShape() {
         followButton.curvedButton()
     }
+}
 
-    func setupMessageLabel() {
-        let detailText = "\(name!) \(message!) \(time!)"
+// MARK: - Update
+extension FollowNotificationCell {
+    func updateView() {
+        updateProfileImage()
+        updateMessageLabel()
+        updateFollowButtonText()
+    }
+
+    func updateProfileImage() {
+        self.profileImage.image = notification!.profileImage
+    }
+
+    func updateMessageLabel() {
+        let detailText = "\(notification!.name) \(notification!.message) \(notification!.time)"
         let attributedDetailLabelText = NSMutableAttributedString(string: detailText)
 
         attributedDetailLabelText.addAttribute(NSAttributedString.Key.font,
                                                value: UIFont.boldSystemFont(ofSize: 12),
-                                               range: NSRange(location: 0, length: name!.count))
+                                               range: NSRange(location: 0, length: notification!.name.count))
         messageLabel.attributedText = attributedDetailLabelText
     }
 
-    func setupFollowButtonText() {
-        if isFollowing! {
-            followButton.setTitle("following", for: .normal)
-            followButton.backgroundColor = UIColor.white
-            followButton.setTitleColor(UIColor.black, for: .normal)
+    func updateFollowButtonText() {
+        let (title, titleColor, backgroundColor): (String, UIColor, UIColor) = notification!.isFollowing
+            ? ("following", .black, .white)
+            : ("follow", .white, UIColor(red: 0.0, green: 0.65, blue: 1, alpha: 1))
 
-            return
-        }
-
-        followButton.setTitle("follow", for: .normal)
-        followButton.backgroundColor = UIColor(red: 0.0,
-                                               green: 0.65,
-                                               blue: 1, alpha: 1)
-        followButton.setTitleColor(UIColor.white, for: .normal)
-
+        followButton.setTitle(title, for: .normal)
+        followButton.setTitleColor(titleColor, for: .normal)
+        followButton.backgroundColor = backgroundColor
     }
 }
 
 // MARK: - Action
 extension FollowNotificationCell {
     @IBAction func buttonPress(_ sender: Any) {
-        isFollowing = !isFollowing!
+        notification!.isFollowing = !notification!.isFollowing
+        updateFollowButtonText()
     }
 }
 
 // MARK: - Configure
 extension FollowNotificationCell {
     func configure(notification: FollowNotification) {
-        self.profileImage.image = notification.profileImage
-        self.name = notification.name
-        self.message = notification.message
-        self.isFollowing = notification.isFollowing
+        self.notification = notification
     }
 }
