@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class UserProfileDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
@@ -15,20 +16,52 @@ class UserProfileDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var postCount: UILabel!
     @IBOutlet weak var followerCount: UILabel!
     @IBOutlet weak var followingCount: UILabel!
-    
+
     var userInfo: UserInfo? {
         didSet {
-            profileImage.image = userInfo!.profileImage
-            profileName.text = userInfo!.name
-            biography.text = userInfo!.biography
-            postCount.text = "\(userInfo!.postCount!)"
-            followerCount.text = "\(userInfo!.followerCount!)"
-            followingCount.text = "\(userInfo!.followingCount!)"
+            updateView()
         }
     }
-    
+
     override func awakeFromNib() {
         profileImage.roundedImage()
+    }
+}
+
+// MARK: - Update
+extension UserProfileDetailTableViewCell {
+    func updateView() {
+        updateProfileImage()
+        updateProfileName()
+        updateBiography()
+        updatePostCount()
+        updateFollowerCount()
+        updateFollowingCount()
+    }
+
+    func updateProfileImage() {
+        profileImage.kf.setImage(with: ImageResource(downloadURL: userInfo!.profileImageUrl),
+                                 placeholder: DefaultImage.profile)
+    }
+
+    func updateProfileName() {
+        profileName.text = userInfo!.name
+    }
+
+    func updateBiography() {
+        biography.text = userInfo!.biography
+    }
+
+    func updatePostCount() {
+        postCount.text = "\(userInfo!.postCount!)"
+    }
+
+    func updateFollowerCount() {
+        followerCount.text = "\(userInfo!.followerCount!)"
+    }
+
+    func updateFollowingCount() {
+        followingCount.text = "\(userInfo!.followingCount!)"
     }
 }
 

@@ -7,15 +7,15 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PostCommentTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var commentLabel: UILabel!
 
-    var profileName: String?
-    var message: String? {
+    var comment: PostComment? {
         didSet {
-            setupCommentLabel()
+            updateView()
         }
     }
 
@@ -27,20 +27,31 @@ class PostCommentTableViewCell: UITableViewCell {
 
 // MARK: - Setup
 extension PostCommentTableViewCell {
-    func setupCommentLabel() {
-        let profileName = self.profileName!
-        let commentBarText = "\(profileName) \(message!)"
+    func configure(comment: PostComment) {
+        self.comment = comment
+    }
+}
+
+// MARK: - Update
+extension PostCommentTableViewCell {
+    func updateView() {
+        updateProfileImage()
+        updateCommentLabel()
+    }
+
+    func updateProfileImage() {
+        self.profileImage.kf.setImage(with: ImageResource(downloadURL: comment!.profileImageUrl),
+                                      placeholder: DefaultImage.profile)
+    }
+
+    func updateCommentLabel() {
+        let profileName = comment!.profileName
+        let commentBarText = "\(profileName) \(comment!.message)"
         let attributedCaptionBarText = NSMutableAttributedString(string: commentBarText)
 
         attributedCaptionBarText.addAttribute(NSAttributedString.Key.font,
                                               value: UIFont.boldSystemFont(ofSize: 12),
                                               range: NSRange(location: 0, length: profileName.count))
         commentLabel.attributedText = attributedCaptionBarText
-    }
-    
-    func configure(comment: PostComment) {
-        self.profileImage.image = comment.profileImage
-        self.profileName = comment.profileName
-        self.message = comment.message
     }
 }

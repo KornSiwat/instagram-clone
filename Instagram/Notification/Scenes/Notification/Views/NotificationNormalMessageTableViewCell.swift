@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class NotificationNormalMessageTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
@@ -37,11 +38,12 @@ extension NotificationNormalMessageTableViewCell {
         updateProfileImageView()
         updateMessageLabel()
     }
-    
+
     func updateProfileImageView() {
-        profileImage.image = notification!.profileImage
+        profileImage.kf.setImage(with: ImageResource(downloadURL: notification!.profileImageUrl),
+                                 placeholder: DefaultImage.profile)
     }
-    
+
     func updateMessageLabel() {
         let detailText = "\(notification!.name) \(notification!.message) \(notification!.time)"
         let attributedDetailLabelText = NSMutableAttributedString(string: detailText)

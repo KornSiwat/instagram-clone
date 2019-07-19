@@ -9,13 +9,13 @@
 import UIKit
 
 class NotificationNormalMessage {
-    let profileImage: UIImage
+    let profileImageUrl: URL
     let name: String
     let message: String
     let time: String
 
-    init(profileImage: UIImage, name: String, message: String) {
-        self.profileImage = profileImage
+    init(profileImageUrl: URL, name: String, message: String) {
+        self.profileImageUrl = profileImageUrl
         self.name = name
         self.message = message
         self.time = "2d"

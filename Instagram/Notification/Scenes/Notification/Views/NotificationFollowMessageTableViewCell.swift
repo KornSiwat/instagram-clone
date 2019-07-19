@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class NotificationFollowMessageTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
@@ -50,7 +51,8 @@ extension NotificationFollowMessageTableViewCell {
     }
 
     func updateProfileImage() {
-        self.profileImage.image = notification!.profileImage
+        self.profileImage.kf.setImage(with: ImageResource(downloadURL: notification!.profileImageUrl),
+                                      placeholder: DefaultImage.profile)
     }
 
     func updateMessageLabel() {

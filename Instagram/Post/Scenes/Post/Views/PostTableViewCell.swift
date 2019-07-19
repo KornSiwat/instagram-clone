@@ -7,19 +7,20 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var location: UILabel!
-    @IBOutlet weak var postImage: UIImageView!
+    @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var commentImage: UIImageView!
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var likeCount: UILabel!
     @IBOutlet weak var likeBar: UIStackView!
-    @IBOutlet weak var headerImage: UIImageView! {
+    @IBOutlet weak var profileImageView: UIImageView! {
         didSet {
-            commentImage.image = headerImage.image
+            commentImage.image = profileImageView.image
         }
     }
 
@@ -52,7 +53,7 @@ class PostTableViewCell: UITableViewCell {
 // MARK: - Setup
 extension PostTableViewCell {
     func setupProfileImage() {
-        headerImage.roundedImage()
+        profileImageView.roundedImage()
         commentImage.roundedImage()
     }
 
@@ -66,23 +67,18 @@ extension PostTableViewCell {
                                               range: NSRange(location: 0, length: profileName!.count))
         captionLabel.attributedText = attributedCaptionBarText
     }
+}
 
-    func configure(post: Post,
-                   onLike: @escaping () -> Void,
-                   onCommentPress: @escaping () -> Void) {
-        self.headerImage.image = post.profileImage
-        self.profileName.text = post.name
-        self.location.text = post.location
-        self.postImage.image = post.postImage
-        self.isLiked = post.isLiked
-        self.likeCount.text = "\(post.likeCount)"
-        self.caption = post.caption
+// MARK: - Update
+extension PostTableViewCell {
+    func updateProfileImage(url: URL) {
+        self.profileImageView.kf.setImage(with: ImageResource(downloadURL: url),
+                                          placeholder: DefaultImage.profile)
+    }
 
-        self.location.isHidden = self.location.text!.isEmpty
-        self.likeBar.isHidden = post.likeCount == 0
-
-        self.onLike = onLike
-        self.onCommentPress = onCommentPress
+    func updatePostImage(url: URL) {
+        self.postImageView.kf.setImage(with: ImageResource(downloadURL: url),
+                                       placeholder: DefaultImage.post)
     }
 }
 
@@ -94,5 +90,24 @@ extension PostTableViewCell {
 
     @IBAction func commentButtonPress(_ sender: Any) {
         onCommentPress!()
+    }
+}
+
+// MARK: - Configure
+extension PostTableViewCell {
+    func configure(post: Post,
+                   onLike: @escaping () -> Void,
+                   onCommentPress: @escaping () -> Void) {
+        self.profileName.text = post.profileName
+        self.location.text = post.location
+        self.isLiked = post.isLiked
+        self.likeCount.text = "\(post.likeCount)"
+        self.caption = post.caption
+
+        self.location.isHidden = self.location.text!.isEmpty
+        self.likeBar.isHidden = post.likeCount == 0
+
+        self.onLike = onLike
+        self.onCommentPress = onCommentPress
     }
 }

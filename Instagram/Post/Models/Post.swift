@@ -9,28 +9,27 @@
 import UIKit
 
 class Post {
-    var profileImage: UIImage
-    var name: String
-    var location: String
+    let profileImageUrl: URL
+    let profileName: String
+    let location: String
     var isLiked: Bool
     var likeCount: Int
-    var caption: String
+    let caption: String
     var comments: [PostComment]
+    let postImageUrl: URL
 
-    let postImage: UIImage
-
-    init(profileImage: UIImage,
-         name: String,
+    init(profileImageUrl: URL,
+         profileName: String,
          location: String = "",
-         postImage: UIImage,
+         postImageUrl: URL,
          isLiked: Bool = false,
          likeCount: Int = 0,
          caption: String = "",
          comments: [PostComment] = []) {
-        self.profileImage = profileImage
-        self.name = name
+        self.profileImageUrl = profileImageUrl
+        self.profileName = profileName
         self.location = location
-        self.postImage = postImage
+        self.postImageUrl = postImageUrl
         self.isLiked = isLiked
         self.likeCount = likeCount
         self.caption = caption

@@ -10,10 +10,10 @@ import UIKit
 
 class Story {
     let name: String
-    let image: UIImage
+    let imageUrl: URL
 
-    init(name: String, image: UIImage?) {
+    init(name: String, imageUrl: URL) {
         self.name = name
-        self.image = image ?? UIImage(named: "defaultProfileImage")!
+        self.imageUrl = imageUrl
     }
 }

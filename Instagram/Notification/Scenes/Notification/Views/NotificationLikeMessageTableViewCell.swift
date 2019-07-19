@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import Kingfisher
 
 class NotificationLikeMessageTableViewCell: UITableViewCell {
-    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var likedImage: UIImageView!
+    @IBOutlet weak var likedImageView: UIImageView!
 
     var notification: NotificationLikeMessage? {
         didSet {
@@ -33,16 +34,16 @@ extension NotificationLikeMessageTableViewCell {
     }
 
     func setupProfileImage() {
-        profileImage.roundedImage()
+        profileImageView.roundedImage()
     }
 }
 
 // MARK: - Update
 extension NotificationLikeMessageTableViewCell {
     func updateView() {
-        updateLikedPostImage()
-        updateMessageLabel()
         updateProfileImage()
+        updateMessageLabel()
+        updateLikedPostImage()
     }
 
     func updateMessageLabel() {
@@ -56,11 +57,13 @@ extension NotificationLikeMessageTableViewCell {
     }
 
     func updateLikedPostImage() {
-        self.likedImage.image = notification!.likedPost.postImage
+        self.likedImageView.kf.setImage(with: ImageResource(downloadURL: notification!.likedPost.postImageUrl),
+                                        placeholder: DefaultImage.post)
     }
 
     func updateProfileImage() {
-        self.profileImage.image = notification!.profileImage
+        self.profileImageView.kf.setImage(with: ImageResource(downloadURL: notification!.profileImageUrl),
+                                          placeholder: DefaultImage.profile)
     }
 }
 

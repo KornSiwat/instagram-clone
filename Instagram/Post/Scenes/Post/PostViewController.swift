@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PostViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -18,28 +19,62 @@ class PostViewController: UIViewController {
         updatePostButtonState()
     }
 
-    var selfInfo: UserInfo?
+    var selfInfo: UserInfo? {
+        didSet {
+            updateCommentBarView()
+        }
+    }
+
     var post: Post?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        commentBarProfileImage.image = selfInfo!.profileImage
-        setupProfileImage()
-        addKeyboardObserver()
-        navigationController!.setNavigationBarHidden(false, animated: false)
+
+        setupView()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        removeKeyboardObserver()
-        navigationController!.setNavigationBarHidden(true, animated: false)
+
+        clearView()
     }
 }
 
 // MARK: - Setup
 extension PostViewController {
+    func setupView() {
+        setupProfileImage()
+        addKeyboardObserver()
+        hideNavigationBar()
+    }
+
     func setupProfileImage() {
         commentBarProfileImage.roundedImage()
+    }
+
+    func clearView() {
+        removeKeyboardObserver()
+        showNavigationBar()
+    }
+
+    func showNavigationBar() {
+        navigationController!.setNavigationBarHidden(true, animated: false)
+    }
+
+    func hideNavigationBar() {
+        navigationController!.setNavigationBarHidden(false, animated: false)
+    }
+}
+
+// MARK: - Update
+extension PostViewController {
+    func updateCommentBarView() {
+        updateCommentBarProfileImage()
+    }
+
+    func updateCommentBarProfileImage() {
+        commentBarProfileImage.kf.setImage(with: ImageResource(downloadURL: selfInfo!.profileImageUrl),
+                                           placeholder: DefaultImage.profile)
     }
 }
 
@@ -109,11 +144,13 @@ extension PostViewController {
         let newIndexPath = IndexPath(row: post!.comments.count, section: 1)
 
         post!.comments.append(PostComment(profileName: selfInfo!.name,
-                                      profileImage: selfInfo!.profileImage,
-                                      message: commentTextField.text!))
+                                          profileImageUrl: selfInfo!.profileImageUrl,
+                                          message: commentTextField.text!))
         tableView.insertRows(at: [newIndexPath], with: .automatic)
 
         commentTextField.text! = ""
+        updatePostButtonState()
+
         dismissKeyboard()
     }
 

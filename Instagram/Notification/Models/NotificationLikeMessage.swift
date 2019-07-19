@@ -9,14 +9,14 @@
 import UIKit
 
 class NotificationLikeMessage {
-    let profileImage: UIImage
+    let profileImageUrl: URL
     let name: String
     let message: String
     let likedPost: Post
     let time: String
 
-    init(profileImage: UIImage, name: String, message: String, likedPost: Post) {
-        self.profileImage = profileImage
+    init(profileImageUrl: URL, name: String, message: String, likedPost: Post) {
+        self.profileImageUrl = profileImage
         self.name = name
         self.message = message
         self.time = "2d"

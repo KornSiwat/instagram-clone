@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PostCommentViewController: UIViewController {
     @IBOutlet weak var commentBarProfileImage: UIImageView!
@@ -19,21 +20,45 @@ class PostCommentViewController: UIViewController {
         updatePostButtonState()
     }
 
-    var selfInfo: UserInfo?
+    var selfInfo: UserInfo? {
+        didSet {
+            updateCommentBarProfileImage()
+        }
+    }
     var comments: [PostComment]?
     var updateCommentsData: (([PostComment]) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        commentBarProfileImage.image = selfInfo!.profileImage
-        commentBarProfileImage.roundedImage()
-        addKeyboardObserver()
+
+        setupView()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+
         removeKeyboardObserver()
         updateCommentsData!(comments!)
+    }
+}
+
+// MARK: - Setup
+extension PostCommentViewController {
+    func setupView() {
+        setupProfileImage()
+        addKeyboardObserver()
+    }
+
+    func setupProfileImage() {
+        commentBarProfileImage.roundedImage()
+    }
+}
+
+// MARK: - Update
+extension PostCommentViewController {
+    func updateCommentBarProfileImage() {
+        commentBarProfileImage.kf.setImage(with: ImageResource(downloadURL: selfInfo!.profileImageUrl),
+                                           placeholder: DefaultImage.profile)
     }
 }
 
@@ -56,8 +81,8 @@ extension PostCommentViewController {
         let newIndexPath = IndexPath(row: comments!.count, section: 0)
 
         comments?.append(PostComment(profileName: selfInfo!.name,
-                                 profileImage: selfInfo!.profileImage,
-                                 message: commentTextField.text!))
+                                     profileImageUrl: selfInfo!.profileImageUrl,
+                                     message: commentTextField.text!))
         tableView.insertRows(at: [newIndexPath], with: .automatic)
 
         commentTextField.text! = ""
@@ -123,9 +148,7 @@ extension PostCommentViewController: UITableViewDataSource {
         as! PostCommentTableViewCell
         let comment = comments![indexPath.row]
 
-        cell.profileImage.image = comment.profileImage
-        cell.profileName = comment.profileName
-        cell.message = comment.message
+        cell.configure(comment: comment)
 
         return cell
     }

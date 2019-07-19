@@ -10,12 +10,12 @@ import UIKit
 
 class PostComment {
     let profileName: String
-    let profileImage: UIImage
+    let profileImageUrl: URL
     let message: String
 
-    init(profileName: String, profileImage: UIImage?, message: String) {
+    init(profileName: String, profileImageUrl: URL, message: String) {
         self.profileName = profileName
-        self.profileImage = profileImage ?? UIImage(named: "defaultProfileImage")!
+        self.profileImageUrl = profileImageUrl
         self.message = message
     }
 }

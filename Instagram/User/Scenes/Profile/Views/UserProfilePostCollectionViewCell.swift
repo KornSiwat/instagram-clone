@@ -7,10 +7,16 @@
 //
 
 import UIKit
+import Kingfisher
 
 class UserProfilePostCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var PostImageView: UIImageView!
 
+    var post: Post? {
+        didSet {
+            updatePostImageView()
+        }
+    }
     var onPostImagePress: (() -> Void)?
 }
 
@@ -21,10 +27,18 @@ extension UserProfilePostCollectionViewCell {
     }
 }
 
+// MARK: - Update
+extension UserProfilePostCollectionViewCell {
+    func updatePostImageView() {
+        PostImageView.kf.setImage(with: ImageResource(downloadURL: post!.postImageUrl),
+                                  placeholder: DefaultImage.post)
+    }
+}
+
 // MARK: - Configure
 extension UserProfilePostCollectionViewCell {
     func configure(post: Post, onPostImagePress: @escaping (() -> Void)) {
-        self.image.image = post.postImage
+        self.post = post
         self.onPostImagePress = onPostImagePress
     }
 }

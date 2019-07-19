@@ -53,6 +53,7 @@
 		93B98D4722C9290A008620EF /* UserProfileDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B98D4622C9290A008620EF /* UserProfileDetailTableViewCell.swift */; };
 		93B98D4B22C92C77008620EF /* UIImageView+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B98D4A22C92C77008620EF /* UIImageView+Round.swift */; };
 		93B98D4F22C93052008620EF /* UserProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B98D4E22C93052008620EF /* UserProfileTableViewController.swift */; };
+		93E509C822E180E9003A5035 /* DefaultImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E509C722E180E9003A5035 /* DefaultImage.swift */; };
 		93F3CFCC22DF20EA00F74DFD /* NotificationFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F3CFCB22DF20EA00F74DFD /* NotificationFeed.swift */; };
 		93F3CFD022DF2B5A00F74DFD /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F3CFCF22DF2B5A00F74DFD /* UserProfile.swift */; };
 /* End PBXBuildFile section */
@@ -107,6 +108,7 @@
 		93B98D4622C9290A008620EF /* UserProfileDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileDetailTableViewCell.swift; sourceTree = "<group>"; };
 		93B98D4A22C92C77008620EF /* UIImageView+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Round.swift"; sourceTree = "<group>"; };
 		93B98D4E22C93052008620EF /* UserProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewController.swift; sourceTree = "<group>"; };
+		93E509C722E180E9003A5035 /* DefaultImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultImage.swift; sourceTree = "<group>"; };
 		93F3CFCB22DF20EA00F74DFD /* NotificationFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFeed.swift; sourceTree = "<group>"; };
 		93F3CFCF22DF2B5A00F74DFD /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		F4F3643D7B84E9EA721D41FF /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 			children = (
 				93479D4E22C6378000A838F9 /* AppDelegate.swift */,
 				93479D5522C6378100A838F9 /* Assets.xcassets */,
+				93E509C722E180E9003A5035 /* DefaultImage.swift */,
 				93479D5A22C6378100A838F9 /* Info.plist */,
 				934E4C6322E0627D008FE703 /* Extensions */,
 				934E4C5322E05ED4008FE703 /* Storyboards */,
@@ -537,6 +540,7 @@
 				930D210F22CB0EF70040EF0D /* Post.swift in Sources */,
 				9385517F22CE72B800628A21 /* UserProfileHighlightTableViewCell.swift in Sources */,
 				930D211822CC64320040EF0D /* StoryCollectionViewCell.swift in Sources */,
+				93E509C822E180E9003A5035 /* DefaultImage.swift in Sources */,
 				9385517D22CDD9FA00628A21 /* UserInfo.swift in Sources */,
 				936EF62E22CF6938009591E8 /* NotificationYouActivityTableViewController.swift in Sources */,
 				9385517922CC970800628A21 /* PostComment.swift in Sources */,

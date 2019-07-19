@@ -266,7 +266,7 @@ extension UserFacade {
     }
     
     func loadSelfStory() -> Story {
-        return Story(name: "Your Story", image: UIImage(named: "defaultProfilePicture"))
+//        return Story(name: "Your Story", image: UIImage(named: "defaultProfilePicture"))
     }
     
     func loadFollowingUserStories() -> [Story]? {

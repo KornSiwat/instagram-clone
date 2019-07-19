@@ -9,15 +9,15 @@
 import UIKit
 
 class NotificationFollowMessage {
-    let profileImage: UIImage
+    let profileImageUrl: URL
     let name: String
     let message: String
     let time: String
 
     var isFollowing: Bool
 
-    init(profileImage: UIImage, name: String, message: String, isFollowing: Bool) {
-        self.profileImage = profileImage
+    init(profileImageUrl: URL, name: String, message: String, isFollowing: Bool) {
+        self.profileImageUrl = profileImageUrl
         self.name = name
         self.message = message
         self.time = "12s"

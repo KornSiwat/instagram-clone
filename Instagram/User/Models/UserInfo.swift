@@ -9,20 +9,20 @@
 import UIKit
 
 class UserInfo {
-    var profileImage: UIImage
+    var profileImageUrl: URL
     var name: String
     var biography: String?
     var postCount: Int?
     var followerCount: Int?
     var followingCount: Int?
 
-    init(profileImage: UIImage,
+    init(profileImageUrl: URL,
          name: String,
          biography: String? = "",
          postCount: Int? = 0,
          followerCount: Int? = 0,
          followingCount: Int? = 0) {
-        self.profileImage = profileImage
+        self.profileImageUrl = profileImageUrl
         self.name = name
         self.biography = biography
         self.postCount = postCount

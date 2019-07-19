@@ -175,9 +175,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="likedImage" destination="Kvz-2b-x5I" id="w9G-hZ-q2J"/>
+                                    <outlet property="likedImageView" destination="Kvz-2b-x5I" id="w9G-hZ-q2J"/>
                                     <outlet property="messageLabel" destination="Ls2-PG-vWc" id="Lgj-8J-CJN"/>
-                                    <outlet property="profileImage" destination="DEQ-j0-f9R" id="mq5-xh-z7Z"/>
+                                    <outlet property="profileImageView" destination="DEQ-j0-f9R" id="mq5-xh-z7Z"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FollowNotificationCell" rowHeight="71" id="utb-WG-f6B" userLabel="FollowNotificationCell" customClass="NotificationFollowMessageTableViewCell" customModule="Instagram" customModuleProvider="target">
@@ -363,9 +363,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="likedImage" destination="pfe-2M-FgJ" id="Igh-su-CV1"/>
+                                    <outlet property="likedImageView" destination="pfe-2M-FgJ" id="Igh-su-CV1"/>
                                     <outlet property="messageLabel" destination="nVs-nH-yDr" id="wnB-d0-Bwq"/>
-                                    <outlet property="profileImage" destination="yTM-2q-Y0X" id="Dhf-C9-ZIB"/>
+                                    <outlet property="profileImageView" destination="yTM-2q-Y0X" id="Dhf-C9-ZIB"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

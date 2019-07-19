@@ -339,7 +339,7 @@
                                                                 <constraint firstAttribute="bottom" secondItem="4Ej-ww-8So" secondAttribute="bottom" id="h8N-2v-IRa"/>
                                                             </constraints>
                                                             <connections>
-                                                                <outlet property="image" destination="4Ej-ww-8So" id="1fa-BB-LzZ"/>
+                                                                <outlet property="PostImageView" destination="4Ej-ww-8So" id="1fa-BB-LzZ"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
