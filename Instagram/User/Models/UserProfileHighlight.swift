@@ -9,11 +9,11 @@
 import UIKit
 
 class UserProfileHighlight {
-    var image: UIImage
+    var previewImageUrl: URL
     var name: String
     
-    init(image: UIImage, name: String) {
-        self.image = image
+    init(previewImageUrl: URL, name: String) {
+        self.previewImageUrl = previewImageUrl
         self.name = name
     }
 }

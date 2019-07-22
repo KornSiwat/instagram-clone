@@ -10,7 +10,11 @@ import UIKit
 
 class NotificationFollowingActivityTableViewController: UITableViewController {
     let notificationFacade = NotificationFacade()
-    var notification: NotificationFeed?
+    var notification: NotificationFeed? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     var onPostImagePress: OnPostImagePress?
 
     override func viewDidLoad() {
@@ -22,14 +26,24 @@ class NotificationFollowingActivityTableViewController: UITableViewController {
 // MARK: - Setup
 extension NotificationFollowingActivityTableViewController {
     func setupData() {
-        notification = notificationFacade.loadNotification()
+        notificationFacade.loadNotificationFeed(completion: { (notificationFeed, error) in
+            guard let notificationFeed = notificationFeed else {
+                return
+            }
+            
+            self.notification = notificationFeed
+        })
     }
 }
 
 // MARK: - TableViewDataSource
 extension NotificationFollowingActivityTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notification!.followingActivities.count
+        guard let notification = notification else {
+            return 0
+        }
+        
+        return notification.followingActivities.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

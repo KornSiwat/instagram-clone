@@ -9,7 +9,7 @@
 import UIKit
 
 class UserMainFeedTableViewController: UITableViewController {
-    var facade = UserFacade()
+//    var facade = UserFacade()
     var feed: UserFeed? {
         didSet {
             updateView()
@@ -30,7 +30,7 @@ extension UserMainFeedTableViewController {
     }
 
     func loadFeed() {
-        feed = facade.loadFeed()
+//        feed = facade.loadFeed()
     }
 }
 
@@ -58,7 +58,7 @@ extension UserMainFeedTableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

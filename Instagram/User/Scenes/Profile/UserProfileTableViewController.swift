@@ -9,7 +9,7 @@
 import UIKit
 
 class UserProfileTableViewController: UITableViewController {
-    let profileFacade: UserFacade = UserFacade()
+//    let profileFacade: UserFacade = UserFacade()
     var profile: UserProfile?
 
     override func viewDidLoad() {
@@ -25,7 +25,7 @@ extension UserProfileTableViewController {
     }
 
     func loadProfile() {
-        profile = profileFacade.loadProfile()
+//        profile = profileFacade.loadProfile()
     }
 }
 

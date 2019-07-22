@@ -76,12 +76,12 @@ extension NotificationViewController {
     }
 
     func setupData() {
-        loadSelfInfo()
+//        loadSelfInfo()
     }
 
-    func loadSelfInfo() {
-        selfInfo = notificationFacade.loadSelfInfo()
-    }
+//    func loadSelfInfo() {
+//        selfInfo = notificationFacade.loadSelfInfo()
+//    }
 }
 
 // MARK: - PagingViewControllerDataSource

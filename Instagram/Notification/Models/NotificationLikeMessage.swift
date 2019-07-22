@@ -16,7 +16,7 @@ class NotificationLikeMessage {
     let time: String
 
     init(profileImageUrl: URL, name: String, message: String, likedPost: Post) {
-        self.profileImageUrl = profileImage
+        self.profileImageUrl = profileImageUrl
         self.name = name
         self.message = message
         self.time = "2d"

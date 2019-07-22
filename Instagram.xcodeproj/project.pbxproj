@@ -301,6 +301,7 @@
 				9371188C22DEF96E002AD064 /* UserFeed.swift */,
 				93F3CFCF22DF2B5A00F74DFD /* UserProfile.swift */,
 				9385517C22CDD9FA00628A21 /* UserInfo.swift */,
+				9385518022CE751700628A21 /* UserProfileHighlight.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -374,7 +375,6 @@
 				930A664722CE7EB6000FA433 /* UserProfilePostCollectionViewCell.swift */,
 				93B98D4622C9290A008620EF /* UserProfileDetailTableViewCell.swift */,
 				9385517E22CE72B800628A21 /* UserProfileHighlightTableViewCell.swift */,
-				9385518022CE751700628A21 /* UserProfileHighlight.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

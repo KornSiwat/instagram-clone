@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class UserProfileHighlightTableViewCell: UITableViewCell {
     @IBOutlet weak var collectionView: StoryCollectionView!
@@ -31,10 +32,11 @@ extension UserProfileHighlightTableViewCell: UICollectionViewDataSource {
         let cellIdentifier = "StoryCollectionCell"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! StoryCollectionViewCell
         let highlight = highlights![indexPath.row]
-        
-        cell.profileImage.image = highlight.image
+
+        cell.profileImage.kf.setImage(with: ImageResource(downloadURL: highlight.previewImageUrl),
+                                      placeholder: DefaultImage.profile)
         cell.profileName.text = highlight.name
-        
+
         return cell
     }
 }

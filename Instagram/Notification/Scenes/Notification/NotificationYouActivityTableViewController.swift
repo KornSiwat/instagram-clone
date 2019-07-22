@@ -10,7 +10,11 @@ import UIKit
 
 class NotificationYouActivityTableViewController: UITableViewController {
     let notificationFacade = NotificationFacade()
-    var notification: NotificationFeed?
+    var notification: NotificationFeed? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     var onPostImagePress: OnPostImagePress?
 
     override func viewDidLoad() {
@@ -35,7 +39,13 @@ extension NotificationYouActivityTableViewController {
     }
 
     func setupData() {
-        notification = notificationFacade.loadNotification()
+        notificationFacade.loadNotificationFeed(completion: { (notificationFeed, error) in
+            guard let notificationFeed = notificationFeed else {
+                return
+            }
+            
+            self.notification = notificationFeed
+        })
     }
 }
 
@@ -46,7 +56,11 @@ extension NotificationYouActivityTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notification!.notifications.count
+        guard let notification = notification else {
+            return 0
+        }
+        
+        return notification.notifications.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
