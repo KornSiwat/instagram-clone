@@ -45,10 +45,10 @@ extension UserFacade {
                                         isLiked: post.isLiked!,
                                         likeCount: post.likeCount!,
                                         caption: post.caption!,
-                                        comments: post.comments!.map { comment: ProfileResponse.Post.PostComment in
-                                            return PostComment(profileName: comment.profi,
-                                                               profileImageUrl: <#T##URL#>,
-                                                               message: <#T##String#>)
+                                        comments: post.comments!.map { (comment: ProfileResponse.Post.PostComment) in
+                                            return PostComment(profileName: comment.profileName,
+                                                               profileImageUrl: comment.profileImageUrl,
+                                                               message: comment.message)
                             })
                     }
                     
