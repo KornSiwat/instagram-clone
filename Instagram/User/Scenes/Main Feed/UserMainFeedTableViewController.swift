@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PromiseKit
 
 class UserMainFeedTableViewController: UITableViewController {
     @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
@@ -32,20 +33,20 @@ class UserMainFeedTableViewController: UITableViewController {
 // MARK: - Setup
 extension UserMainFeedTableViewController {
     func setupData() {
-        loadFeed()
+        setupFeedData()
+    }
+    
+    func setupFeedData() {
+        loadingIndicatorView.startAnimating()
+        loadFeed().finally {
+            self.loadingIndicatorView.stopAnimating()
+        }
     }
 
-    func loadFeed() {
-        loadingIndicatorView.startAnimating()
-        
-        facade.loadFeed(completion: { (feed, error) in
-            self.loadingIndicatorView.stopAnimating()
-            self.tableView.refreshControl!.endRefreshing()
-            
-            guard feed != nil else { return }
-            
-            self.feed = feed
-        })
+    func loadFeed() -> PMKFinalizer {
+        return facade.loadFeedPMK()
+            .done { self.feed = $0 }
+            .catch { error in print(error) }
     }
     
     func showNavigationBar() {
@@ -64,7 +65,9 @@ extension UserMainFeedTableViewController {
     }
     
     @IBAction func refresh(_ sender: UIRefreshControl) {
-        loadFeed()
+        loadFeed().finally {
+            self.tableView.refreshControl!.endRefreshing()
+        }
     }
 }
 

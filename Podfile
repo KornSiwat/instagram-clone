@@ -9,5 +9,7 @@ target 'Instagram' do
   pod 'Parchment'
   pod 'Alamofire', '~> 4.8.2'
   pod 'Kingfisher', '~> 5.0'
+  pod 'PromiseKit', '~> 6.8'
+  pod 'PromiseKit/Alamofire', '~> 6.0'
 
 end

@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import PromiseKit
 
 class UserFacade {
     typealias LoadProfileCompletion = (UserProfile?, Error?) -> Void
@@ -106,6 +107,51 @@ extension UserFacade {
 }
 
 extension UserFacade {
+    func loadFeedPMK() -> Promise<UserFeed> {
+        let url = "http://192.168.2.68:3000/feed"
+        return Alamofire
+            .request(url)
+            .responseData()
+            .map { dataResponse in
+                let data = dataResponse.data
+                let response = try JSONDecoder().decode(FeedResponse.self, from: data)
+                let selfInfo = UserInfo(profileImageUrl: response.selfInfo.profileImageUrl,
+                                        name: response.selfInfo.name,
+                                        biography: response.selfInfo.biography,
+                                        postCount: response.selfInfo.postCount,
+                                        followerCount: response.selfInfo.followerCount,
+                                        followingCount: response.selfInfo.followingCount)
+                
+                let stories = response.stories
+                    .map { (story: FeedResponse.Story) in
+                        return Story(previewImageUrl: story.previewImageUrl,
+                                     name: story.name)
+                }
+                
+                let posts = response.posts
+                    .map { (post: FeedResponse.Post) in
+                        return Post(profileImageUrl: post.profileImageUrl,
+                                    profileName: post.profileName,
+                                    location: post.location!,
+                                    postImageUrl: post.postImageUrl,
+                                    isLiked: post.isLiked!,
+                                    likeCount: post.likeCount!,
+                                    caption: post.caption!,
+                                    comments: post.comments!.map { (comment: FeedResponse.Post.PostComment) in
+                                        return PostComment(profileName: comment.profileName,
+                                                           profileImageUrl: comment.profileImageUrl,
+                                                           message: comment.message)
+                        })
+                }
+                
+                let feed = UserFeed(selfInfo: selfInfo,
+                                    stories: stories,
+                                    posts: posts)
+                
+                return feed
+            }
+    }
+    
     func loadFeed(completion: @escaping LoadFeedCompletion) {
         let url = "http://192.168.2.68:3000/feed"
         

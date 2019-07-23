@@ -2,23 +2,39 @@ PODS:
   - Alamofire (4.8.2)
   - Kingfisher (5.6.0)
   - Parchment (1.6.0)
+  - PromiseKit (6.9.0):
+    - PromiseKit/CorePromise (= 6.9.0)
+    - PromiseKit/Foundation (= 6.9.0)
+    - PromiseKit/UIKit (= 6.9.0)
+  - PromiseKit/Alamofire (6.9.0):
+    - Alamofire (~> 4.0)
+    - PromiseKit/CorePromise
+  - PromiseKit/CorePromise (6.9.0)
+  - PromiseKit/Foundation (6.9.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.9.0):
+    - PromiseKit/CorePromise
 
 DEPENDENCIES:
   - Alamofire (~> 4.8.2)
   - Kingfisher (~> 5.0)
   - Parchment
+  - PromiseKit (~> 6.8)
+  - PromiseKit/Alamofire (~> 6.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Kingfisher
     - Parchment
+    - PromiseKit
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Kingfisher: 1a50df6880a60bae26f3e21a0df3d17b892f5e0b
   Parchment: d3a7b367c529fa6ef51aa43f5717a7ff36d4b1f5
+  PromiseKit: 97397236f9e9c443d5b70a941d49cad25160af7a
 
-PODFILE CHECKSUM: f9fd19f26aa2e9d8a8b7e893d565a9432ffa70cc
+PODFILE CHECKSUM: 64da905eb22f3714c23d01f3833202d7cd03bfe6
 
 COCOAPODS: 1.7.2
