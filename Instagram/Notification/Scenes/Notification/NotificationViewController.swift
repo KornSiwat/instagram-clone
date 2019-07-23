@@ -9,7 +9,7 @@
 import UIKit
 import Parchment
 
-typealias OnPostImagePress = (Post) -> Void
+typealias OnPostImagePress = (UserInfo, Post) -> Void
 
 class NotificationViewController: UIViewController {
     let pagingViewController = PagingViewController<PagingIndexItem>()
@@ -136,16 +136,16 @@ extension NotificationViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch (segue.identifier, segue.destination, sender) {
-        case let (Segue.post, destination as PostViewController, post as Post):
-            destination.configure(selfInfo: selfInfo!,
-                                  post: post)
+        case let (Segue.post, destination as PostViewController, sender as (selfInfo: UserInfo, post: Post)):
+            destination.configure(selfInfo: sender.selfInfo,
+                                  post: sender.post)
         default:
             break
         }
     }
 
-    func onPostImagePress(post: Post) {
+    func onPostImagePress(selfInfo: UserInfo, post: Post) {
         performSegue(withIdentifier: "PostSegue",
-                     sender: post)
+                     sender: (selfInfo: selfInfo, post: post))
     }
 }

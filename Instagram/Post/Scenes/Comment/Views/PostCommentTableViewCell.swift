@@ -10,9 +10,9 @@ import UIKit
 import Kingfisher
 
 class PostCommentTableViewCell: UITableViewCell {
-    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var commentLabel: UILabel!
-
+    @IBOutlet weak var profileImageView: UIImageView!
+    
     var comment: PostComment? {
         didSet {
             updateView()
@@ -21,7 +21,8 @@ class PostCommentTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        profileImage.roundedImage()
+        
+        profileImageView.roundedImage()
     }
 }
 
@@ -40,7 +41,7 @@ extension PostCommentTableViewCell {
     }
 
     func updateProfileImage() {
-        self.profileImage.kf.setImage(with: ImageResource(downloadURL: comment!.profileImageUrl),
+        self.profileImageView.kf.setImage(with: ImageResource(downloadURL: comment!.profileImageUrl),
                                       placeholder: DefaultImage.profile)
     }
 

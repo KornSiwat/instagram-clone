@@ -13,18 +13,13 @@ class PostViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var commentBarBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var commentTextField: UITextField!
-    @IBOutlet weak var commentBarProfileImage: UIImageView!
     @IBOutlet weak var postButton: UIButton!
     @IBAction func textFieldEditingChanged(_ sender: Any) {
         updatePostButtonState()
     }
-
-    var selfInfo: UserInfo? {
-        didSet {
-            updateCommentBarView()
-        }
-    }
-
+    @IBOutlet weak var commentBarProfileImageView: UIImageView!
+    
+    var selfInfo: UserInfo?
     var post: Post?
 
     override func viewDidLoad() {
@@ -46,10 +41,12 @@ extension PostViewController {
         setupProfileImage()
         addKeyboardObserver()
         hideNavigationBar()
+        
+        updateCommentBarView()
     }
 
     func setupProfileImage() {
-        commentBarProfileImage.roundedImage()
+        commentBarProfileImageView.roundedImage()
     }
 
     func clearView() {
@@ -73,8 +70,8 @@ extension PostViewController {
     }
 
     func updateCommentBarProfileImage() {
-        commentBarProfileImage.kf.setImage(with: ImageResource(downloadURL: selfInfo!.profileImageUrl),
-                                           placeholder: DefaultImage.profile)
+        commentBarProfileImageView.kf.setImage(with: ImageResource(downloadURL: selfInfo!.profileImageUrl),
+                                               placeholder: DefaultImage.profile)
     }
 }
 

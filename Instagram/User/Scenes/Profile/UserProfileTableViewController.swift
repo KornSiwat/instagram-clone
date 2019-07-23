@@ -9,12 +9,24 @@
 import UIKit
 
 class UserProfileTableViewController: UITableViewController {
-//    let profileFacade: UserFacade = UserFacade()
-    var profile: UserProfile?
+    @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
+
+    let profileFacade: UserFacade = UserFacade()
+
+    var profile: UserProfile? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        showNavigationBar()
     }
 }
 
@@ -25,14 +37,41 @@ extension UserProfileTableViewController {
     }
 
     func loadProfile() {
-//        profile = profileFacade.loadProfile()
+        loadingIndicatorView.startAnimating()
+        
+        profileFacade.loadProfile(completion: { (profile, error) in
+            self.loadingIndicatorView.stopAnimating()
+            self.tableView.refreshControl!.endRefreshing()
+            
+            guard profile != nil else { return }
+
+            self.profile = profile
+        })
+    }
+    
+    func showNavigationBar() {
+        navigationController!.setNavigationBarHidden(false, animated: false)
+    }
+    
+    func hideNavigationBar() {
+        navigationController!.setNavigationBarHidden(true, animated: false)
+    }
+}
+
+// MARK: - Update
+extension UserProfileTableViewController {
+    @IBAction func refresh(_ sender: Any) {
+        loadProfile()
     }
 }
 
 // MARK: - UIScrollViewDelegate
 extension UserProfileTableViewController {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let postCell = tableView.visibleCells.last as! UserProfilePostTableViewCell
+        guard profile != nil else { return }
+        guard let postCell = tableView.visibleCells.last as? UserProfilePostTableViewCell else {
+            return
+        }
 
         postCell.collectionView.isScrollEnabled = scrollView.contentOffset.y >= 203
     }
@@ -62,6 +101,8 @@ extension UserProfileTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard profile != nil else { return 0 }
+
         return 1
     }
 
@@ -82,6 +123,7 @@ extension UserProfileTableViewController {
             cell.configure(highlights: profile!.highlights)
         case let cell as UserProfilePostTableViewCell:
             cell.configure(cellHeight: tableView.frame.height,
+                           selfInfo: profile!.selfInfo,
                            posts: profile!.posts,
                            onPostImagePress: onPostImagePress)
         default:
@@ -96,17 +138,17 @@ extension UserProfileTableViewController {
         static let post = "PostSegue"
     }
 
-    func onPostImagePress(post: Post) {
-        performSegue(withIdentifier: "PostSegue", sender: post)
+    func onPostImagePress(selfInfo: UserInfo, post: Post) {
+        performSegue(withIdentifier: "PostSegue",
+                     sender: (selfInfo: selfInfo, post: post))
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case Segue.post:
+        switch (segue.identifier, sender) {
+        case let(Segue.post, sender as (selfInfo: UserInfo, post: Post)):
             let destination = segue.destination as! PostViewController
-            let post = sender as! Post
-
-            destination.configure(selfInfo: profile!.selfInfo, post: post)
+            
+            destination.configure(selfInfo: sender.selfInfo, post: sender.post)
         default:
             break
         }

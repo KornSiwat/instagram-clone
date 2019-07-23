@@ -10,10 +10,10 @@ import UIKit
 
 class Story {
     let name: String
-    let imageUrl: URL
+    let previewImageUrl: URL
 
-    init(name: String, imageUrl: URL) {
+    init(previewImageUrl: URL, name: String) {
         self.name = name
-        self.imageUrl = imageUrl
+        self.previewImageUrl = previewImageUrl
     }
 }

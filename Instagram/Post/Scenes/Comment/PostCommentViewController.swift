@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 class PostCommentViewController: UIViewController {
-    @IBOutlet weak var commentBarProfileImage: UIImageView!
+    @IBOutlet weak var commentBarProfileImageView: UIImageView!
     @IBOutlet weak var commentBarView: UIView!
     @IBOutlet weak var commentBarBottomLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
@@ -20,11 +20,7 @@ class PostCommentViewController: UIViewController {
         updatePostButtonState()
     }
 
-    var selfInfo: UserInfo? {
-        didSet {
-            updateCommentBarProfileImage()
-        }
-    }
+    var selfInfo: UserInfo?
     var comments: [PostComment]?
     var updateCommentsData: (([PostComment]) -> Void)?
 
@@ -47,18 +43,21 @@ extension PostCommentViewController {
     func setupView() {
         setupProfileImage()
         addKeyboardObserver()
+
+        updateCommentBarProfileImage()
     }
 
     func setupProfileImage() {
-        commentBarProfileImage.roundedImage()
+        commentBarProfileImageView.roundedImage()
     }
 }
 
 // MARK: - Update
 extension PostCommentViewController {
     func updateCommentBarProfileImage() {
-        commentBarProfileImage.kf.setImage(with: ImageResource(downloadURL: selfInfo!.profileImageUrl),
-                                           placeholder: DefaultImage.profile)
+        commentBarProfileImageView.kf.setImage(with: ImageResource(downloadURL: selfInfo!.profileImageUrl),
+
+                                               placeholder: DefaultImage.profile)
     }
 }
 
@@ -80,7 +79,7 @@ extension PostCommentViewController {
     @IBAction func postButtonPress(_ sender: Any) {
         let newIndexPath = IndexPath(row: comments!.count, section: 0)
 
-        comments?.append(PostComment(profileName: selfInfo!.name,
+        comments!.append(PostComment(profileName: selfInfo!.name,
                                      profileImageUrl: selfInfo!.profileImageUrl,
                                      message: commentTextField.text!))
         tableView.insertRows(at: [newIndexPath], with: .automatic)

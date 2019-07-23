@@ -9,7 +9,9 @@
 import UIKit
 
 class UserMainFeedTableViewController: UITableViewController {
-//    var facade = UserFacade()
+    @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
+    
+    var facade = UserFacade()
     var feed: UserFeed? {
         didSet {
             updateView()
@@ -21,6 +23,10 @@ class UserMainFeedTableViewController: UITableViewController {
 
         setupData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        showNavigationBar()
+    }
 }
 
 // MARK: - Setup
@@ -30,7 +36,24 @@ extension UserMainFeedTableViewController {
     }
 
     func loadFeed() {
-//        feed = facade.loadFeed()
+        loadingIndicatorView.startAnimating()
+        
+        facade.loadFeed(completion: { (feed, error) in
+            self.loadingIndicatorView.stopAnimating()
+            self.tableView.refreshControl!.endRefreshing()
+            
+            guard feed != nil else { return }
+            
+            self.feed = feed
+        })
+    }
+    
+    func showNavigationBar() {
+        navigationController!.setNavigationBarHidden(false, animated: false)
+    }
+    
+    func hideNavigationBar() {
+        navigationController!.setNavigationBarHidden(true, animated: false)
     }
 }
 
@@ -38,6 +61,10 @@ extension UserMainFeedTableViewController {
 extension UserMainFeedTableViewController {
     func updateView() {
         tableView.reloadData()
+    }
+    
+    @IBAction func refresh(_ sender: UIRefreshControl) {
+        loadFeed()
     }
 }
 
@@ -58,7 +85,9 @@ extension UserMainFeedTableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        guard feed != nil else { return 0 }
+        
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

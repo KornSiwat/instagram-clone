@@ -17,6 +17,7 @@ class UserProfilePostTableViewCell: UITableViewCell {
     var heightOfCell: CGFloat = 0
     var onPostImagePress: OnPostImagePress?
 
+    var selfInfo: UserInfo?
     var posts: [Post]? {
         didSet {
             updateView()
@@ -54,7 +55,7 @@ extension UserProfilePostTableViewCell: UICollectionViewDataSource {
         let post = posts![indexPath.row]
 
         cell.configure(post: post,
-                       onPostImagePress: { self.onPostImagePress!(post) })
+                       onPostImagePress: { self.onPostImagePress!(self.selfInfo!, post) })
 
         return cell
     }
@@ -73,10 +74,12 @@ extension UserProfilePostTableViewCell: UICollectionViewDelegateFlowLayout {
 // MARK: Configure
 extension UserProfilePostTableViewCell {
     func configure(cellHeight: CGFloat,
+                   selfInfo: UserInfo,
                    posts: [Post],
                    onPostImagePress: @escaping OnPostImagePress) {
         self.onPostImagePress = onPostImagePress
         self.heightOfCell = cellHeight
+        self.selfInfo = selfInfo
         self.posts = posts
     }
 }

@@ -9,6 +9,8 @@
 import UIKit
 
 class NotificationYouActivityTableViewController: UITableViewController {
+    @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
+    
     let notificationFacade = NotificationFacade()
     var notification: NotificationFeed? {
         didSet {
@@ -39,7 +41,16 @@ extension NotificationYouActivityTableViewController {
     }
 
     func setupData() {
+        loadNotification()
+    }
+    
+    func loadNotification() {
+        loadingIndicatorView.startAnimating()
+        
         notificationFacade.loadNotificationFeed(completion: { (notificationFeed, error) in
+            self.loadingIndicatorView.stopAnimating()
+            self.tableView.refreshControl!.endRefreshing()
+            
             guard let notificationFeed = notificationFeed else {
                 return
             }
@@ -49,17 +60,24 @@ extension NotificationYouActivityTableViewController {
     }
 }
 
+// MARK: - Update
+extension NotificationYouActivityTableViewController {
+    @IBAction func refresh(_ sender: UIRefreshControl) {
+        loadNotification()
+    }
+}
+
 // MARK: - TableViewDataSource
 extension NotificationYouActivityTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
+        guard notification != nil else { return 0 }
+        
         return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let notification = notification else {
-            return 0
-        }
-        
+        guard let notification = notification else { return 0 }
+
         return notification.notifications.count
     }
 
@@ -126,7 +144,8 @@ extension NotificationYouActivityTableViewController {
         case let (cell as NotificationLikeMessageTableViewCell,
                   notification as NotificationLikeMessage):
             cell.configure(notification: notification,
-                           onPostImagePress: { self.onPostImagePress!(notification.likedPost) })
+                           onPostImagePress: { self.onPostImagePress!(self.notification!.selfInfo,
+                                                                      notification.likedPost) })
         case let (cell as NotificationFollowMessageTableViewCell,
                   notification as NotificationFollowMessage):
             cell.configure(notification: notification)

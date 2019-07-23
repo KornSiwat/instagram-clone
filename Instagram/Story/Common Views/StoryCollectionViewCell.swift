@@ -32,6 +32,6 @@ extension StoryCollectionViewCell {
     func configure(story: Story) {
         self.profileName.text = story.name
 
-        updateProfileImage(url: story.imageUrl)
+        updateProfileImage(url: story.previewImageUrl)
     }
 }

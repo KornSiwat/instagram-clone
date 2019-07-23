@@ -9,6 +9,8 @@
 import UIKit
 
 class NotificationFollowingActivityTableViewController: UITableViewController {
+    @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
+
     let notificationFacade = NotificationFacade()
     var notification: NotificationFeed? {
         didSet {
@@ -26,7 +28,16 @@ class NotificationFollowingActivityTableViewController: UITableViewController {
 // MARK: - Setup
 extension NotificationFollowingActivityTableViewController {
     func setupData() {
+        loadNotification()
+    }
+    
+    func loadNotification() {
+        loadingIndicatorView.startAnimating()
+        
         notificationFacade.loadNotificationFeed(completion: { (notificationFeed, error) in
+            self.loadingIndicatorView.stopAnimating()
+            self.tableView.refreshControl!.endRefreshing()
+            
             guard let notificationFeed = notificationFeed else {
                 return
             }
@@ -36,13 +47,20 @@ extension NotificationFollowingActivityTableViewController {
     }
 }
 
+// MARK: - Update
+extension NotificationFollowingActivityTableViewController{
+    @IBAction func refresh(_ sender: UIRefreshControl) {
+        loadNotification()
+    }
+}
+
 // MARK: - TableViewDataSource
 extension NotificationFollowingActivityTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let notification = notification else {
             return 0
         }
-        
+
         return notification.followingActivities.count
     }
 
@@ -53,7 +71,8 @@ extension NotificationFollowingActivityTableViewController {
         let notification = self.notification!.followingActivities[indexPath.row]
 
         cell.configure(notification: notification,
-                       onPostImagePress: { self.onPostImagePress!(notification.likedPost) })
+                       onPostImagePress: { self.onPostImagePress!(self.notification!.selfInfo
+                                                                  , notification.likedPost) })
 
         return cell
     }
@@ -61,7 +80,7 @@ extension NotificationFollowingActivityTableViewController {
 
 // MARK: - Configure
 extension NotificationFollowingActivityTableViewController {
-    func configure( onPostImagePress: @escaping OnPostImagePress) {
+    func configure(onPostImagePress: @escaping OnPostImagePress) {
         self.onPostImagePress = onPostImagePress
     }
 }

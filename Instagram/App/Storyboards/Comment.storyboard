@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="F8u-jQ-iqd">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,18 +15,18 @@
             <objects>
                 <viewController storyboardIdentifier="CommentViewController" hidesBottomBarWhenPushed="YES" id="dqx-eq-QrM" customClass="PostCommentViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="biN-bj-kt6">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GF6-k8-c6G">
-                                <rect key="frame" x="0.0" y="64" width="600" height="464"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="702"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="60" id="oOg-1g-8aZ" customClass="PostCommentTableViewCell" customModule="Instagram" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="60"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oOg-1g-8aZ" id="OT8-Cg-0JD">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Heu-XG-wSy">
@@ -94,7 +98,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="commentLabel" destination="SvL-0a-zGz" id="8oy-0N-Ero"/>
-                                            <outlet property="profileImage" destination="wWz-VZ-tCr" id="4IV-ZN-Ira"/>
+                                            <outlet property="profileImageView" destination="wWz-VZ-tCr" id="262-xA-OJX"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -104,10 +108,10 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ugd-6G-z4N">
-                                <rect key="frame" x="0.0" y="528" width="600" height="72"/>
+                                <rect key="frame" x="0.0" y="790" width="414" height="72"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pvC-LZ-PjG">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1RA-lj-txS">
                                                 <rect key="frame" x="0.0" y="0.0" width="16" height="72"/>
@@ -117,10 +121,10 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="gvr-zc-e7y">
-                                                <rect key="frame" x="16" y="0.0" width="568" height="72"/>
+                                                <rect key="frame" x="16" y="0.0" width="382" height="72"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KWy-Iv-82b">
-                                                        <rect key="frame" x="0.0" y="0.0" width="568" height="72"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="72"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H2V-j3-bhS">
                                                                 <rect key="frame" x="0.0" y="8" width="56" height="56"/>
@@ -130,7 +134,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a comment" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ahB-rw-Pzp">
-                                                                <rect key="frame" x="64" y="21" width="461" height="30"/>
+                                                                <rect key="frame" x="64" y="21" width="275" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -139,7 +143,7 @@
                                                                 </connections>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6je-1T-K5I">
-                                                                <rect key="frame" x="533" y="19.5" width="35" height="33"/>
+                                                                <rect key="frame" x="347" y="19.5" width="35" height="33"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <state key="normal" title="Post"/>
                                                                 <connections>
@@ -155,7 +159,7 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E94-Xy-xoZ">
-                                                <rect key="frame" x="584" y="0.0" width="16" height="72"/>
+                                                <rect key="frame" x="398" y="0.0" width="16" height="72"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="16" id="Pgj-82-Z3z"/>
@@ -193,7 +197,7 @@
                     <navigationItem key="navigationItem" id="O4n-pi-Cxa"/>
                     <connections>
                         <outlet property="commentBarBottomLayoutConstraint" destination="NIG-Zs-WSY" id="dZo-80-dUI"/>
-                        <outlet property="commentBarProfileImage" destination="H2V-j3-bhS" id="z0p-h7-KVK"/>
+                        <outlet property="commentBarProfileImageView" destination="H2V-j3-bhS" id="G89-YN-DtC"/>
                         <outlet property="commentBarView" destination="Ugd-6G-z4N" id="OU3-qJ-vON"/>
                         <outlet property="commentTextField" destination="ahB-rw-Pzp" id="yuZ-wJ-ggq"/>
                         <outlet property="postButton" destination="6je-1T-K5I" id="ofO-Bn-fCq"/>
@@ -215,7 +219,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="F8u-jQ-iqd" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xgd-sj-JYk">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
