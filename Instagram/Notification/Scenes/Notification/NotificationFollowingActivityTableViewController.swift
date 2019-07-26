@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PromiseKit
 
 class NotificationFollowingActivityTableViewController: UITableViewController {
     @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
@@ -28,29 +29,28 @@ class NotificationFollowingActivityTableViewController: UITableViewController {
 // MARK: - Setup
 extension NotificationFollowingActivityTableViewController {
     func setupData() {
-        loadNotification()
+        setupNotificationData()
     }
-    
-    func loadNotification() {
+
+    func setupNotificationData() {
         loadingIndicatorView.startAnimating()
-        
-        notificationFacade.loadNotificationFeed(completion: { (notificationFeed, error) in
+        loadNotification().finally {
             self.loadingIndicatorView.stopAnimating()
-            self.tableView.refreshControl!.endRefreshing()
-            
-            guard let notificationFeed = notificationFeed else {
-                return
-            }
-            
-            self.notification = notificationFeed
-        })
+        }
     }
+
+    func loadNotification() -> PMKFinalizer {
+        return notificationFacade.loadNotificationFeedPMK()
+            .done { self.notification = $0 }
+            .catch { error in print(error) } }
 }
 
 // MARK: - Update
-extension NotificationFollowingActivityTableViewController{
+extension NotificationFollowingActivityTableViewController {
     @IBAction func refresh(_ sender: UIRefreshControl) {
-        loadNotification()
+        loadNotification().finally {
+            self.tableView.refreshControl!.endRefreshing()
+        }
     }
 }
 

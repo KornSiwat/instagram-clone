@@ -11,9 +11,9 @@ import UIKit
 class Story {
     let name: String
     let previewImageUrl: URL
-
-    init(previewImageUrl: URL, name: String) {
-        self.name = name
-        self.previewImageUrl = previewImageUrl
+    
+    init(_ story: FeedResponse.Story) {
+        name = story.name
+        previewImageUrl = story.previewImageUrl
     }
 }

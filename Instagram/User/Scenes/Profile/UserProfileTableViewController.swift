@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import  PromiseKit
 
 class UserProfileTableViewController: UITableViewController {
     @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
@@ -24,7 +25,7 @@ class UserProfileTableViewController: UITableViewController {
 
         setupData()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         showNavigationBar()
     }
@@ -33,26 +34,26 @@ class UserProfileTableViewController: UITableViewController {
 // MARK: - Setup
 extension UserProfileTableViewController {
     func setupData() {
-        loadProfile()
+        setupProfileData()
     }
 
-    func loadProfile() {
+    func setupProfileData() {
         loadingIndicatorView.startAnimating()
-        
-        profileFacade.loadProfile(completion: { (profile, error) in
+        loadProfile().finally {
             self.loadingIndicatorView.stopAnimating()
-            self.tableView.refreshControl!.endRefreshing()
-            
-            guard profile != nil else { return }
-
-            self.profile = profile
-        })
+        }
     }
-    
+
+    func loadProfile() -> PMKFinalizer {
+        return profileFacade.loadProfilePMK()
+            .done { self.profile = $0 }
+            .catch { error in print(error) }
+    }
+
     func showNavigationBar() {
         navigationController!.setNavigationBarHidden(false, animated: false)
     }
-    
+
     func hideNavigationBar() {
         navigationController!.setNavigationBarHidden(true, animated: false)
     }
@@ -61,7 +62,9 @@ extension UserProfileTableViewController {
 // MARK: - Update
 extension UserProfileTableViewController {
     @IBAction func refresh(_ sender: Any) {
-        loadProfile()
+        loadProfile().finally {
+            self.tableView.refreshControl!.endRefreshing()
+        }
     }
 }
 
@@ -147,7 +150,7 @@ extension UserProfileTableViewController {
         switch (segue.identifier, sender) {
         case let(Segue.post, sender as (selfInfo: UserInfo, post: Post)):
             let destination = segue.destination as! PostViewController
-            
+
             destination.configure(selfInfo: sender.selfInfo, post: sender.post)
         default:
             break

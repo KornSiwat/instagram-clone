@@ -16,17 +16,31 @@ class UserInfo {
     var followerCount: Int?
     var followingCount: Int?
 
-    init(profileImageUrl: URL,
-         name: String,
-         biography: String? = "",
-         postCount: Int? = 0,
-         followerCount: Int? = 0,
-         followingCount: Int? = 0) {
-        self.profileImageUrl = profileImageUrl
-        self.name = name
-        self.biography = biography
-        self.postCount = postCount
-        self.followerCount = followerCount
-        self.followingCount = followingCount
+    init(_ selfInfo: FeedResponse.SelfInfo) {
+        profileImageUrl = selfInfo.profileImageUrl
+        name = selfInfo.name
+        biography = selfInfo.biography
+        postCount = selfInfo.postCount
+        followerCount = selfInfo.followerCount
+        followingCount = selfInfo.followingCount
+    }
+
+    init(_ selfInfo: ProfileResponse.SelfInfo) {
+        profileImageUrl = selfInfo.profileImageUrl
+        name = selfInfo.name
+        biography = selfInfo.biography
+        postCount = selfInfo.postCount
+        followerCount = selfInfo.followerCount
+        followingCount = selfInfo.followingCount
+    }
+    
+    init(_ selfInfo: NotificationResponse.SelfInfo) {
+        profileImageUrl = selfInfo.profileImageUrl
+        name = selfInfo.name
+        biography = selfInfo.biography
+        postCount = selfInfo.postCount
+        followerCount = selfInfo.followerCount
+        followingCount = selfInfo.followingCount
     }
 }
+

@@ -15,11 +15,19 @@ class NotificationLikeMessage {
     let likedPost: Post
     let time: String
 
-    init(profileImageUrl: URL, name: String, message: String, likedPost: Post) {
-        self.profileImageUrl = profileImageUrl
-        self.name = name
-        self.message = message
-        self.time = "2d"
-        self.likedPost = likedPost
+    init(_ notification: NotificationResponse.Notification) {
+        profileImageUrl = notification.profileImageUrl
+        name = notification.name
+        message = notification.message
+        time = "2d"
+        likedPost = Post(notification.likedPost!)
+    }
+    
+    init(_ activity: NotificationResponse.FollowingActivity) {
+        profileImageUrl = activity.profileImageUrl
+        name = activity.name
+        message = activity.message
+        time = "2d"
+        likedPost = Post(activity.likedPost!)
     }
 }

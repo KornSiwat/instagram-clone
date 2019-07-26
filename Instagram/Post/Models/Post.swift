@@ -12,27 +12,43 @@ class Post {
     let profileImageUrl: URL
     let profileName: String
     let location: String
-    var isLiked: Bool
-    var likeCount: Int
     let caption: String
-    var comments: [PostComment]
     let postImageUrl: URL
 
-    init(profileImageUrl: URL,
-         profileName: String,
-         location: String = "",
-         postImageUrl: URL,
-         isLiked: Bool = false,
-         likeCount: Int = 0,
-         caption: String = "",
-         comments: [PostComment] = []) {
-        self.profileImageUrl = profileImageUrl
-        self.profileName = profileName
-        self.location = location
-        self.postImageUrl = postImageUrl
-        self.isLiked = isLiked
-        self.likeCount = likeCount
-        self.caption = caption
-        self.comments = comments
+    var comments: [PostComment]
+    var likeCount: Int
+    var isLiked: Bool
+    
+    init(_ post: ProfileResponse.Post) {
+        profileImageUrl = post.profileImageUrl
+        profileName = post.profileName
+        location = post.location ?? ""
+        postImageUrl = post.postImageUrl
+        isLiked = post.isLiked ?? false
+        likeCount = post.likeCount ?? 0
+        caption = post.caption ?? ""
+        comments = post.comments?.map(PostComment.init) ?? []
+    }
+
+    init(_ post: FeedResponse.Post) {
+        profileImageUrl = post.profileImageUrl
+        profileName = post.profileName
+        location = post.location ?? ""
+        postImageUrl = post.postImageUrl
+        isLiked = post.isLiked ?? false
+        likeCount = post.likeCount ?? 0
+        caption = post.caption ?? ""
+        comments = post.comments?.map(PostComment.init) ?? []
+    }
+    
+    init(_ post: NotificationResponse.Post) {
+        profileImageUrl = post.profileImageUrl
+        profileName = post.profileName
+        location = post.location ?? ""
+        postImageUrl = post.postImageUrl
+        isLiked = post.isLiked ?? false
+        likeCount = post.likeCount ?? 0
+        caption = post.caption ?? ""
+        comments = post.comments?.map(PostComment.init) ?? []
     }
 }

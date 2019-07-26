@@ -12,4 +12,12 @@ struct UserFeed {
     let selfInfo: UserInfo
     let stories: [Story]
     let posts: [Post]
+    
+    init(response: FeedResponse) {
+        selfInfo = UserInfo(response.selfInfo)
+        
+        stories = response.stories.map(Story.init)
+        
+        posts = response.posts.map(Post.init)
+    }
 }

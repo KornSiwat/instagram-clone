@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import PromiseKit
 
 class NotificationYouActivityTableViewController: UITableViewController {
     @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
-    
+
     let notificationFacade = NotificationFacade()
     var notification: NotificationFeed? {
         didSet {
@@ -41,29 +42,29 @@ extension NotificationYouActivityTableViewController {
     }
 
     func setupData() {
-        loadNotification()
+        setupNotificationData()
     }
-    
-    func loadNotification() {
+
+    func setupNotificationData() {
         loadingIndicatorView.startAnimating()
-        
-        notificationFacade.loadNotificationFeed(completion: { (notificationFeed, error) in
+        loadNotification().finally {
             self.loadingIndicatorView.stopAnimating()
-            self.tableView.refreshControl!.endRefreshing()
-            
-            guard let notificationFeed = notificationFeed else {
-                return
-            }
-            
-            self.notification = notificationFeed
-        })
+        }
+    }
+
+    func loadNotification() -> PMKFinalizer {
+        return notificationFacade.loadNotificationFeedPMK()
+            .done { self.notification = $0 }
+            .catch { error in print(error) }
     }
 }
 
 // MARK: - Update
 extension NotificationYouActivityTableViewController {
     @IBAction func refresh(_ sender: UIRefreshControl) {
-        loadNotification()
+        loadNotification().finally {
+            self.tableView.refreshControl!.endRefreshing()
+        }
     }
 }
 
@@ -71,7 +72,7 @@ extension NotificationYouActivityTableViewController {
 extension NotificationYouActivityTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         guard notification != nil else { return 0 }
-        
+
         return 3
     }
 

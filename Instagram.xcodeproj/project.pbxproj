@@ -25,6 +25,10 @@
 		931104BE22D4AD46005D5B44 /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 931104BD22D4AD46005D5B44 /* Post.storyboard */; };
 		931104C022D5A147005D5B44 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931104BF22D5A147005D5B44 /* PostViewController.swift */; };
 		931104C222D6F169005D5B44 /* UIButton+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931104C122D6F169005D5B44 /* UIButton+Round.swift */; };
+		9316858822EAB15000088325 /* FeedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316858722EAB15000088325 /* FeedResponse.swift */; };
+		9316858A22EAB18200088325 /* ProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316858922EAB18200088325 /* ProfileResponse.swift */; };
+		9316858E22EAB24E00088325 /* NotificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316858D22EAB24E00088325 /* NotificationResponse.swift */; };
+		9316859022EAD58B00088325 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316858F22EAD58B00088325 /* Route.swift */; };
 		93326C9322CA151B00B216F4 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93326C9222CA151B00B216F4 /* PostTableViewCell.swift */; };
 		93479D4F22C6378000A838F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93479D4E22C6378000A838F9 /* AppDelegate.swift */; };
 		93479D5422C6378000A838F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93479D5222C6378000A838F9 /* Main.storyboard */; };
@@ -78,6 +82,10 @@
 		931104BD22D4AD46005D5B44 /* Post.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Post.storyboard; sourceTree = "<group>"; };
 		931104BF22D5A147005D5B44 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		931104C122D6F169005D5B44 /* UIButton+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Round.swift"; sourceTree = "<group>"; };
+		9316858722EAB15000088325 /* FeedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedResponse.swift; sourceTree = "<group>"; };
+		9316858922EAB18200088325 /* ProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResponse.swift; sourceTree = "<group>"; };
+		9316858D22EAB24E00088325 /* NotificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationResponse.swift; sourceTree = "<group>"; };
+		9316858F22EAD58B00088325 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		93326C9222CA151B00B216F4 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		93479D4B22C6378000A838F9 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93479D4E22C6378000A838F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				9371188E22DF1621002AD064 /* NotificationFacade.swift */,
+				9316858D22EAB24E00088325 /* NotificationResponse.swift */,
 				934E4C5222E05E92008FE703 /* Models */,
 				934E4C4F22E05ABC008FE703 /* Scenes */,
 			);
@@ -187,6 +196,8 @@
 			isa = PBXGroup;
 			children = (
 				934BD7A422E069F90021057F /* UserFacade.swift */,
+				9316858722EAB15000088325 /* FeedResponse.swift */,
+				9316858922EAB18200088325 /* ProfileResponse.swift */,
 				934E4C5722E06051008FE703 /* Models */,
 				934E4C5522E06025008FE703 /* Scenes */,
 			);
@@ -393,6 +404,7 @@
 				93479D4E22C6378000A838F9 /* AppDelegate.swift */,
 				93479D5522C6378100A838F9 /* Assets.xcassets */,
 				93E509C722E180E9003A5035 /* DefaultImage.swift */,
+				9316858F22EAD58B00088325 /* Route.swift */,
 				93479D5A22C6378100A838F9 /* Info.plist */,
 				934E4C6322E0627D008FE703 /* Extensions */,
 				934E4C5322E05ED4008FE703 /* Storyboards */,
@@ -539,6 +551,7 @@
 				93B98D4F22C93052008620EF /* UserProfileTableViewController.swift in Sources */,
 				930D210F22CB0EF70040EF0D /* Post.swift in Sources */,
 				9385517F22CE72B800628A21 /* UserProfileHighlightTableViewCell.swift in Sources */,
+				9316858A22EAB18200088325 /* ProfileResponse.swift in Sources */,
 				930D211822CC64320040EF0D /* StoryCollectionViewCell.swift in Sources */,
 				93E509C822E180E9003A5035 /* DefaultImage.swift in Sources */,
 				9385517D22CDD9FA00628A21 /* UserInfo.swift in Sources */,
@@ -556,15 +569,18 @@
 				930D211622CBEA5D0040EF0D /* PostCommentTableViewCell.swift in Sources */,
 				9385518122CE751700628A21 /* UserProfileHighlight.swift in Sources */,
 				936EF63222CF6B7A009591E8 /* NotificationNormalMessage.swift in Sources */,
+				9316858822EAB15000088325 /* FeedResponse.swift in Sources */,
 				930A664622CE7984000FA433 /* UserProfilePostCollectionView.swift in Sources */,
 				936EF62C22CF692E009591E8 /* NotificationFollowingActivityTableViewController.swift in Sources */,
 				9371188D22DEF96E002AD064 /* UserFeed.swift in Sources */,
 				930D211E22CC6C850040EF0D /* StoryTableViewCell.swift in Sources */,
 				931104B022D450DB005D5B44 /* NotificationLikeMessageTableViewCell.swift in Sources */,
 				93B98D4722C9290A008620EF /* UserProfileDetailTableViewCell.swift in Sources */,
+				9316859022EAD58B00088325 /* Route.swift in Sources */,
 				931104B722D4656D005D5B44 /* NotificationFollowMessage.swift in Sources */,
 				936EF62922CF1B4C009591E8 /* NotificationViewController.swift in Sources */,
 				93326C9322CA151B00B216F4 /* PostTableViewCell.swift in Sources */,
+				9316858E22EAB24E00088325 /* NotificationResponse.swift in Sources */,
 				9371188F22DF1621002AD064 /* NotificationFacade.swift in Sources */,
 				93F3CFD022DF2B5A00F74DFD /* UserProfile.swift in Sources */,
 				93B98D4322C90758008620EF /* UserMainFeedTableViewController.swift in Sources */,

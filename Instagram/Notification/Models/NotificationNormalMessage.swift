@@ -14,10 +14,10 @@ class NotificationNormalMessage {
     let message: String
     let time: String
 
-    init(profileImageUrl: URL, name: String, message: String) {
-        self.profileImageUrl = profileImageUrl
-        self.name = name
-        self.message = message
-        self.time = "2d"
+    init(_ notification: NotificationResponse.Notification) {
+        profileImageUrl = notification.profileImageUrl
+        name = notification.name
+        message = notification.message
+        time = "2d"
     }
 }

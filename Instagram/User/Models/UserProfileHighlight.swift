@@ -11,9 +11,9 @@ import UIKit
 class UserProfileHighlight {
     var previewImageUrl: URL
     var name: String
-    
-    init(previewImageUrl: URL, name: String) {
-        self.previewImageUrl = previewImageUrl
-        self.name = name
+
+    init(highlight: ProfileResponse.Highlight) {
+        previewImageUrl = highlight.previewImageUrl
+        name = highlight.name
     }
 }

@@ -16,11 +16,11 @@ class NotificationFollowMessage {
 
     var isFollowing: Bool
 
-    init(profileImageUrl: URL, name: String, message: String, isFollowing: Bool) {
-        self.profileImageUrl = profileImageUrl
-        self.name = name
-        self.message = message
-        self.time = "12s"
-        self.isFollowing = isFollowing
+    init(_ notification: NotificationResponse.Notification) {
+        profileImageUrl = notification.profileImageUrl
+        name = notification.name
+        message = notification.message
+        time = "12s"
+        isFollowing = notification.isFollowing!
     }
 }
